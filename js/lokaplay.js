@@ -899,101 +899,101 @@
     const SUDDEN_DEATH_DATA = [
         {
             level: 1,
-            levelTitle: "Wujud Zat",
+            levelTitle: "Wujud Zat dan Model Partikel",
             questions: [
                 {
                     id: 1,
-                    question: "Saat proses pembuatan dupa harum Bali, adonan bahan dipadatkan menjadi bentuk batang dupa. Pernyataan yang benar mengenai sifat wujud zat padat...",
+                    question: "Saat proses pembuatan dupa harum Bali, adonan bahan dipadatkan menjadi bentuk batang dupa. Pernyataan yang benar mengenai sifat wujud zat padat pada batang dupa tersebut berdasarkan teori partikel adalah...",
                     options: [
-                        "Bentuk berubah-ubah, volume tetap",
-                        "Bentuk dan volume tetap, serta partikel terikat kuat",
-                        "Bentuk dan volume berubah-ubah",
-                        "Bentuk tetap, volume berubah"
+                        "Bentuk berubah-ubah, volume tetap, serta jarak antarpartikel zat sangat berjauhan.",
+                        "Bentuk dan volume tetap, serta partikel-partikel zat terikat kuat dan beraturan.",
+                        "Bentuk dan volume berubah-ubah, serta partikel zat bergerak bebas tak terbatas.",
+                        "Bentuk tetap, volume berubah, serta partikel zat sangat mudah berpindah tempat."
                     ],
                     correct: 1, // B
-                    explanation: "Batang dupa merupakan zat padat. Memiliki bentuk dan volume tetap karena gaya tarik antarpartikel sangat kuat serta tersusun rapat."
+                    explanation: "Batang dupa merupakan zat padat. Zat padat memiliki bentuk dan volume yang tetap karena gaya tarik antarpartikelnya sangat kuat serta tersusun rapat dan teratur."
                 },
                 {
                     id: 2,
-                    question: "Ketika minyak atraktan dupa dituangkan ke wadah, bentuk mengikuti wadah namun volume tetap. Hal ini karena partikel zat cair...",
+                    question: "Ketika minyak atraktan dupa (zat cair) dituangkan ke dalam wadah yang berbeda, bentuknya mengikuti wadah namun volumenya tetap. Hal ini terjadi karena partikel zat cair...",
                     options: [
-                        "Memiliki gaya tarik sangat kuat sehingga tidak bergerak",
-                        "Terikat sangat lemah dan bebas",
-                        "Masih memiliki gaya tarik cukup kuat, namun partikel dapat saling menggelincir",
-                        "Tidak memiliki massa"
+                        "Memiliki gaya tarik sangat kuat sehingga tidak bisa bergerak sama sekali.",
+                        "Terikat sangat lemah dan bebas meninggalkan kelompoknya ke udara.",
+                        "Memiliki gaya tarik cukup kuat, namun partikelnya dapat saling menggelincir.",
+                        "Tidak memiliki massa serta tidak mampu menempati ruang wadah."
                     ],
                     correct: 2, // C
-                    explanation: "Jarak antarpartikel sedikit renggang dan gaya tariknya agak lemah, memungkinkan partikel untuk saling berpindah/menggelincir."
+                    explanation: "Pada zat cair, jarak antarpartikel sedikit lebih renggang dibanding zat padat dan gaya tariknya agak lemah, memungkinkan partikel untuk saling berpindah/menggelincir tetapi tidak lepas sepenuhnya."
                 }
             ]
         },
         {
             level: 2,
-            levelTitle: "Perubahan Wujud",
+            levelTitle: "Perubahan Wujud Zat",
             questions: [
                 {
                     id: 3,
-                    question: "Pada proses pembuatan Arak Bali, uap alkohol dimandikan melalui pipa pendingin hingga menetes menjadi cairan. Proses perubahan wujudnya adalah...",
+                    question: "Pada proses pembuatan Arak Bali tradisional, uap alkohol hasil pemanasan dimandikan melalui pipa pendingin hingga menetes menjadi cairan arak murni. Proses perubahan wujud yang terjadi pada pipa pendingin tersebut adalah...",
                     options: [
-                        "Menguap (memerlukan kalor)",
-                        "Mengembun/Kondensasi (melepaskan kalor)",
-                        "Menyublim (melepaskan kalor)",
-                        "Membeku (memerlukan kalor)"
+                        "Menguap karena menyerap energi kalor dari lingkungan sekitar pipa.",
+                        "Mengembun atau kondensasi karena melepaskan energi panas.",
+                        "Menyublim langsung menjadi kristal padat tanpa melalui cairan.",
+                        "Membeku karena mengalami penurunan suhu yang sangat drastis."
                     ],
                     correct: 1, // B
-                    explanation: "Perubahan wujud gas menjadi cair disebut mengembun. Proses ini terjadi karena uap melepaskan kalor ke lingkungan pendingin."
+                    explanation: "Perubahan wujud dari gas (uap arak) menjadi cair (tetesan arak) disebut mengembun/kondensasi. Proses ini terjadi karena uap melepaskan energi panas (kalor) ke lingkungan pendingin."
                 },
                 {
                     id: 4,
-                    question: "Ketika es batu dipanaskan hingga meleleh, terjadi perubahan pada partikel, yaitu...",
+                    question: "Ketika es batu dipanaskan hingga meleleh menjadi air cair, terjadi perubahan pada tingkat partikel, yaitu...",
                     options: [
-                        "Energi kinetik berkurang",
-                        "Partikel bertambah banyak",
-                        "Partikel menyerap panas sehingga gerakan cepat dan ikatan merenggang",
-                        "Partikel zat padat berubah menjadi udara"
+                        "Energi kinetik partikel berkurang sehingga partikel bergerak lebih lambat.",
+                        "Partikel air bertambah banyak jumlahnya dan ukurannya membesar.",
+                        "Partikel menyerap energi kalor sehingga gerakannya cepat dan ikatan merenggang.",
+                        "Partikel zat padat berubah wujud langsung menjadi partikel udara bebas."
                     ],
                     correct: 2, // C
-                    explanation: "Saat mencair, zat menyerap kalor yang meningkatkan energi kinetik partikel sehingga pergerakannya cepat mengatasi gaya tarik yang kaku."
+                    explanation: "Saat meleleh/mencair, zat menyerap kalor. Kalor ini meningkatkan energi kinetik partikel sehingga pergerakannya lebih cepat dan mampu mengatasi gaya tarik antarpartikel yang tadinya kaku."
                 }
             ]
         },
         {
             level: 3,
-            levelTitle: "Massa Jenis",
+            levelTitle: "Kerapatan Zat (Massa Jenis)",
             questions: [
                 {
                     id: 5,
-                    question: "Air laut pekat di Kusamba memiliki massa jenis (ρ) lebih besar dibandingkan air tawar. Benda di dalam air laut pekat akan lebih mudah...",
+                    question: "Saat pembuatan garam di Kusamba, air laut yang pekat memiliki massa jenis (ρ atau rho) lebih besar dibandingkan air tawar biasa. Hal ini menyebabkan benda yang dimasukkan ke dalam air laut pekat akan lebih mudah...",
                     options: [
-                        "Tenggelam ke dasar",
-                        "Terapung karena gaya ke atas air laut lebih besar",
-                        "Lenyap dan mencair",
-                        "Menyerap air laut"
+                        "Tenggelam ke dasar wadah penampungan karena berat bendanya.",
+                        "Terapung karena gaya ke atas air laut lebih besar.",
+                        "Lenyap dan mencair menyatu bersama larutan pekat.",
+                        "Menyerap air laut hingga jenuh dan habis seluruhnya."
                     ],
                     correct: 1, // B
-                    explanation: "Semakin besar massa jenis cairan, makin besar gaya apungnya, sehingga benda lebih mudah terapung."
+                    explanation: "Semakin besar massa jenis suatu zat cair, makin besar pula gaya apung (gaya ke atas) yang dihasilkannya, sehingga benda lebih mudah terapung di air laut pekat daripada air tawar."
                 },
                 {
                     id: 6,
-                    question: "Zat yang memiliki massa jenis paling besar pada umumnya memiliki ciri...",
+                    question: "Massa jenis suatu zat menunjukkan seberapa rapat partikel-partikel tersusun dalam suatu volume. Zat yang memiliki massa jenis paling besar pada umumnya memiliki ciri...",
                     options: [
-                        "Partikelnya tersusun sangat rapat dan jumlah massa per satuan volumenya tinggi",
-                        "Jarak antarpartikelnya sangat berjauhan",
-                        "Partikel bergerak bebas",
-                        "Volume berubah-ubah"
+                        "Partikel tersusun sangat rapat dan massa per satuan volumenya tinggi.",
+                        "Jarak antarpartikel zatnya sangat berjauhan di dalam ruang.",
+                        "Partikel bergerak sangat bebas dengan kecepatan tinggi sekali.",
+                        "Memiliki volume zat yang selalu berubah-ubah setiap saat."
                     ],
                     correct: 0, // A
-                    explanation: "Kerapatan partikel berbanding lurus dengan massa jenis. Makin rapat partikel, makin besar massa per satuan volumenya."
+                    explanation: "Kerapatan partikel berbanding lurus dengan massa jenis. Semakin rapat susunan partikel dalam suatu ruang, semakin besar massa per satuan volumenya."
                 }
             ]
         },
         {
             level: 4,
-            levelTitle: "Perubahan Fisika & Kimia",
+            levelTitle: "Perubahan Fisika dan Kimia",
             questions: [
                 {
                     id: 7,
-                    question: "Di antara peristiwa: (1) Garam melarut, (2) Pembakaran dupa menghasilkan abu, (3) Es meleleh, (4) Pembusukan janur. Yang tergolong Perubahan Kimia adalah...",
+                    question: "Di antara peristiwa dalam kehidupan masyarakat Bali berikut:\n1. Garam Kusamba melarut dalam air kopyokan\n2. Pembakaran batang dupa menghasilkan abu dan asap beraroma\n3. Es batu dalam es daluman meleleh\n4. Pembusukan janur pada banten setelah beberapa hari\nPeristiwa yang tergolong ke dalam Perubahan Kimia ditunjukkan oleh nomor...",
                     options: [
                         "1 dan 3",
                         "1 dan 4",
@@ -1001,19 +1001,19 @@
                         "2 dan 3"
                     ],
                     correct: 2, // C
-                    explanation: "Perubahan kimia menghasilkan zat baru yang sifatnya tidak dapat kembali ke asal. Pembakaran dupa (2) dan pembusukan janur (4) menghasilkan zat baru."
+                    explanation: "Perubahan kimia menghasilkan zat baru yang sifatnya berbeda dan tidak dapat kembali ke bentuk semula. Pembakaran dupa (2) dan pembusukan janur (4) menghasilkan zat baru (abu/gas dan hasil pembusukan)."
                 },
                 {
                     id: 8,
-                    question: "Pembuatan garam di Kusamba dengan menguapkan air laut dikategorikan sebagai Perubahan Fisika karena...",
+                    question: "Pada pembuatan garam di Kusamba, air laut dialirkan dan diuapkan di bawah sinar matahari hingga menyisakan kristal garam putih. Proses ini dikategorikan sebagai Perubahan Fisika karena...",
                     options: [
-                        "Terbentuk zat kimia baru beracun",
-                        "Sifat kimia garam berubah total",
-                        "Tidak menghasilkan zat baru, hanya pemisahan campuran dan perubahan wujud",
-                        "Terjadi perubahan warna permanen"
+                        "Terbentuk jenis zat kimia baru yang beracun bagi tubuh.",
+                        "Sifat kimia garam berubah total dibanding saat berada di laut.",
+                        "Tidak menghasilkan zat baru, hanya pemisahan campuran dan wujud.",
+                        "Terjadi perubahan warna zat secara permanen di wadah."
                     ],
                     correct: 2, // C
-                    explanation: "Pengkristalan garam melalui penguapan tidak menghasilkan zat baru. Garam yang mengkristal tetap memiliki rumus dan sifat kimia yang sama."
+                    explanation: "Pengkristalan garam melalui penguapan air laut tidak menghasilkan zat baru. Garam yang mengkristal tetap memiliki rumus dan sifat kimia yang sama seperti saat terlarut dalam air laut."
                 }
             ]
         }
@@ -1101,9 +1101,9 @@
 
         cleanupGhosts() {
             document.querySelectorAll('.g1-card-dragging, .g2-chip-dragging').forEach(el => el.remove());
-            if (this.stopWSTimer) this.stopWSTimer();
-            if (this.stopTFTimer) this.stopTFTimer();
-            if (this.stopSDTimer) this.stopSDTimer();
+            if (this.currentGame !== 'game_carikata' && this.stopWSTimer) this.stopWSTimer();
+            if (this.currentGame !== 'game_tf' && this.stopTFTimer) this.stopTFTimer();
+            if (this.currentGame !== 'game_suddendeath' && this.stopSDTimer) this.stopSDTimer();
         }
 
         init() {
@@ -4234,13 +4234,14 @@
         // ==========================================
         // GAME 8: MEMORY GAME (PENCOCOKAN KARTU CSS 3D)
         // ==========================================
-        initGameMemory() {
+        initGameMemory(showHelp = true) {
             this.cleanupGhosts();
             this.currentGame = 'game_memory';
             this.memFlipped = [];
             this.memMatchedPairs = 0;
             this.memMoves = 0;
             this.memIsLocked = false;
+            this.memShowHelp = showHelp;
 
             // Generate 12 kartu dan acak
             const preparedCards = MEMORY_GAME_DATA.map((item, idx) => ({
@@ -4319,7 +4320,10 @@
                             <span class="mem-rating-item ${this.memMoves > 12 && this.memMoves <= 18 ? 'active' : ''}">⭐⭐ 13-18 (+30 EXP)</span>
                             <span class="mem-rating-item ${this.memMoves > 18 ? 'active' : ''}">⭐ &gt;18 (+10 EXP)</span>
                         </div>
-                        <button class="btn-mem-reset" id="btn-mem-reset" title="Acak ulang posisi kartu">🔄 Acak Ulang</button>
+                        <div class="mem-status-actions">
+                            <button class="btn-mem-help" id="btn-mem-help" title="Petunjuk & Misi Permainan">❓ Petunjuk</button>
+                            <button class="btn-mem-reset" id="btn-mem-reset" title="Acak ulang posisi kartu">🔄 Acak Ulang</button>
+                        </div>
                     </div>
 
                     <!-- 3x4 Card Grid -->
@@ -4327,7 +4331,84 @@
                         ${cardsHtml}
                     </div>
                 </main>
+
+                <!-- Popup Petunjuk & Misi Permainan -->
+                <div class="mem-modal-overlay ${this.memShowHelp ? 'active' : ''}" id="mem-help-modal">
+                    <div class="mem-modal-card">
+                        <button class="mem-modal-close" id="btn-close-mem-modal" title="Tutup Petunjuk">✕</button>
+                        <div class="mem-modal-header">
+                            <div class="mem-inst-badge-pair">
+                                <span class="mem-badge-pill ethno">🏮 Etnosains</span>
+                                <span class="mem-badge-arrow">⇄</span>
+                                <span class="mem-badge-pill sci">🔬 Konsep Sains</span>
+                            </div>
+                            <h3 class="mem-modal-title">Misi Harmoni: Cocokkan Budaya Bali & Sains!</h3>
+                        </div>
+                        <div class="mem-modal-body">
+                            <p class="mem-modal-desc">
+                                Buka dua kartu pada setiap giliran untuk mengungkap keterkaitannya. Tugasmu adalah <strong>mencocokkan kartu fenomena Etnosains Bali</strong> dengan <strong>kartu Konsep Sains</strong> yang menjelaskan prinsip ilmiah di baliknya.
+                            </p>
+                            <div class="mem-modal-tips">
+                                <div class="mem-tip-item">
+                                    <span class="mem-tip-icon">🏮</span>
+                                    <div class="mem-tip-text">
+                                        <strong>Kartu Etnosains Bali</strong>
+                                        <span>Menampilkan tradisi dan fenomena khas Bali (seperti Batang Dupa, Destilasi Arak, Garam Kusamba, Es Daluman).</span>
+                                    </div>
+                                </div>
+                                <div class="mem-tip-item">
+                                    <span class="mem-tip-icon">🔬</span>
+                                    <div class="mem-tip-text">
+                                        <strong>Kartu Konsep Sains</strong>
+                                        <span>Menampilkan penjelasan ilmiah sub-mikroskopis (susunan partikel, perubahan wujud zat, massa jenis).</span>
+                                    </div>
+                                </div>
+                                <div class="mem-tip-item">
+                                    <span class="mem-tip-icon">⭐</span>
+                                    <div class="mem-tip-text">
+                                        <strong>Efisiensi Langkah & Hadiah EXP</strong>
+                                        <span>Temukan seluruh <strong>6 pasang kartu</strong> dengan &le;12 langkah untuk membawa pulang <strong>3 Bintang & 50 EXP</strong>!</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mem-modal-footer">
+                            <button class="btn-mem-start" id="btn-mem-start-play">
+                                Paham, Mulai Main! 🎮
+                            </button>
+                        </div>
+                    </div>
+                </div>
             `;
+
+            // Modal Controls
+            const modalEl = document.getElementById('mem-help-modal');
+            const closeModal = () => {
+                SoundFx.play('click');
+                if (modalEl) modalEl.classList.remove('active');
+                this.memShowHelp = false;
+            };
+
+            const openModal = () => {
+                SoundFx.play('click');
+                if (modalEl) modalEl.classList.add('active');
+                this.memShowHelp = true;
+            };
+
+            const btnHelp = document.getElementById('btn-mem-help');
+            if (btnHelp) btnHelp.onclick = openModal;
+
+            const btnCloseModal = document.getElementById('btn-close-mem-modal');
+            if (btnCloseModal) btnCloseModal.onclick = closeModal;
+
+            const btnStartPlay = document.getElementById('btn-mem-start-play');
+            if (btnStartPlay) btnStartPlay.onclick = closeModal;
+
+            if (modalEl) {
+                modalEl.onclick = (e) => {
+                    if (e.target === modalEl) closeModal();
+                };
+            }
 
             document.getElementById('btn-mem-back').onclick = () => {
                 SoundFx.play('click');
@@ -4337,7 +4418,7 @@
 
             document.getElementById('btn-mem-reset').onclick = () => {
                 SoundFx.play('click');
-                this.initGameMemory();
+                this.initGameMemory(false);
             };
 
             this.container.querySelectorAll('.mem-card-wrapper').forEach(cardEl => {
@@ -4489,9 +4570,8 @@
         // GAME 9: MULTIPLE CHOICE (SUDDEN DEATH)
         // ==========================================
         initGameSuddenDeath() {
-            this.cleanupGhosts();
-            this.stopSDTimer();
             this.currentGame = 'game_suddendeath';
+            this.stopSDTimer();
             this.sdSeconds = 0;
             this.sdOverallIndex = 0;
             this.sdEarnedExp = 0;
@@ -4504,8 +4584,8 @@
             const l4 = shuffleArray(SUDDEN_DEATH_DATA[3].questions);
             this.sdQuestions = [...l1, ...l2, ...l3, ...l4];
 
-            this.startSDTimer();
             this.renderGameSuddenDeath();
+            this.startSDTimer();
         }
 
         stopSDTimer() {
@@ -4529,7 +4609,6 @@
         }
 
         renderGameSuddenDeath() {
-            this.cleanupGhosts();
             const curQ = this.sdQuestions[this.sdOverallIndex];
             const curLevelNum = Math.floor(this.sdOverallIndex / 2) + 1;
             const curLevelData = SUDDEN_DEATH_DATA[curLevelNum - 1];
@@ -4595,6 +4674,10 @@
                     this.handleSDAnswer(idx);
                 };
             });
+
+            if (!this.sdTimer) {
+                this.startSDTimer();
+            }
         }
 
         handleSDAnswer(selectedIndex) {
@@ -4611,6 +4694,7 @@
                 if (selectedBtn) selectedBtn.classList.add('sd-correct');
                 this.sdEarnedExp += 20;
                 addExp(20);
+                this.stopSDTimer(); // Pause timer while modal explanation is shown
 
                 setTimeout(() => {
                     this.showSDExplanationModal(curQ.explanation, () => {
@@ -4618,6 +4702,7 @@
                         this.sdOverallIndex++;
                         if (this.sdOverallIndex < this.sdQuestions.length) {
                             this.renderGameSuddenDeath();
+                            this.startSDTimer(); // Resume timer on next question
                         } else {
                             this.renderSDVictory();
                         }

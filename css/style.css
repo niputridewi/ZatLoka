@@ -3015,6 +3015,11 @@ button {
     border-radius: 10px;
 }
 
+.qcard-asset-container {
+    width: 100%;
+    margin-bottom: 0.85rem;
+}
+
 .qcard-asset-box {
     width: 100%;
     max-height: 220px;
@@ -3033,6 +3038,16 @@ button {
     max-height: 200px;
     object-fit: contain;
     border-radius: 4px;
+}
+
+.qcard-asset-caption {
+    text-align: center;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: #475569;
+    margin: 0.45rem 0 0 0;
+    line-height: 1.45;
+    padding: 0 0.5rem;
 }
 
 .qcard-text,
@@ -5194,6 +5209,262 @@ button {
     gap: 0.35rem;
 }
 
+/* Modal Petunjuk Game 8 (Popup Misi) */
+.mem-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 1rem;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.mem-modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.mem-modal-card {
+    background: #ffffff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 540px;
+    max-height: 88vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 1.5rem 1.6rem;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(14, 165, 233, 0.2);
+    border: 2px solid #bae6fd;
+    animation: memModalZoom 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes memModalZoom {
+    from {
+        transform: scale(0.92) translateY(12px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.mem-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    color: #64748b;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    line-height: 1;
+}
+
+.mem-modal-close:hover {
+    background: #fee2e2;
+    color: #ef4444;
+    border-color: #fca5a5;
+    transform: scale(1.08);
+}
+
+.mem-modal-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+    padding-top: 0.2rem;
+}
+
+.mem-inst-badge-pair {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.75rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.mem-badge-pill {
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.mem-badge-pill.ethno {
+    background: #fff7ed;
+    color: #c2410c;
+    border: 1px solid #ffedd5;
+}
+
+.mem-badge-pill.sci {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #dbeafe;
+}
+
+.mem-badge-arrow {
+    font-size: 0.85rem;
+    font-weight: 900;
+    color: #0ea5e9;
+    line-height: 1;
+}
+
+.mem-modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.35;
+}
+
+.mem-modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 1.25rem;
+}
+
+.mem-modal-desc {
+    font-size: 0.85rem;
+    color: #334155;
+    line-height: 1.55;
+    margin: 0;
+    background: #f8fafc;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+.mem-modal-desc strong {
+    color: #0f172a;
+}
+
+.mem-modal-tips {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.mem-tip-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.6rem 0.85rem;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+}
+
+.mem-tip-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    line-height: 1.2;
+}
+
+.mem-tip-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    text-align: left;
+}
+
+.mem-tip-text strong {
+    font-size: 0.82rem;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.mem-tip-text span {
+    font-size: 0.76rem;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+.mem-modal-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-mem-start {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.7rem 1.25rem;
+    font-size: 0.92rem;
+    font-weight: 700;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0284c7, #0369a1);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+    transition: all 0.2s ease;
+}
+
+.btn-mem-start:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.45);
+}
+
+.mem-status-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.btn-mem-help {
+    background: #f0f9ff;
+    border: 1.5px solid #bae6fd;
+    color: #0284c7;
+    border-radius: 20px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: var(--transition-smooth);
+}
+
+.btn-mem-help:hover {
+    background: #e0f2fe;
+    color: #0369a1;
+    border-color: #7dd3fc;
+    transform: translateY(-1px);
+}
+
 .mem-status-bar {
     display: flex;
     justify-content: space-between;
@@ -5546,6 +5817,7 @@ button {
     color: #0f172a;
     font-weight: 600;
     margin: 0;
+    white-space: pre-line;
 }
 
 .sd-options-grid {

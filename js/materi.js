@@ -46,9 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
         5: { level: 'Level 2: Perubahan Wujud & Titik Suhu', title: 'Pengharum Kamar (Menyublim)' },
         6: { level: 'Level 2: Perubahan Wujud & Titik Suhu', title: 'Tradisi Garam Kusamba (Mengkristal)' },
         7: { level: 'Level 2: Perubahan Wujud & Titik Suhu', title: 'Batas Suhu Perubahan Wujud' },
-        8: { level: 'Level 3: Perubahan Fisika & Kimia', title: 'Pembakaran Dupa & Kartu Analisis' },
-        9: { level: 'Level 4: Kerapatan & Massa Jenis', title: 'Rahasia Mengapung, Melayang, dan Tenggelam' },
-        10: { level: 'Level 4: Kerapatan & Massa Jenis', title: 'Perhitungan Massa Jenis' }
+        8: { level: 'Level 2: Perubahan Wujud & Titik Suhu', title: 'Ringkasan Perubahan Wujud Zat & Kalor' },
+        9: { level: 'Level 3: Perubahan Fisika & Kimia', title: 'Pembakaran Dupa & Kartu Analisis' },
+        10: { level: 'Level 4: Kerapatan & Massa Jenis', title: 'Rahasia Mengapung, Melayang, dan Tenggelam' },
+        11: { level: 'Level 4: Kerapatan & Massa Jenis', title: 'Perhitungan Massa Jenis' }
     };
 
     // 2. LEVEL MAP NAVIGATION & SPA LINKING
@@ -122,11 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (levelNum === 1) {
             levelSlides = [1, 2];
         } else if (levelNum === 2) {
-            levelSlides = [3, 4, 5, 6, 7];
+            levelSlides = [3, 4, 5, 6, 7, 8];
         } else if (levelNum === 3) {
-            levelSlides = [8];
+            levelSlides = [9];
         } else if (levelNum === 4) {
-            levelSlides = [9, 10];
+            levelSlides = [10, 11];
         }
         currentSlideIndex = 0;
         currentSlide = levelSlides[currentSlideIndex];
@@ -346,8 +347,10 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (currentSlide === 3) {
             showMascotBubble("Es Daluman segar sekali! Mari pelajari pelelehan zat!");
         } else if (currentSlide === 8) {
-            showMascotBubble("Dupa ini harum sekali, ayo selidiki perubahannya!");
+            showMascotBubble("Perhatikan bagan perubahan wujud zat dan arah perpindahan kalornya!");
         } else if (currentSlide === 9) {
+            showMascotBubble("Dupa ini harum sekali, ayo selidiki perubahannya!");
+        } else if (currentSlide === 10) {
             showMascotBubble("Wah, kolam air! Mari uji kerapatan benda-benda ini!");
         }
     }
@@ -450,16 +453,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (dalumanTextDesc) {
                 dalumanTextDesc.innerHTML = `
                     <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-                        <h4 style="margin: 0; color: #d97706; font-size: 0.95rem; font-weight: 700;">Meleleh (Padat → Cair)</h4>
+                        <h4 style="margin: 0; color: #d97706; font-size: 0.95rem; font-weight: 700;">1. Meleleh (Padat → Cair)</h4>
                         <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.25rem;">
                             <li><strong>Pengertian:</strong> Perubahan wujud zat dari padat menjadi cair (contoh: es batu yang dipanaskan hingga mencair).</li>
-                            <li><strong>Penyebab:</strong> Adanya penyerapan energi panas dari api atau lingkungan sekitar.</li>
-                            <li><strong>Mekanisme Partikel:</strong>
-                                <ul style="margin-top: 0.2rem; padding-left: 1.2rem; list-style-type: circle; display: flex; flex-direction: column; gap: 0.15rem;">
-                                    <li>Panas memberikan energi bagi partikel untuk bergetar lebih cepat.</li>
-                                    <li>Terbentuk ruang antarpeluang kecil, dan ikatan antarpartikel lama-kelamaan melemah sehingga wujudnya berubah menjadi cair.</li>
-                                </ul>
-                            </li>
+                            <li><strong>Penyebab:</strong> Adanya penyerapan energi panas dari api atau perpindahan panas dari lingkungan sekitar.</li>
+                            <li><strong>Mekanisme Partikel:</strong> Panas memberikan energi bagi partikel untuk bergetar lebih cepat. Terbentuk rongga antarpartikel yang lebih renggang, serta ikatan antarpartikel melemah secara bertahap hingga zat berubah wujud menjadi cair.</li>
                         </ul>
                     </div>
                 `;
@@ -473,16 +471,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (dalumanTextDesc) {
                 dalumanTextDesc.innerHTML = `
                     <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-                        <h4 style="margin: 0; color: #0284c7; font-size: 0.95rem; font-weight: 700;">Membeku (Cair → Padat)</h4>
+                        <h4 style="margin: 0; color: #0284c7; font-size: 0.95rem; font-weight: 700;">2. Membeku (Cair → Padat)</h4>
                         <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.25rem;">
                             <li><strong>Pengertian:</strong> Perubahan wujud zat dari cair menjadi padat (contoh: air yang dimasukkan ke dalam freezer menjadi es).</li>
-                            <li><strong>Penyebab:</strong> Pelepasan energi panas karena suhu yang sangat dingin (panas keluar ke udara sekitar).</li>
-                            <li><strong>Mekanisme Partikel:</strong>
-                                <ul style="margin-top: 0.2rem; padding-left: 1.2rem; list-style-type: circle; display: flex; flex-direction: column; gap: 0.15rem;">
-                                    <li>Kehilangan panas membuat partikel air bergerak lebih lambat dan saling mendekat.</li>
-                                    <li>Terbentuk ikatan yang lebih kuat antarpartikel sehingga partikel tidak bisa bebas bergerak lagi dan hanya bergetar di tempat.</li>
-                                </ul>
-                            </li>
+                            <li><strong>Penyebab:</strong> Pelepasan energi panas karena suhu yang sangat dingin (panas keluar ke udara sekitar atau lingkungan).</li>
+                            <li><strong>Mekanisme Partikel:</strong> Kehilangan panas membuat partikel air bergerak lebih lambat dan saling mendekat. Terbentuk ikatan yang lebih kuat antarpartikel sehingga partikel tidak bisa bebas bergerak lagi dan hanya bergetar di tempat.</li>
                         </ul>
                     </div>
                 `;
@@ -521,17 +514,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             🔥 Proses Pemanasan (Menyerap Kalor)
                         </div>
                         <h3 style="margin: 0 0 0.4rem 0; color: #b91c1c; font-size: clamp(0.9rem, 2.2vh, 1.05rem); font-weight: 700;">
-                            Menguap & Mendidih (Cair → Gas)
+                            1. Menguap & Mendidih (Cair → Gas)
                         </h3>
                         <p style="margin: 0 0 0.5rem 0; color: #475569; font-size: clamp(0.72rem, 1.9vh, 0.82rem); line-height: 1.5;">
-                            <strong>Kearifan Etnosains Bali:</strong> Wadah tembaga di atas tungku batu bata dipanaskan menggunakan bara api kayu bakar. Kalor panas diserap oleh cairan bahan arak (tuak nira) hingga mendidih. Karena alkohol memiliki titik didih lebih rendah (~78°C) dibanding air (~100°C), partikel alkohol akan menguap lebih dahulu membubung naik ke bagian atas wadah penyulingan.
+                            <strong>Kearifan Etnosains Bali:</strong> Wadah tembaga di atas tungku batu bata dipanaskan menggunakan bara api kayu bakar. Kalor panas diserap oleh cairan bahan arak (tuak nira) hingga mendidih. Alkohol memiliki titik didih lebih rendah (~78°C) dibanding air (~100°C), sehingga partikel alkohol akan menguap lebih dahulu membubung naik ke bagian atas wadah penyulingan.
                         </p>
                         <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 0.5rem 0.75rem; margin-bottom: 0.5rem;">
                             <h4 style="margin: 0 0 0.3rem 0; color: #991b1b; font-size: 0.82rem; font-weight: 700;">Konsep Sains Penting:</h4>
                             <ul style="margin: 0; padding-left: 1.2rem; font-size: clamp(0.7rem, 1.8vh, 0.8rem); color: #374151; line-height: 1.45; display: flex; flex-direction: column; gap: 0.25rem;">
-                                <li><strong>Menguap (Evaporasi):</strong> Perubahan wujud zat dari cair menjadi uap (gas) yang terjadi di permukaan zat cair pada sembarang suhu di bawah titik didih.</li>
-                                <li><strong>Mendidih:</strong> Perubahan wujud cair menjadi gas yang terjadi secara serentak di seluruh bagian cairan pada titik didihnya (ditandai gelembung-gelembung uap yang naik cepat ke permukaan).</li>
-                                <li><strong>Tinjauan Sub-Mikroskopis:</strong> Penyerapan kalor membuat energi kinetik partikel meningkat sehingga gerakannya semakin cepat, gaya tarik antarpartikel melemah, dan partikel merenggang lepas menjadi fasa gas.</li>
+                                <li><strong>Menguap:</strong> Perubahan wujud zat dari cair menjadi uap (gas) yang terjadi di permukaan zat dalam wujud cair pada suhu tertentu dan dapat terjadi di bawah titik didih.</li>
+                                <li><strong>Mendidih:</strong> Perubahan wujud cair menjadi gas yang terjadi di seluruh bagian zat cair pada titik didihnya (ditandai dengan munculnya gelembung-gelembung air yang naik ke permukaan).</li>
                             </ul>
                         </div>
                     </div>
@@ -562,17 +554,17 @@ document.addEventListener('DOMContentLoaded', () => {
                             ❄️ Proses Pendinginan (Melepaskan Kalor)
                         </div>
                         <h3 style="margin: 0 0 0.4rem 0; color: #1d4ed8; font-size: clamp(0.9rem, 2.2vh, 1.05rem); font-weight: 700;">
-                            Mengembun / Kondensasi (Gas → Cair)
+                            2. Mengembun / Kondensasi (Gas → Cair)
                         </h3>
                         <p style="margin: 0 0 0.5rem 0; color: #475569; font-size: clamp(0.72rem, 1.9vh, 0.82rem); line-height: 1.5;">
-                            <strong>Kearifan Etnosains Bali:</strong> Uap arak yang membubung diarahkan melewati pipa bambu panjang (*bumbung penyulingan*). Pipa bambu bersentuhan langsung dengan udara lingkungan yang lebih dingin, berfungsi sebagai pendingin (kondensor) alami. Saat uap panas mengenai dinding bambu yang sejuk, uap melepaskan kalor dan terkondensasi menjadi tetesan arak cair murni yang ditampung ke gentong.
+                            <strong>Kearifan Etnosains Bali (Destilasi Arak Bali):</strong> Uap arak yang membubung diarahkan melewati pipa bambu panjang (<em>bumbung penyulingan</em>). Faktor lingkungan luar berperan besar karena pipa bambu bersentuhan langsung dengan udara sekitar yang bersuhu lebih dingin, sehingga berfungsi sebagai kondensor alami. Akibat pengaruh lingkungan yang sejuk ini, uap panas di dalam pipa melepaskan kalor secara cepat dan terkondensasi menjadi tetesan arak cair murni yang mengalir ke penampungan.
                         </p>
                         <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 0.5rem 0.75rem; margin-bottom: 0.5rem;">
                             <h4 style="margin: 0 0 0.3rem 0; color: #1e40af; font-size: 0.82rem; font-weight: 700;">Konsep Sains Penting:</h4>
                             <ul style="margin: 0; padding-left: 1.2rem; font-size: clamp(0.7rem, 1.8vh, 0.8rem); color: #374151; line-height: 1.45; display: flex; flex-direction: column; gap: 0.25rem;">
-                                <li><strong>Pengertian Mengembun:</strong> Perubahan wujud zat dari fasa gas (uap) menjadi fasa cair (kebalikan dari proses penguapan).</li>
-                                <li><strong>Pelepasan Kalor (Eksoterm):</strong> Uap gas kehilangan energi panas karena panasnya berpindah ke medium yang suhunya lebih rendah (dinding pipa bambu).</li>
-                                <li><strong>Tinjauan Sub-Mikroskopis:</strong> Akibat kehilangan energi termal, gerakan partikel gas melambat, gaya tarik antarpartikel kembali kuat, sehingga partikel saling merapat dan berikatan kembali menjadi tetesan zat cair.</li>
+                                <li><strong>Mengembun:</strong> Perubahan wujud zat dari gas menjadi cair (kebalikan dari proses menguap).</li>
+                                <li><strong>Faktor Penyebab & Pengaruh Lingkungan:</strong> Terjadi karena adanya perbedaan suhu dengan lingkungan sekitar yang lebih dingin. Lingkungan luar menyerap panas dari uap, sehingga terjadi perpindahan kalor keluar sistem secara signifikan.</li>
+                                <li><strong>Mekanisme Partikel:</strong> Akibat pengaruh lingkungan yang mendinginkan sistem tersebut, partikel-partikel gas kehilangan energi kinetiknya, memperlambat gerakannya, lalu saling mendekat, merapat, dan berikatan kembali membentuk tetesan zat cair.</li>
                             </ul>
                         </div>
                     </div>
@@ -601,15 +593,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (sublimTextDesc) {
                 sublimTextDesc.innerHTML = `
                     <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-                        <h4 style="margin: 0; color: #b45309; font-size: 0.95rem; font-weight: 700;">Menyublim (Padat → Gas)</h4>
+                        <h4 style="margin: 0; color: #b45309; font-size: 0.95rem; font-weight: 700;">1. Menyublim (Padat → Gas)</h4>
                         <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem;">
                             <li><strong>Pengertian:</strong> Perubahan wujud zat dari padat langsung menjadi gas tanpa melalui tahapan cair terlebih dahulu.</li>
-                            <li><strong>Contoh dalam Kehidupan Sehari-hari:</strong>
-                                <ul style="margin-top: 0.2rem; padding-left: 1.2rem; list-style-type: circle; display: flex; flex-direction: column; gap: 0.2rem;">
-                                    <li>Es kering (<em>dry ice</em>) yang digunakan untuk menciptakan efek kabut atau asap pada konser musik, pertunjukan seni, atau acara pernikahan.</li>
-                                    <li>Kapur barus (kamper) yang diletakkan di dalam lemari pakaian atau kamar mandi yang lama-kelamaan habis menguap ke udara.</li>
-                                </ul>
-                            </li>
+                            <li><strong>Contoh:</strong> Es kering (<em>dry ice</em>) yang digunakan untuk menciptakan efek kabut; dan Kapur barus (kamper) di dalam lemari pakaian yang lama-kelamaan habis menguap ke udara, yang dipengaruhi oleh adanya suhu lingkungan.</li>
                         </ul>
                     </div>
                 `;
@@ -645,10 +632,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (val === 100) {
                 saltTextDesc.innerHTML = `
                     <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-                        <h4 style="margin: 0; color: #0284c7; font-size: 0.95rem; font-weight: 700;">Mengkristal (Gas → Padat)</h4>
+                        <h4 style="margin: 0; color: #0284c7; font-size: 0.95rem; font-weight: 700;">2. Mengkristal (Gas → Padat)</h4>
                         <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem;">
-                            <li><strong>Pengertian:</strong> Perubahan wujud zat dari gas langsung menjadi padat.</li>
-                            <li><strong>Keterangan:</strong> Proses ini merupakan kebalikan dari peristiwa menyublim. Partikel gas melepaskan energi panas dan merapat kaku menjadi kristal padat.</li>
+                            <li><strong>Pengertian:</strong> Perubahan wujud zat dari gas langsung menjadi padat (kebalikan dari peristiwa menyublim).</li>
                         </ul>
                     </div>
                 `;
@@ -667,53 +653,169 @@ document.addEventListener('DOMContentLoaded', () => {
     const tempFill = document.getElementById('thermometer-fill');
     const tempTextDesc = document.getElementById('temp-text-desc');
 
+    function updateWaterState(val) {
+        const waterContainer = document.getElementById('water-container');
+        const waterStatePill = document.getElementById('water-state-pill');
+        if (!waterContainer) return;
+
+        // Reset state classes
+        waterContainer.classList.remove('is-frozen', 'is-freezing', 'is-liquid', 'is-heating', 'is-boiling');
+
+        let freezeFactor = 0;
+        let boilFactor = 0;
+
+        if (val < 0) {
+            // Transisi membeku bertahap dari 0C turun menuju -20C
+            freezeFactor = Math.abs(val) / 20.0; // 0.05 di -1C hingga 1.0 di -20C
+
+            if (val === -20) {
+                // Membeku Sempurna hanya pada titik beku -20C (gelombang berhenti, es padat)
+                waterContainer.classList.add('is-frozen');
+                if (waterStatePill) {
+                    waterStatePill.textContent = '❄️ Titik Beku (Es Padat Sempurna)';
+                    waterStatePill.style.background = '#e0f2fe';
+                    waterStatePill.style.color = '#0284c7';
+                    waterStatePill.style.borderColor = '#bae6fd';
+                }
+            } else {
+                // Membeku sedikit demi sedikit dengan transisi halus (tetap terlihat proses membeku/mencair)
+                waterContainer.classList.add('is-freezing');
+                if (waterStatePill) {
+                    const percent = Math.round(freezeFactor * 100);
+                    waterStatePill.textContent = `❄️ Proses Membeku (${percent}%)`;
+                    waterStatePill.style.background = '#e0f2fe';
+                    waterStatePill.style.color = '#0284c7';
+                    waterStatePill.style.borderColor = '#bae6fd';
+                }
+            }
+        } else if (val <= 60) {
+            // Wujud Cair normal (0C s.d. 60C)
+            freezeFactor = 0;
+            boilFactor = 0;
+            waterContainer.classList.add('is-liquid');
+            if (waterStatePill) {
+                waterStatePill.textContent = val === 0 ? '💧 Titik Leleh (Mencair)' : '💧 Wujud Cair (Air)';
+                waterStatePill.style.background = '#f0f9ff';
+                waterStatePill.style.color = '#0284c7';
+                waterStatePill.style.borderColor = '#bae6fd';
+            }
+        } else if (val < 100) {
+            // Transisi memanas menuju titik didih (60C s.d. 99C): gelembung & uap mulai muncul bertahap
+            freezeFactor = 0;
+            boilFactor = (val - 60) / 40.0; // 0.025 di 61C hingga 0.975 di 99C
+            waterContainer.classList.add('is-liquid', 'is-heating');
+            if (waterStatePill) {
+                const percent = Math.round(boilFactor * 100);
+                waterStatePill.textContent = `♨️ Mulai Memanas (${percent}%)`;
+                waterStatePill.style.background = '#fff7ed';
+                waterStatePill.style.color = '#ea580c';
+                waterStatePill.style.borderColor = '#ffedd5';
+            }
+        } else if (val === 100) {
+            // Titik Didih Sempurna pada 100C: gelembung aktif & uap tebal membubung
+            freezeFactor = 0;
+            boilFactor = 1.0;
+            waterContainer.classList.add('is-boiling');
+            if (waterStatePill) {
+                waterStatePill.textContent = '♨️ Titik Didih (Uap & Mendidih)';
+                waterStatePill.style.background = '#fff1f2';
+                waterStatePill.style.color = '#e11d48';
+                waterStatePill.style.borderColor = '#fecdd3';
+            }
+        }
+
+        // Terapkan faktor freeze & boil ke CSS variabel secara dinamis dan presisi
+        waterContainer.style.setProperty('--freeze-factor', freezeFactor.toFixed(3));
+        waterContainer.style.setProperty('--boil-factor', boilFactor.toFixed(3));
+    }
+
     if (tempSlider) {
+        // Inisialisasi awal saat halaman dimuat
+        updateWaterState(parseInt(tempSlider.value || 25));
+
         tempSlider.addEventListener('input', (e) => {
             const val = parseInt(e.target.value);
             if (tempDisplay) tempDisplay.textContent = val;
             
-            // Adjust thermometer graphic fill
-            const fillHeight = 15 + (val * 0.85); // min 15%, max 100%
+            // Adjust thermometer graphic fill (range -20 to 100 -> total 120)
+            const percent = (val + 20) / 120;
+            const fillHeight = 10 + (percent * 90); // 10% to 100%
             if (tempFill) tempFill.style.height = `${fillHeight}%`;
 
-            if (val === 0) {
+            const tempBulb = document.getElementById('thermometer-bulb');
+
+            // Update wujud wadah air (CSS Water Container)
+            updateWaterState(val);
+
+            if (val === -20) {
+                // a. Suhu menyentuh tepat -20C memicu keterangan Titik Beku sepenuhnya
+                if (tempFill) tempFill.style.background = 'linear-gradient(to top, #0284c7, #38bdf8)';
+                if (tempBulb) tempBulb.style.background = '#0284c7';
+                if (tempDisplay) tempDisplay.style.background = '#e0f2fe';
+
                 tempTextDesc.innerHTML = `
                     <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-                        <h4 style="margin: 0; color: #0284c7; font-size: 0.95rem; font-weight: 700;">Titik Leleh</h4>
-                        <p style="margin: 0; font-size: 0.82rem; line-height: 1.45;"><strong>Pengertian:</strong> Suhu tertentu ketika suatu zat padat mulai mencair dan berubah wujud menjadi zat cair sepenuhnya.</p>
+                        <h4 style="margin: 0; color: #0284c7; font-size: 0.95rem; font-weight: 700;">1. Titik Beku (Membeku: Zat Padat / Es)</h4>
                         <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem;">
-                            <li><strong>Perubahan Wujud:</strong> Zat Padat → Zat Cair (Contoh: Es batu yang berubah menjadi air cair).</li>
-                            <li><strong>Kondisi Suhu:</strong> Ketika suatu zat mencapai titik lelehnya, penambahan energi panas membuat partikel-partikel zat padat yang tadinya bergetar rapat mulai longgar, merenggang, dan mencair. Suhu zat akan tetap konstan selama proses pelelehan berlangsung hingga seluruh zat padat berubah menjadi cair.</li>
-                            <li><strong>Contoh dalam Kehidupan:</strong>
-                                <ul style="margin-top: 0.2rem; padding-left: 1.2rem; list-style-type: circle; display: flex; flex-direction: column; gap: 0.2rem;">
-                                    <li>Es murni memiliki titik leleh pada suhu 0°C.</li>
-                                    <li>Logam emas memiliki titik leleh yang sangat tinggi (± 1.064°C) sehingga harus dipanaskan dengan api khusus oleh perajin perhiasan di Bali untuk bisa dicetak.</li>
-                                </ul>
-                            </li>
+                            <li><strong>Pengertian:</strong> Suhu tertentu ketika suatu zat cair mulai membeku dan berubah wujud menjadi zat padat sepenuhnya.</li>
+                            <li><strong>Kondisi Suhu:</strong> Pelepasan energi panas (pendinginan) membuat partikel-partikel zat cair melambat, mendekat, dan terikat kaku membentuk struktur padat. Suhu zat akan tetap konstan selama proses pembekuan berlangsung hingga seluruh cairan berubah menjadi padat. (Contoh: Air murni beku di suhu 0°C. Di dalam freezer -20°C, air cair menjadi es batu yang padat).</li>
                         </ul>
                     </div>
                 `;
-                showMascotBubble("Suhu 0°C! Ini adalah Titik Leleh air!");
-            } else if (val === 100) {
+                showMascotBubble("Suhu -20°C! Air membeku sepenuhnya menjadi es batu yang padat!");
+            } else if (val < 0) {
+                // Suhu di bawah 0C sebelum -20C (-19C s.d. -1C): Tampilkan suhu dan proses pembekuan bertahap
+                if (tempFill) tempFill.style.background = 'linear-gradient(to top, #0284c7, #38bdf8)';
+                if (tempBulb) tempBulb.style.background = '#0284c7';
+                if (tempDisplay) tempDisplay.style.background = '#e0f2fe';
+
+                tempTextDesc.innerHTML = `Suhu air saat ini berada pada <strong>${val}°C</strong> (proses pembekuan es bertahap). Es mulai terbentuk sedikit demi sedikit dan baru membeku sempurna pada Titik Beku <strong>-20°C</strong>. Geser hingga menyentuh <strong>-20°C</strong> untuk penjelasan Titik Beku lengkap!`;
+            } else if (val === 0) {
+                // b. Suhu 0C memicu state "Titik Leleh/Lebur"
+                if (tempFill) tempFill.style.background = 'linear-gradient(to top, #0ea5e9, #38bdf8)';
+                if (tempBulb) tempBulb.style.background = '#0ea5e9';
+                if (tempDisplay) tempDisplay.style.background = '#e0f2fe';
+
                 tempTextDesc.innerHTML = `
                     <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-                        <h4 style="margin: 0; color: #dc2626; font-size: 0.95rem; font-weight: 700;">Titik Didih</h4>
+                        <h4 style="margin: 0; color: #0284c7; font-size: 0.95rem; font-weight: 700;">2. Titik Leleh</h4>
+                        <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem;">
+                            <li><strong>Pengertian:</strong> Suhu tertentu ketika suatu zat padat mulai mencair dan berubah wujud menjadi zat cair sepenuhnya.</li>
+                            <li><strong>Kondisi Suhu:</strong> Penambahan kalor (panas) membuat partikel zat padat yang tadinya bergetar rapat mulai longgar, merenggang, dan mencair. Suhu zat konstan selama proses pelelehan. (Contoh: Es murni meleleh pada suhu 0°C. Logam emas memiliki titik leleh tinggi 1.064°C sehingga harus dipanaskan dengan api khusus oleh perajin perhiasan Bali).</li>
+                        </ul>
+                    </div>
+                `;
+                showMascotBubble("Suhu 0°C! Ini adalah Titik Leleh es!");
+            } else if (val === 100) {
+                // c. Suhu 100C memicu state "Titik Didih" (Zat Gas/Uap)
+                if (tempFill) tempFill.style.background = 'linear-gradient(to top, #ef4444, #f87171)';
+                if (tempBulb) tempBulb.style.background = '#ef4444';
+                if (tempDisplay) tempDisplay.style.background = '#fee2e2';
+
+                tempTextDesc.innerHTML = `
+                    <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+                        <h4 style="margin: 0; color: #dc2626; font-size: 0.95rem; font-weight: 700;">3. Titik Didih</h4>
                         <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem;">
                             <li><strong>Pengertian:</strong> Suhu tertentu ketika suatu zat cair mulai mendidih dan berubah wujud menjadi gas (uap) secara serentak di seluruh bagian zat cair.</li>
-                            <li><strong>Perubahan Wujud:</strong> Zat Cair → Gas / Uap (Contoh: Air mendidih di dalam panci yang mengeluarkan uap).</li>
-                            <li><strong>Kondisi Suhu:</strong> Berbeda dengan penguapan biasa (yang bisa terjadi di permukaan pada suhu berapa pun), titik didih terjadi pada suhu tetap di mana tekanan uap jenuh cairan sama dengan tekanan udara luar. Saat tercapai, suhu cairan tidak akan naik lagi melebihi titik didihnya sebelum seluruh cairan habis menguap.</li>
-                            <li><strong>Contoh dalam Kehidupan:</strong>
-                                <ul style="margin-top: 0.2rem; padding-left: 1.2rem; list-style-type: circle; display: flex; flex-direction: column; gap: 0.2rem;">
-                                    <li>Air murni memiliki titik didih standar pada suhu 100°C di tekanan normal.</li>
-                                    <li>Pada proses penyulingan arak Bali (destilasi), uap alkohol dan air dipisahkan berdasarkan perbedaan titik didihnya masing-masing.</li>
-                                </ul>
-                            </li>
+                            <li><strong>Kondisi Suhu:</strong> Terjadi pada suhu tetap di mana tekanan uap jenuh cairan sama dengan tekanan udara luar. Saat tercapai, suhu cairan tidak akan naik lagi melebihi titik didihnya sebelum seluruh cairan habis menguap. (Contoh: Air murni mendidih di suhu 100°C. Pada penyulingan arak Bali, uap alkohol dan air dipisahkan berdasarkan perbedaan titik didihnya).</li>
                         </ul>
                     </div>
                 `;
-                showMascotBubble("Suhu 100°C! Air mendidih sempurna menjadi uap!");
+                showMascotBubble("Suhu 100°C! Air mencapai Titik Didih dan menguap!");
             } else {
-                tempTextDesc.innerHTML = `Suhu air saat ini berada pada <strong>${val}°C</strong>. Geser slider termometer ke arah <strong>0°C</strong> untuk mengamati Titik Leleh es, atau ke arah <strong>100°C</strong> untuk mengamati Titik Didih air!`;
+                if (val >= 60) {
+                    if (tempFill) tempFill.style.background = 'linear-gradient(to top, #ea580c, #f97316)';
+                    if (tempBulb) tempBulb.style.background = '#ea580c';
+                    if (tempDisplay) tempDisplay.style.background = '#ffedd5';
+
+                    tempTextDesc.innerHTML = `Suhu air saat ini berada pada <strong>${val}°C</strong> (proses pemanasan menuju titik didih, mulai timbul gelembung & uap). Geser hingga menyentuh tepat <strong>100°C</strong> untuk mengamati Titik Didih sempurna!`;
+                } else {
+                    if (tempFill) tempFill.style.background = 'linear-gradient(to top, #f59e0b, #fbbf24)';
+                    if (tempBulb) tempBulb.style.background = '#f59e0b';
+                    if (tempDisplay) tempDisplay.style.background = '#fef3c7';
+
+                    tempTextDesc.innerHTML = `Suhu air saat ini berada pada <strong>${val}°C</strong> (wujud cair). Geser ke suhu minus (hingga <strong>-20°C</strong>) untuk melihat kondisi Membeku / Titik Beku, ke <strong>0°C</strong> untuk Titik Leleh, atau ke <strong>100°C</strong> untuk Titik Didih!`;
+                }
             }
         });
     }
@@ -778,6 +880,75 @@ document.addEventListener('DOMContentLoaded', () => {
     const pondBambu = document.getElementById('pond-floater-bambu');
     const pondTelur = document.getElementById('pond-floater-telur');
     const pondKoin = document.getElementById('pond-sinker-koin');
+    const btnWaterFresh = document.getElementById('btn-water-fresh');
+    const btnWaterSalt = document.getElementById('btn-water-salt');
+    const pondWaterBadge = document.getElementById('pond-water-badge');
+
+    let currentWaterType = 'fresh'; // 'fresh' (Air Biasa, default) or 'salt' (Air Garam)
+
+    function updateEggPosition() {
+        if (!pondTelur) return;
+        if (currentWaterType === 'salt') {
+            pondTelur.classList.remove('telur-tenggelam');
+            pondTelur.classList.add('telur-melayang');
+        } else {
+            pondTelur.classList.remove('telur-melayang');
+            pondTelur.classList.add('telur-tenggelam');
+        }
+    }
+
+    function setWaterType(type, triggerFeedback = true) {
+        currentWaterType = type;
+        if (btnWaterFresh && btnWaterSalt) {
+            if (type === 'salt') {
+                btnWaterSalt.classList.add('active');
+                btnWaterFresh.classList.remove('active');
+            } else {
+                btnWaterFresh.classList.add('active');
+                btnWaterSalt.classList.remove('active');
+            }
+        }
+
+        if (pondWaterBadge) {
+            if (type === 'salt') {
+                pondWaterBadge.textContent = 'Kondisi: Air Garam';
+                pondWaterBadge.classList.add('salt');
+            } else {
+                pondWaterBadge.textContent = 'Kondisi: Air Biasa';
+                pondWaterBadge.classList.remove('salt');
+            }
+        }
+
+        updateEggPosition();
+
+        if (triggerFeedback) {
+            if (droppedItems.telur) {
+                if (type === 'salt') {
+                    showMascotBubble("Air garam ditambahkan! Massa jenis air meningkat sehingga telur melayang naik!");
+                } else {
+                    showMascotBubble("Air diganti air biasa! Massa jenis air lebih kecil sehingga telur tenggelam ke dasar.");
+                }
+            } else {
+                if (type === 'salt') {
+                    showMascotBubble("Kondisi kolam diubah ke Air Garam! Coba seret telur ke kolam.");
+                } else {
+                    showMascotBubble("Kondisi kolam diubah ke Air Biasa! Coba seret telur ke kolam.");
+                }
+            }
+        }
+    }
+
+    if (btnWaterFresh) {
+        btnWaterFresh.addEventListener('click', () => {
+            if (currentWaterType !== 'fresh') setWaterType('fresh', true);
+        });
+    }
+
+    if (btnWaterSalt) {
+        btnWaterSalt.addEventListener('click', () => {
+            if (currentWaterType !== 'salt') setWaterType('salt', true);
+        });
+    }
 
     function updatePondIndicatorState() {
         if (!densityPond) return;
@@ -811,6 +982,7 @@ document.addEventListener('DOMContentLoaded', () => {
             droppedItems.telur = true;
             if (dragTelur) dragTelur.classList.add('hidden');
             if (pondTelur) {
+                updateEggPosition();
                 pondTelur.classList.remove('hidden');
                 pondTelur.offsetHeight;
                 pondTelur.style.opacity = '1';
@@ -1061,17 +1233,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showTelurDensityPopup() {
-        const content = `
-            <div class="popup-zoom-density">
-                <div class="zoom-graphic-box" style="display:flex; justify-content:center; align-items:center;">
-                    <img src="assets/images/level4/telur-mentah.png" alt="Telur Melayang" style="max-height:100px; object-fit:contain;">
+        let content = '';
+        if (currentWaterType === 'salt') {
+            // KONDISI 2: AIR GARAM (Teks lama)
+            content = `
+                <div class="popup-zoom-density">
+                    <div class="zoom-graphic-box" style="display:flex; justify-content:center; align-items:center;">
+                        <img src="assets/images/level4/telur-mentah.png" alt="Telur Melayang" style="max-height:100px; object-fit:contain;">
+                    </div>
+                    <div class="zoom-details">
+                        <h3>Telur Melayang</h3>
+                        <p>Penambahan garam Kusamba meningkatkan kerapatan partikel terlarut dalam air sehingga massa jenis air garam menjadi sama persis dengan massa jenis telur. Syarat Fisika: &rho;<sub>benda</sub> = &rho;<sub>cairan</sub> (1,0 g/cm³ = 1,0 g/cm³).</p>
+                    </div>
                 </div>
-                <div class="zoom-details">
-                    <h3>Telur Melayang</h3>
-                    <p>Penambahan garam Kusamba meningkatkan kerapatan partikel terlarut dalam air sehingga massa jenis air garam menjadi sama persis dengan massa jenis telur. Syarat Fisika: &rho;<sub>benda</sub> = &rho;<sub>cairan</sub> (1,0 g/cm³ = 1,0 g/cm³).</p>
+            `;
+        } else {
+            // KONDISI 1: AIR BIASA (State Awal - Teks Revisi Dosen Validator)
+            content = `
+                <div class="popup-zoom-density">
+                    <div class="zoom-graphic-box" style="display:flex; justify-content:center; align-items:center;">
+                        <img src="assets/images/level4/telur-mentah.png" alt="Telur Tenggelam" style="max-height:100px; object-fit:contain;">
+                    </div>
+                    <div class="zoom-details">
+                        <h3>Telur Tenggelam</h3>
+                        <p>Massa jenis air bersih atau air tawar lebih kecil daripada massa jenis telur segar, sehingga cairan tidak mampu menahan berat benda ke atas. Akibatnya, telur akan turun dan tenggelam sampai ke dasar wadah. Syarat Fisika: &rho;<sub>benda</sub> &gt; &rho;<sub>cairan</sub> (massa jenis benda lebih besar dari massa jenis cairan).</p>
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
+        }
         openMateriPopup(content);
     }
 
@@ -1200,6 +1389,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof cardKimia !== 'undefined' && cardKimia) cardKimia.classList.remove('flipped');
 
         // Reset Level 4.1
+        if (typeof setWaterType === 'function') {
+            setWaterType('fresh', false);
+        }
         droppedItems.bambu = false;
         droppedItems.telur = false;
         droppedItems.koin = false;

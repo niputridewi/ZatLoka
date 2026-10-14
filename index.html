@@ -15,8 +15,8 @@
         rel="stylesheet">
 
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="css/style.css?v=1.1">
-    <link rel="stylesheet" href="css/materi.css?v=1.1">
+    <link rel="stylesheet" href="css/style.css?v=1.2">
+    <link rel="stylesheet" href="css/materi.css?v=1.2">
 
     <!-- Lottie Web CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
@@ -490,33 +490,141 @@ ruangan.</p>
                 <div class="materi-slide" data-slide="7">
                     <div class="slide-instruction">
                         <span class="instruction-icon">🌡️</span>
-                        <p>Geser slider termometer untuk mengamati fenomena Titik Leleh dan Titik Didih!</p>
+                        <p>Geser slider termometer untuk mengamati fenomena Titik Beku, Titik Leleh, dan Titik Didih!</p>
                     </div>
                     <div class="evap-container">
                         <div class="evap-visual-box" style="background: #f1f5f9; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.5rem; position: relative;">
-                            <!-- Simple custom CSS thermometer visual -->
-                            <div style="font-size: clamp(1rem, 3.5vh, 1.4rem); font-weight: 800; color: #0284c7; z-index: 10;">
+                            <!-- Interactive CSS Water Container (Membeku, Cair, Mendidih) -->
+                            <div id="water-container" class="water-container is-liquid">
+                                <!-- Steam Wisps (Rises outside & above water surface into air) -->
+                                <div class="water-steam-wrapper">
+                                    <span class="steam-wisp s1"></span>
+                                    <span class="steam-wisp s2"></span>
+                                    <span class="steam-wisp s3"></span>
+                                    <span class="steam-wisp s4"></span>
+                                    <span class="steam-wisp s5"></span>
+                                    <span class="steam-wisp s6"></span>
+                                    <span class="steam-wisp s7"></span>
+                                </div>
+
+                                <!-- Interior Fluid Body (Spanning 100% full width of lower card) -->
+                                <div class="water-fluid-body">
+                                    <!-- Waves on water surface -->
+                                    <div class="water-surface-waves">
+                                        <div class="water-wave wave-back"></div>
+                                        <div class="water-wave wave-front"></div>
+                                    </div>
+
+                                    <!-- Boiling Bubbles (Rising from bottom to surface) -->
+                                    <div class="water-bubbles">
+                                        <span class="bubble b1"></span>
+                                        <span class="bubble b2"></span>
+                                        <span class="bubble b3"></span>
+                                        <span class="bubble b4"></span>
+                                        <span class="bubble b5"></span>
+                                        <span class="bubble b6"></span>
+                                        <span class="bubble b7"></span>
+                                        <span class="bubble b8"></span>
+                                        <span class="bubble b9"></span>
+                                    </div>
+
+                                    <!-- Ice Frost / Crystal Layer (Visible on .is-frozen & gradual freeze) -->
+                                    <div class="water-ice-overlay">
+                                        <div class="ice-shimmer"></div>
+                                        <div class="ice-cracks">
+                                            <span class="crack cr1"></span>
+                                            <span class="crack cr2"></span>
+                                            <span class="crack cr3"></span>
+                                            <span class="crack cr4"></span>
+                                            <span class="crack cr5"></span>
+                                            <span class="crack cr6"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Water State Pill Badge -->
+                                <div class="water-state-pill" id="water-state-pill">💧 Wujud Cair (Air)</div>
+                            </div>
+
+                            <!-- Simple custom CSS thermometer visual (in front of water visual) -->
+                            <div style="font-size: clamp(1rem, 3.5vh, 1.4rem); font-weight: 800; color: #0284c7; z-index: 25; position: relative;">
                                 Suhu Air: <span id="temp-val-display" style="background: #e0f2fe; padding: 0.2rem 0.6rem; border-radius: 8px;">25</span> °C
                             </div>
-                            <div class="thermometer-bar-container" style="position: relative; width: 30px; height: 60%; background: #cbd5e1; border-radius: 15px; border: 3px solid #64748b; overflow: hidden; z-index: 10;">
-                                <div id="thermometer-fill" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 25%; background: linear-gradient(to top, #ef4444, #f87171); transition: height 0.2s ease;"></div>
+                            <div class="thermometer-bar-container" style="position: relative; width: 30px; height: 60%; background: #cbd5e1; border-radius: 15px; border: 3px solid #64748b; overflow: hidden; z-index: 20; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);">
+                                <div id="thermometer-fill" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 37%; background: linear-gradient(to top, #f59e0b, #fbbf24); transition: height 0.2s ease, background 0.3s ease;"></div>
                             </div>
-                            <div class="thermometer-bulb" style="width: 44px; height: 44px; background: #ef4444; border-radius: 50%; border: 3px solid #64748b; margin-top: -15px; z-index: 11;"></div>
+                            <div id="thermometer-bulb" class="thermometer-bulb" style="position: relative; width: 44px; height: 44px; background: #f59e0b; border-radius: 50%; border: 3px solid #64748b; margin-top: -15px; z-index: 21; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); transition: background 0.3s ease;"></div>
                         </div>
                         <div class="evap-control-box">
                             <div class="slider-wrapper" style="width: 100%;">
-                                <span class="slider-lbl" style="font-weight:700; color:#475569; font-size: 0.8rem;">🌡️ Geser Suhu (0°C - 100°C)</span>
-                                <input type="range" id="temp-slider-l24" class="materi-slider" min="0" max="100" value="25">
+                                <span class="slider-lbl" style="font-weight:700; color:#475569; font-size: 0.8rem;">🌡️ Geser Suhu (-20°C s.d. 100°C)</span>
+                                <input type="range" id="temp-slider-l24" class="materi-slider" min="-20" max="100" value="25">
                             </div>
                             <div class="evap-dynamic-info" id="temp-text-desc" style="flex-grow: 1; overflow-y: auto; font-size: clamp(0.7rem, 2vh, 0.8rem); line-height: 1.4; color: #475569; padding: 0.5rem; background: white; border-radius: 12px; border: 1px solid #e2e8f0; min-height: 0;">
-                                Geser slider termometer ke arah 0°C untuk mengamati Titik Leleh es, atau ke arah 100°C untuk mengamati Titik Didih air!
+                                Geser slider termometer ke arah suhu minus (-20°C s.d. <0°C) untuk mengamati kondisi Membeku (Titik Beku), ke 0°C untuk Titik Leleh es, atau ke 100°C untuk Titik Didih air!
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- SLIDE 8 (LEVEL 3.1: Pembakaran Dupa & Kartu Analisis) -->
+                <!-- SLIDE 8 (LEVEL 2.6: Ringkasan Perubahan Wujud Zat & Kalor) -->
                 <div class="materi-slide" data-slide="8">
+                    <div class="slide-instruction">
+                        <span class="instruction-icon">📊</span>
+                        <p>Pelajari diagram alur perubahan wujud zat berdasarkan kebutuhan dan pelepasan energinya!</p>
+                    </div>
+                    <div class="diagram-split-view">
+                        <!-- Sisi Kiri: Gambar Diagram Aset -->
+                        <div class="diagram-image-col">
+                            <img src="assets/images/level2/diagram_wujud_zat.png" alt="Diagram Perubahan Wujud Zat & Kalor" onerror="this.src='image/level2/diagram_wujud_zat.png'">
+                        </div>
+                        <!-- Sisi Kanan: Teks Keterangan Lengkap -->
+                        <div class="diagram-text-col">
+                            <div style="display: inline-block; background: #e0f2fe; color: #0369a1; font-weight: 700; font-size: 0.72rem; padding: 2px 10px; border-radius: 12px; margin-bottom: 0.35rem;">
+                                💡 Rangkuman Konsep Level 2
+                            </div>
+                            <h3 style="margin: 0 0 0.35rem 0; color: #0f172a; font-size: clamp(0.9rem, 2.2vh, 1.05rem); font-weight: 800;">
+                                Ringkasan Perubahan Wujud Zat & Kalor
+                            </h3>
+                            <p style="margin: 0 0 0.55rem 0; color: #475569; font-size: clamp(0.7rem, 1.8vh, 0.78rem); line-height: 1.45;">
+                                Diagram di samping menunjukkan bagaimana suatu zat dapat berubah bentuk dari satu wujud ke wujud lainnya akibat pengaruh perubahan suhu (panas). Berdasarkan kebutuhan kalornya, proses ini dibagi menjadi dua kelompok utama:
+                            </p>
+
+                            <!-- Kelompok 1: Memerlukan Panas -->
+                            <div class="diagram-box-panas">
+                                <h4 style="margin: 0 0 0.2rem 0; color: #c2410c; font-size: 0.82rem; font-weight: 700;">
+                                    1. Kelompok yang Memerlukan / Menerima Panas
+                                </h4>
+                                <div style="font-size: 0.72rem; color: #9a3412; font-style: italic; margin-bottom: 0.35rem;">
+                                    (Proses yang membuat partikel bergerak lebih bebas dan merenggang)
+                                </div>
+                                <ul style="margin: 0; padding-left: 1.15rem; font-size: clamp(0.68rem, 1.7vh, 0.76rem); color: #374151; line-height: 1.45; display: flex; flex-direction: column; gap: 0.25rem;">
+                                    <li><strong>Melebur / Mencair:</strong> Perubahan wujud dari Padat menjadi Cair (Contoh: Es batu yang dipanaskan berubah menjadi air cair).</li>
+                                    <li><strong>Menguap:</strong> Perubahan wujud dari Cair menjadi Gas (Contoh: Air dipanaskan hingga mendidih menjadi uap air).</li>
+                                    <li><strong>Menyublim:</strong> Perubahan wujud dari Padat menjadi Gas secara langsung tanpa melalui wujud cair (Contoh: Kapur barus/kamper di dalam lemari atau pembentukan salju di gunung).</li>
+                                </ul>
+                            </div>
+
+                            <!-- Kelompok 2: Melepaskan Panas -->
+                            <div class="diagram-box-dingin">
+                                <h4 style="margin: 0 0 0.2rem 0; color: #0369a1; font-size: 0.82rem; font-weight: 700;">
+                                    2. Kelompok yang Melepaskan Panas
+                                </h4>
+                                <div style="font-size: 0.72rem; color: #0284c7; font-style: italic; margin-bottom: 0.35rem;">
+                                    (Proses yang membuat partikel melambat, mendekat, dan mengikat kaku)
+                                </div>
+                                <ul style="margin: 0; padding-left: 1.15rem; font-size: clamp(0.68rem, 1.7vh, 0.76rem); color: #374151; line-height: 1.45; display: flex; flex-direction: column; gap: 0.25rem;">
+                                    <li><strong>Membeku:</strong> Perubahan wujud dari Cair menjadi Padat (Contoh: Air dimasukkan ke dalam freezer menjadi es batu).</li>
+                                    <li><strong>Mengembun:</strong> Perubahan wujud dari Gas menjadi Cair (Contoh: Uap air panas yang menyentuh pipa dingin pada alat suling arak berubah menjadi tetesan cairan).</li>
+                                    <li><strong>Mengkristal (Deposisi):</strong> Perubahan wujud dari Gas menjadi Padat (Contoh: Perubahan uap langsung menjadi kristal es di udara dingin ekstrem).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 9 (LEVEL 3.1: Pembakaran Dupa & Kartu Analisis) -->
+                <div class="materi-slide" data-slide="9">
                     <div class="slide-instruction">
                         <span class="instruction-icon">🕯️</span>
                         <p>Tekan tombol untuk menyalakan dupa dan amati dua jenis perubahan yang terjadi!</p>
@@ -597,8 +705,8 @@ ruangan.</p>
                     </div>
                 </div>
 
-                <!-- SLIDE 9 (LEVEL 4.1: Rahasia Mengapung, Melayang, dan Tenggelam) -->
-                <div class="materi-slide" data-slide="9">
+                <!-- SLIDE 10 (LEVEL 4.1: Rahasia Mengapung, Melayang, dan Tenggelam) -->
+                <div class="materi-slide" data-slide="10">
                     <div class="slide-instruction">
                         <span class="instruction-icon">⚓</span>
                         <p>Seret (drag) benda ke kolam untuk menguji kerapatan massa jenisnya! Ketuk benda di air untuk mengembalikannya.</p>
@@ -619,7 +727,21 @@ ruangan.</p>
                             </div>
                         </div>
                         <div class="density-dropzone-wrapper">
+                            <div class="water-toggle-container">
+                                <span class="water-toggle-hint">💡 Pilih tombol di bawah untuk mengganti jenis air!</span>
+                                <div class="water-toggle-group" role="group" aria-label="Pilihan Jenis Air">
+                                    <button type="button" class="water-toggle-btn active" id="btn-water-fresh" data-water="fresh">
+                                        <span class="water-toggle-icon">💧</span>
+                                        <span class="water-toggle-text">Air Biasa</span>
+                                    </button>
+                                    <button type="button" class="water-toggle-btn" id="btn-water-salt" data-water="salt">
+                                        <span class="water-toggle-icon">🧂</span>
+                                        <span class="water-toggle-text">Air Garam</span>
+                                    </button>
+                                </div>
+                            </div>
                             <div class="density-dropzone" id="density-pond">
+                                <div class="pond-water-badge" id="pond-water-badge">Kondisi: Air Biasa</div>
                                 <img src="assets/images/level4/kolam-air.png" alt="Kolam Air"
                                     style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit: contain; z-index: 10; pointer-events: none;">
                                 <div class="pond-drop-area"
@@ -627,8 +749,8 @@ ruangan.</p>
                                     <!-- Targets will land here -->
                                     <img src="assets/images/level4/bambu-potong.png" alt="Bambu Terapung"
                                         class="pond-floater hidden" id="pond-floater-bambu" title="Ketuk untuk mengembalikan ke wadah" style="cursor: pointer; pointer-events: auto; z-index: 25;">
-                                    <img src="assets/images/level4/telur-mentah.png" alt="Telur Melayang"
-                                        class="pond-floater hidden" id="pond-floater-telur" title="Ketuk untuk mengembalikan ke wadah" style="cursor: pointer; pointer-events: auto; top: 48% !important; left: 45% !important; width: 10% !important; z-index: 25 !important; animation: floatInWater 4s infinite ease-in-out;">
+                                    <img src="assets/images/level4/telur-mentah.png" alt="Telur"
+                                        class="pond-floater hidden telur-tenggelam" id="pond-floater-telur" title="Ketuk untuk mengembalikan ke wadah" style="cursor: pointer; pointer-events: auto; z-index: 25 !important;">
                                     <img src="assets/images/level4/koin-logam.png" alt="Koin Tenggelam"
                                         class="pond-sinker hidden" id="pond-sinker-koin" title="Ketuk untuk mengembalikan ke wadah" style="cursor: pointer; pointer-events: auto; top: 68% !important; left: 60% !important; width: 8% !important; z-index: 25 !important;">
                                 </div>
@@ -638,8 +760,8 @@ ruangan.</p>
                     </div>
                 </div>
 
-                <!-- SLIDE 10 (LEVEL 4.2: Perhitungan Massa Jenis) -->
-                <div class="materi-slide" data-slide="10">
+                <!-- SLIDE 11 (LEVEL 4.2: Perhitungan Massa Jenis) -->
+                <div class="materi-slide" data-slide="11">
                     <div class="slide-instruction">
                         <span class="instruction-icon">✏️</span>
                         <p>Pahamilah langkah-langkah perhitungan massa jenis bambu berikut dengan saksama!</p>

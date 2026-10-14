@@ -18,57 +18,62 @@
             pg: [
                 {
                     id: "1.1",
-                    asset: "kuis1-kompresi-gas.webp", // ANIMASI
-                    question: "Ketika gas uap arak dipindahkan dari wadah tabung bervolume besar ke wadah tabung kecil yang tertutup rapat, partikel gas tersebut tetap mampu memenuhi seluruh ruangan wadah yang baru. Berdasarkan konsep sub-mikroskopis, analisis mengapa hal tersebut dapat terjadi...",
+                    asset: null, // Tanpa Gambar
+                    caption: null,
+                    question: "Ketika arak diuapkan dan menghasilkan gas, gas tersebut akan berpindah dari wadah tabung bervolume besar ke wadah tabung bervolume kecil yang tertutup rapat, partikel zat dalam wujud gas tersebut tetap mampu memenuhi seluruh ruangan wadah yang baru. Berdasarkan konsep sub-mikroskopis, analisis mengapa hal tersebut dapat terjadi...",
                     options: [
-                        { text: "Ukuran partikel gas berubah menjadi mengecil saat dipindahkan ke tabung yang lebih sempit.", correct: false },
-                        { text: "Gaya tarik antarpartikel gas sangat lemah dan jarak antarpartikelnya sangat berjauhan sehingga partikel dapat dimampatkan dan bergerak bebas menyesuaikan ruang wadah.", correct: true },
-                        { text: "Partikel gas berhenti bergerak dan menempel rapat di dinding wadah tabung.", correct: false },
-                        { text: "Tekanan dari luar menekan partikel gas agar berubah menjadi zat cair berukuran mikro.", correct: false }
+                        { text: "Ukuran fisik partikel gas mengecil secara drastis untuk menyesuaikan diri dengan volume tabung yang sempit.", correct: false },
+                        { text: "Jarak antarpartikel gas sangat berjauhan serta gaya tariknya sangat lemah sehingga bebas bergerak mengisi seluruh ruang.", correct: true },
+                        { text: "Seluruh partikel gas berhenti bergerak secara total dan menempel erat pada permukaan dinding bagian dalam tabung.", correct: false },
+                        { text: "Tekanan udara luar menekan partikel gas secara terus-menerus hingga berubah wujud menjadi bentuk zat cair.", correct: false }
                     ]
                 },
                 {
                     id: "1.2",
-                    asset: "kuis1-grafik-jarak.svg",
-                    question: "Zat X memiliki partikel yang tersusun teratur, berjarak sangat rapat, namun partikelnya tetap menunjukkan aktivitas getaran kecil. Jika zat X dimasukkan ke wadah berbeda bentuk, kesimpulan logis apakah yang terjadi?",
+                    asset: "assets/images/kuis/kuis1-grafik-jarak.svg",
+                    caption: "Grafik perbandingan jarak antarpartikel zat padat, cair, dan gas.",
+                    question: "Besi memiliki partikel yang tersusun teratur, berjarak sangat rapat, namun partikelnya tetap menunjukkan aktivitas getaran kecil di posisinya (tidak diam mutlak). Jika besi tersebut dimasukkan ke dalam wadah yang berbeda bentuk, kesimpulan logis apakah yang akan terjadi pada besi?",
                     options: [
-                        { text: "Bentuk zat X akan berubah menyesuaikan bentuk wadah barunya.", correct: false },
-                        { text: "Zat X akan mencair dengan sendirinya karena partikelnya bergetar terus-menerus.", correct: false },
-                        { text: "Bentuk dan volume zat X akan tetap sama persis seperti semula karena gaya tarik antarpartikelnya sangat kuat.", correct: true },
-                        { text: "Partikel zat X akan merenggang bebas lepas keluar dari wadah.", correct: false }
+                        { text: "Bentuk besi akan berubah menyerupai wadah baru, tetapi ukuran volume totalnya akan tetap konstan.", correct: false },
+                        { text: "Besi akan mencair secara perlahan dan menyebar untuk memenuhi seluruh bagian dalam wadah baru.", correct: false },
+                        { text: "Bentuk dan volume besi akan tetap sama persis seperti semula karena merupakan karakteristik zat dalam wujud padat.", correct: true },
+                        { text: "Seluruh partikel besi akan merenggang bebas lepas mengisi penuh ke setiap sudut ruang wadah.", correct: false }
                     ]
                 },
                 {
                     id: "1.3",
-                    asset: "kuis1-rongga-bambu.svg",
-                    question: "Mengapa bambu (zat padat) masih memungkinkan untuk menyerap sejumlah kecil uap air atau mengalami pemuaian saat dipanaskan?",
+                    asset: "assets/images/kuis/kuis1-rongga-bambu.svg",
+                    caption: "Ilustrasi mikroskopis rongga antarpartikel pada bambu dibandingkan dengan logam padat.",
+                    question: "Meskipun bambu suling pada alat penyulingan arak dikategorikan sebagai zat dalam wujud padat yang memiliki ikatan antarpartikel sangat kuat, mengapa bambu masih memungkinkan untuk menyerap sejumlah kecil uap air atau mengalami sedikit pemuaian saat dipanaskan?",
                     options: [
-                        { text: "Karena partikel zat padat pada bambu dapat memutuskan ikatan dan bergerak acak mengalir.", correct: false },
-                        { text: "Karena partikel zat padat tidak diam mutlak dan tetap memiliki rongga/jarak antarpartikel yang memungkinkan getaran partikel meluas.", correct: true },
-                        { text: "Karena zat padat sebenarnya tidak memiliki massa jenis yang tetap.", correct: false },
-                        { text: "Karena ikatan kimia pada zat padat bersifat cair ketika berada di suhu ruangan.", correct: false }
+                        { text: "Karena partikel zat padat pada bambu dapat memutuskan ikatan kimianya dan berubah menjadi gas secara instan.", correct: false },
+                        { text: "Karena partikel zat padat selalu bergetar dan memiliki rongga antarpartikel yang memungkinkan ruang gerak termal.", correct: true },
+                        { text: "Karena struktur zat padat sebenarnya tidak memiliki massa jenis dan sangat mudah larut di dalam air panas.", correct: false },
+                        { text: "Karena ikatan antarmolekul pada zat padat bersifat cair fleksibel sehingga dapat mengalir bebas ke luar.", correct: false }
                     ]
                 },
                 {
                     id: "1.4",
-                    asset: "kuis1-diagram-wujud.svg",
-                    question: "Cairan nira dipanaskan berubah menjadi uap panas. Bagaimana perubahan susunan dan energi kinetik partikel yang terjadi?",
+                    asset: "assets/images/kuis/kuis1-diagram-wujud.svg",
+                    caption: "Diagram skematik susunan partikel pada ketiga wujud zat.",
+                    question: "Ketika cairan nira dipanaskan dalam proses pembuatan arak, cairan yang mulanya berada di dalam wadah perlahan-lahan berubah menjadi uap panas yang keluar melalui bambu pengantar. Bagaimana perubahan susunan dan energi kinetik partikel yang terjadi pada peristiwa tersebut?",
                     options: [
-                        { text: "Jarak partikel semakin rapat dan energi kinetik gerak partikel melambat.", correct: false },
-                        { text: "Susunan partikel berubah dari renggang menjadi teratur serta gaya tariknya menguat.", correct: false },
-                        { text: "Jarak partikel berubah dari agak renggang menjadi sangat berjauhan, disertai peningkatan kecepatan gerak partikel secara signifikan.", correct: true },
-                        { text: "Ukuran fisik setiap partikel membesar hingga memenuhi udara di sekitarnya.", correct: false }
+                        { text: "Jarak antarpartikel menjadi semakin rapat dan kecepatan gerak partikelnya mengalami penurunan drastis.", correct: false },
+                        { text: "Susunan partikel berubah dari bentuk semula yang renggang menjadi sangat teratur dan kaku keras.", correct: false },
+                        { text: "Jarak partikel merenggang dan kecepatan geraknya meningkat akibat menyerap kalor dari proses pemanasan.", correct: true },
+                        { text: "Ukuran fisik dari setiap partikel individu di dalam zat tersebut membesar dua kali lipat dari semula.", correct: false }
                     ]
                 },
                 {
                     id: "1.5",
-                    asset: "kuis1-piston-gas.svg",
-                    question: "Mengapa volume gas dapat dimampatkan menjadi lebih kecil, sementara sangat sulit pada zat cair?",
+                    asset: "assets/images/kuis/kuis1-piston-gas.svg",
+                    caption: "Simulasi penekanan piston pada wadah tertutup yang berisi gas.",
+                    question: "Mengapa volume gas dapat dimampatkan (ditekan) menjadi lebih kecil, sementara hal tersebut sangat sulit dilakukan pada zat dalam wujud cair?",
                     options: [
-                        { text: "Karena gas memiliki ruang kosong yang sangat luas di antara partikel-partikelnya dibandingkan zat cair yang partikelnya sudah bergeseran rapat.", correct: true },
-                        { text: "Karena massa partikel gas akan hilang sebagian saat ditekan kuat ke dalam piston.", correct: false },
-                        { text: "Karena partikel zat cair tidak memiliki gaya tarik-menarik satu sama lain.", correct: false },
-                        { text: "Karena molekul gas dapat melebur menjadi zat padat saat dimampatkan secara perlahan.", correct: false }
+                        { text: "Karena gas memiliki ruang kosong (rongga antarpartikel) yang sangat luas dibandingkan zat cair yang rapat.", correct: true },
+                        { text: "Karena massa dari partikel gas akan hilang sebagian secara otomatis saat ditekan kuat dari luar.", correct: false },
+                        { text: "Karena partikel zat cair tidak memiliki gaya tarik menarik sama sekali di antara molekul penyusunnya.", correct: false },
+                        { text: "Karena molekul gas dapat melebur menjadi bentuk wujud zat padat seketika saat diberi tekanan luar.", correct: false }
                     ]
                 }
             ],
@@ -76,17 +81,16 @@
                 {
                     id: "e1.1",
                     num: 1,
-                    question: "Saat proses penyulingan arak, uap panas yang mengalir dari periuk melewati pipa bambu didinginkan dengan air hingga menetes menjadi cairan. Analisislah mengapa uap gas tersebut bisa berubah kembali menjadi tetesan cairan ketika melewati pipa dingin!"
+                    asset: null,
+                    caption: null,
+                    question: "Saat proses penyulingan arak tradisional Bali, uap panas yang mengalir dari periuk perebusan melewati pipa bambu panjang yang didinginkan dengan air, hingga akhirnya menetes menjadi cairan arak. Analisislah mengapa uap gas yang tadinya bebas melesat di udara bisa berubah kembali menjadi tetesan cairan ketika melewati pipa yang dingin!"
                 },
                 {
                     id: "e1.2",
                     num: 2,
-                    question: "Banyak orang beranggapan bahwa benda-benda padat (batu, kayu) memiliki partikel penyusun yang diam total. Evaluasilah pernyataan tersebut berdasarkan konsep sains modern pada tingkat sub-mikroskopis!"
-                },
-                {
-                    id: "e1.3",
-                    num: 3,
-                    question: "Seorang siswa memasukkan bola karet berisi udara ke dalam air dingin, lalu memindahkannya ke tempat panas. Bola tampak lebih tegang dan mengembang. Hubungkan peristiwa ini dengan perubahan jarak antarpartikel dan pergerakan partikel gas!"
+                    asset: "assets/images/kuis/kuis1-esai-bola-karet.png",
+                    caption: "Ilustrasi pengembangan bola karet saat dipindahkan ke tempat bersuhu panas.",
+                    question: "Seorang siswa mencoba memasukkan bola karet yang terisi penuh oleh udara ke dalam wadah berisi air dingin, lalu memindahkannya ke tempat yang panas di bawah terik matahari. Siswa tersebut mengamati bahwa bola karet tampak sedikit lebih tegang dan mengembang. Hubungkan peristiwa ini dengan perubahan jarak antarpartikel dan pergerakan partikel gas di dalam bola karet!"
                 }
             ]
         },
@@ -99,57 +103,62 @@
             pg: [
                 {
                     id: "2.1",
-                    asset: "kuis2-grafik-pemanasan.svg",
-                    question: "Saat grafik menunjukkan garis mendatar pada suhu 0°C dan 100°C, suhu zat tidak mengalami kenaikan meski dipanaskan. Analisis mengapa fenomena tersebut terjadi...",
+                    asset: "assets/images/kuis/kuis2-grafik-pemanasan.svg",
+                    caption: "Grafik pemanasan zat dari wujud es padat hingga menjadi uap gas.",
+                    question: "Perhatikan grafik pemanasan zat pada aplikasi ZatLoka di atas! Saat grafik menunjukkan garis mendatar (konstan) pada suhu 0°C dan 100°C, suhu zat tidak mengalami kenaikan meskipun proses pemanasan atau pemberian panas terus dilanjutkan. Analisis mengapa fenomena tersebut dapat terjadi pada tingkat sub-mikroskopis...",
                     options: [
-                        { text: "Panas diserap digunakan untuk menaikkan kecepatan gerak partikel secara cepat.", correct: false },
-                        { text: "Panas yang diserap digunakan sepenuhnya untuk memutuskan atau merenggangkan ikatan antarpartikel saat mengalami perubahan wujud.", correct: true },
-                        { text: "Partikel zat berhenti bergerak sama sekali saat mencapai titik suhu kritis tersebut.", correct: false },
-                        { text: "Massa zat mengalami penyusutan sehingga energi panas terbuang ke lingkungan.", correct: false }
+                        { text: "Kalor yang diserap digunakan untuk menaikkan kecepatan gerak seluruh partikel secara drastis.", correct: false },
+                        { text: "Kalor yang diserap digunakan sepenuhnya untuk memutuskan atau merenggangkan ikatan antarpartikel.", correct: true },
+                        { text: "Partikel zat berhenti bergerak sama sekali selama garis mendatar grafik pemanasan berlangsung.", correct: false },
+                        { text: "Massa zat mengalami penyusutan drastis sehingga seluruh energi panas terbuang ke udara.", correct: false }
                     ]
                 },
                 {
                     id: "2.2",
-                    asset: "kuis2-evaporasi-didih.svg",
-                    question: "Perbedaan mendasar penguapan air laut dengan proses air mendidih di dalam panci adalah...",
+                    asset: "assets/images/kuis/kuis2-evaporasi-didih.svg",
+                    caption: "Perbandingan penguapan air laut Kusamba (permukaan) dan air mendidih (seluruh bagian).",
+                    question: "Dalam proses tradisional pembuatan garam di Pesisir Kusamba, air laut dijemur di bawah terik matahari hingga perlahan-lahan berubah menjadi uap dan meninggalkan kristal garam. Berdasarkan prinsip kalor dan wujud zat, apa perbedaan mendasar antara proses penguapan air laut di ladang garam tersebut dengan proses air mendidih di dalam panci?",
                     options: [
-                        { text: "Penguapan memerlukan api besar, sedangkan mendidih hanya butuh sinar matahari.", correct: false },
-                        { text: "Penguapan mengubah identitas kimia air menjadi gas racun, sedangkan mendidih tidak.", correct: false },
-                        { text: "Penguapan terjadi pada suhu berapa pun di permukaan zat cair, sedangkan mendidih terjadi pada suhu tertentu di seluruh bagian cairan.", correct: true },
-                        { text: "Penguapan melepaskan panas ke lingkungan, sedangkan mendidih menyerap seluruh panas wadah.", correct: false }
+                        { text: "Penguapan memerlukan pasokan api besar, sedangkan mendidih hanya memerlukan energi dari matahari.", correct: false },
+                        { text: "Penguapan mengubah identitas kimia air menjadi garam, sedangkan proses mendidih tidak mengubah zat.", correct: false },
+                        { text: "Penguapan terjadi pada suhu berapa pun di permukaan, sedangkan mendidih pada suhu tetap di seluruh bagian.", correct: true },
+                        { text: "Penguapan melepaskan kalor ke lingkungan sekitar, sedangkan proses mendidih menyerap kalor lingkungan.", correct: false }
                     ]
                 },
                 {
                     id: "2.3",
-                    asset: "kuis2-pipa-pendingin.svg",
-                    question: "Jika aliran air dingin pada pipa bambu dihentikan, apa dampak langsung pada perubahan wujud?",
+                    asset: "assets/images/kuis/kuis2-pipa-pendingin.svg",
+                    caption: "Pipa pendingin bambu pada alat destilasi arak Bali.",
+                    question: "Pada alat penyulingan arak tradisional Bali, uap panas yang mengalir dari proses perebusan nira akan melewati pipa pendingin bambu yang disiram air dingin, sehingga uap tersebut berubah menjadi tetesan cairan arak. Jika aliran air dingin pada pipa pendingin dihentikan, apa dampak langsung yang akan terjadi pada proses perubahan wujud di dalam pipa?",
                     options: [
-                        { text: "Tetesan arak berubah menjadi kristal padat di ujung corong bambu.", correct: false },
-                        { text: "Proses mencair berlangsung lebih cepat karena suhu pipa naik tajam.", correct: false },
-                        { text: "Uap gas tidak akan mengalami pengembunan secara maksimal dan akan terus berwujud gas yang lolos keluar.", correct: true },
-                        { text: "Suhu di dalam pipa akan turun drastis dan membekukan cairan.", correct: false }
+                        { text: "Tetesan cairan arak di dalam pipa pendingin akan berubah menjadi bentuk kristal padat seketika.", correct: false },
+                        { text: "Proses perubahan wujud mencair akan berlangsung jauh lebih cepat daripada kondisi sebelumnya.", correct: false },
+                        { text: "Uap gas gagal mengembun secara maksimal dan akan terus berwujud gas yang lolos keluar.", correct: true },
+                        { text: "Suhu yang berada di dalam pipa pendingin tersebut akan turun drastis di bawah titik 0°C", correct: false }
                     ]
                 },
                 {
                     id: "2.4",
-                    asset: "kuis2-kapur-barus.svg",
-                    question: "Analisis jarak antarpartikel dan kebutuhan panas pada peristiwa kapur barus (menyublim)...",
+                    asset: "assets/images/kuis/kuis2-kapur-barus.svg",
+                    caption: "Ilustrasi proses menyublim pada kapur barus padat yang dipanaskan.",
+                    question: "Kapur barus (kamper) padat yang diletakkan di dalam lemari lama-kelamaan akan habis tanpa meninggalkan sisa cairan di dasarnya. Peristiwa ini melibatkan perubahan wujud menyublim. Analisis apa yang terjadi pada jarak antarpartikel dan kebutuhan kalor pada peristiwa tersebut?",
                     options: [
-                        { text: "Melepaskan panas, jarak berubah sangat rapat.", correct: false },
-                        { text: "Menyerap panas, jarak partikel berubah langsung dari sangat rapat (padat) menjadi sangat berjauhan (gas) tanpa melalui fase cair.", correct: true },
-                        { text: "Melepaskan panas, jarak berubah dari cair ke padat.", correct: false },
-                        { text: "Menyerap panas, ukuran molekul menyusut.", correct: false }
+                        { text: "Melepaskan kalor ke lingkungan, serta jarak antarpartikel berubah dari wujud renggang menjadi sangat rapat.", correct: false },
+                        { text: "Menyerap kalor, jarak partikel berubah langsung dari padat (rapat) menjadi gas (berjauhan) tanpa cair.", correct: true },
+                        { text: "Melepaskan kalor ke lingkungan, serta jarak antarpartikel berubah dari wujud bentuk cair menjadi padat.", correct: false },
+                        { text: "Menyerap kalor dari lingkungan, serta ukuran fisik dari setiap molekul individu menyusut menjadi gas.", correct: false }
                     ]
                 },
                 {
                     id: "2.5",
-                    asset: "kuis2-grafik-leleh-didih.svg",
-                    question: "Mengapa waktu yang dibutuhkan air berubah menjadi uap jauh lebih lama daripada es mencair seluruhnya?",
+                    asset: "assets/images/kuis/kuis2-grafik-leleh-didih.svg",
+                    caption: "Grafik perbandingan energi kalor pada titik leleh es dan titik didih air.",
+                    question: "Seorang siswa melakukan eksperimen pemanasan es batu bersuhu -10°C hingga mendidih menjadi uap air pada 100°C. Ia mencatat bahwa waktu yang dibutuhkan air untuk berubah sepenuhnya menjadi uap (pada titik didihnya) jauh lebih lama daripada waktu yang dibutuhkan es untuk mencair seluruhnya (pada titik lelehnya). Mengapa hal tersebut dapat terjadi ditinjau dari ikatan partikel?",
                     options: [
-                        { text: "Karena massa es lebih ringan daripada massa uap air.", correct: false },
-                        { text: "Karena titik leleh memerlukan energi panas lebih besar dari panas penguapan.", correct: false },
-                        { text: "Karena pemutusan ikatan total dari fase cair menjadi gas memerlukan energi panas yang jauh lebih besar daripada sekadar merenggangkan ikatan padat ke cair.", correct: true },
-                        { text: "Karena partikel gas berukuran lebih besar dibanding partikel cair.", correct: false }
+                        { text: "Karena massa total es jauh lebih ringan daripada jumlah massa cairan air yang berada di dalam wadah.", correct: false },
+                        { text: "Karena titik leleh memerlukan pasokan energi kalor yang jauh lebih besar daripada titik didih zat.", correct: false },
+                        { text: "Pemutusan ikatan total dari cair ke gas memerlukan kalor penguapan yang jauh lebih besar daripada meleleh.", correct: true },
+                        { text: "Karena partikel gas memiliki ukuran bentuk volume yang jauh lebih besar daripada partikel padat.", correct: false }
                     ]
                 }
             ],
@@ -157,17 +166,16 @@
                 {
                     id: "e2.1",
                     num: 1,
-                    question: "Jika seandainya cuaca mendung total terus menerus selama seminggu, jelaskan kendala apa yang terjadi pada pergerakan partikel air laut dan pembentukan kristal garam Kusamba berdasarkan konsep penyerapan panas!"
+                    asset: null,
+                    caption: null,
+                    question: "Dalam pembuatan garam tradisional di Kusamba, petani garam memanfaatkan panas matahari untuk menguapkan air laut di atas petakan tanah/batang kelapa hingga terbentuk kristal garam. Jika seandainya cuaca mendung total terus menerus selama seminggu, jelaskan kendala apa yang terjadi pada pergerakan partikel air laut dan pembentukan kristal garam tersebut dalam menerima panas!"
                 },
                 {
                     id: "e2.2",
                     num: 2,
-                    question: "Air di pantai mendidih pada suhu 100°C, namun di puncak gunung mendidih pada suhu di bawah 100°C. Evaluasi dan jelaskan mengapa perbedaan tekanan udara luar dapat memengaruhi titik didih ditinjau dari gerakan partikelnya!"
-                },
-                {
-                    id: "e2.3",
-                    num: 3,
-                    question: "Mengapa luka melepuh akibat terkena uap air mendidih (100°C) terasa jauh lebih parah dibandingkan air panas biasa dengan suhu yang sama? Hubungkan jawabanmu dengan proses pelepasan panas (energi panas laten penguapan)!"
+                    asset: "assets/images/kuis/kuis2-esai-luka-melepuh.png",
+                    caption: "Perbedaan keparahan luka melepuh akibat terkena uap air panas dan air bersuhu mendidih.",
+                    question: "Mengapa ketika tubuh kita secara tidak sengaja terkena tumpahan air yang sedang mendidih 100°C luka melepuhnya terasa jauh lebih parah dan sakit dibandingkan jika terkena tumpahan air panas biasa yang bersuhu sama-sama 100°C (atau uap air panas)? Hubungkan jawabanmu dengan proses pelepasan panas pada peristiwa pengembunan!"
                 }
             ]
         },
@@ -180,57 +188,62 @@
             pg: [
                 {
                     id: "3.1",
-                    asset: "kuis3-dupa-bakar.svg",
-                    question: "Mengapa pembakaran dupa dikategorikan perubahan kimia, sedangkan penguapan aromanya perubahan fisika...",
+                    asset: "assets/images/kuis/kuis3-dupa-bakar.svg",
+                    caption: "Perbandingan batang dupa yang terbakar menjadi abu dan penguapan minyak aromanya.",
+                    question: "Saat melakukan persembahyangan di rumah, keluarga Made menyalakan Dupa Harum Bali. Dalam satu batang dupa tersebut, terjadi dua peristiwa sekaligus: serbuk kayu pada batang dupa terbakar menjadi abu, sementara minyak wangi di dalam dupa menguap menjadi aroma harum di ruangan. Analisis mengapa peristiwa pembakaran dupa dikategorikan sebagai perubahan kimia, bukan perubahan fisika...",
                     options: [
-                        { text: "Pembakaran mengubah wujud padat ke gas secara langsung tanpa sisa.", correct: false },
-                        { text: "Pembakaran dupa menghasilkan zat baru yang tidak dapat kembali ke bentuk semula, sedangkan penguapan aroma hanya mengubah wujud zat tanpa mengubah struktur molekulnya.", correct: true },
-                        { text: "Pembakaran menyerap panas sedangkan penguapan aroma melepaskan panas.", correct: false },
-                        { text: "Pembakaran tidak melibatkan perubahan warna maupun bau pada zat asalnya.", correct: false }
+                        { text: "Pembakaran dupa mengubah wujud dari padat menjadi gas, sedangkan penguapan minyak wangi mengubah wujud dari cairan ke padat.", correct: false },
+                        { text: "Pembakaran dupa menghasilkan jenis zat baru yang permanen, sedangkan penguapan minyak wangi hanya mengubah wujud fisiknya.", correct: true },
+                        { text: "Pembakaran dupa menyerap energi kalor dari lingkungan sekitar, sedangkan penguapan minyak wangi melepaskan kalor ke udara bebas.", correct: false },
+                        { text: "Pembakaran dupa tidak melibatkan perubahan warna secara total, sedangkan penguapan minyak wangi mengubah warna zat asalnya.", correct: false }
                     ]
                 },
                 {
                     id: "3.2",
-                    asset: "kuis3-fermentasi.svg",
-                    question: "Tradisi pembuatan tuak/tape dari nira dengan ragi termasuk jenis perubahan apakah dan apa alasannya?",
+                    asset: "assets/images/kuis/kuis3-fermentasi.svg",
+                    caption: "Proses fermentasi nira menjadi tuak/tape khas Bali oleh mikroorganisme.",
+                    question: "Dalam tradisi pembuatan tuak atau tape di Bali, masyarakat menggunakan ragi untuk mengubah rasa manis ketan atau nira menjadi beralkohol dan berasa asam setelah didiamkan beberapa hari. Berdasarkan karakteristik perubahannya, termasuk jenis perubahan apakah proses fermentasi tersebut dan apa alasannya?",
                     options: [
-                        { text: "Fisika, karena wujud ketan tetap cair/padat.", correct: false },
-                        { text: "Fisika, karena prosesnya dibalik dengan pendinginan.", correct: false },
-                        { text: "Kimia, karena terjadi pembentukan zat jenis baru yang disertai perubahan rasa dan sifat zat akibat kerja mikroorganisme.", correct: true },
-                        { text: "Kimia, karena wujud zat berubah dari gas ke padat secara perlahan.", correct: false }
+                        { text: "Perubahan fisika, karena wujud fisik dari ketan ataupun nira tetap berupa bentuk zat cair dan padat.", correct: false },
+                        { text: "Perubahan fisika, karena proses reaksi fermentasinya dapat dibalik dengan cara mendinginkannya.", correct: false },
+                        { text: "Perubahan kimia, terbentuk zat baru disertai perubahan rasa dan sifat akibat kerja mikroorganisme.", correct: true },
+                        { text: "Perubahan kimia, karena wujud zat berubah langsung dari bentuk gas menjadi padat secara instan.", correct: false }
                     ]
                 },
                 {
                     id: "3.3",
-                    asset: "kuis3-lilin.svg",
-                    question: "Analisis perubahan zat pada batang lilin yang meleleh dan sumbu lilin yang terbakar secara berurutan adalah...",
+                    asset: "assets/images/kuis/kuis3-lilin.svg",
+                    caption: "Ilustrasi lilin yang mengalami proses meleleh (fisika) dan sumbu yang terbakar (kimia).",
+                    question: "Komang menyalakan sebuah lilin aromaterapi di kamarnya. Ketika lilin menyala, batang lilin di pinggirannya meleleh mengalir ke bawah, sementara bagian sumbu lilin yang terbakar berubah menjadi asap hitam dan arang. Analisis perubahan zat yang terjadi pada batang lilin yang meleleh dan sumbu lilin yang terbakar secara berurutan adalah...",
                     options: [
-                        { text: "Perubahan kimia dan perubahan kimia.", correct: false },
-                        { text: "Perubahan fisika dan perubahan kimia.", correct: true },
-                        { text: "Perubahan fisika dan perubahan fisika.", correct: false },
-                        { text: "Perubahan kimia dan perubahan fisika.", correct: false }
+                        { text: "Perubahan jenis kimia dan diikuti dengan proses perubahan jenis kimia secara bersamaan.", correct: false },
+                        { text: "Perubahan jenis fisika dan diikuti dengan proses perubahan jenis kimia secara berurutan.", correct: true },
+                        { text: "Perubahan jenis fisika dan diikuti dengan proses perubahan jenis fisika secara bersamaan.", correct: false },
+                        { text: "Perubahan jenis kimia dan diikuti dengan proses perubahan jenis fisika secara berurutan.", correct: false }
                     ]
                 },
                 {
                     id: "3.4",
-                    asset: "kuis3-es-karat.svg",
-                    question: "Perbedaan sifat kekekalan zat dari peristiwa es mencair dan besi pagar berkarat adalah...",
+                    asset: "assets/images/kuis/kuis3-es-karat.svg",
+                    caption: "Perbandingan es batu yang mencair dengan besi pagar yang berkarat.",
+                    question: "Ibu meletakkan pagar besi di dekat pantai sehingga lama-kelamaan besi tersebut berlubang dan berubah menjadi lapisan berwarna coklat kemerahan (karat). Di sisi lain, es batu di dalam teh manis mencair menjadi air. Siswa kelas 7 diminta membedakan sifat kekekalan zat dari kedua peristiwa tersebut. Pernyataan manakah yang paling tepat?",
                     options: [
-                        { text: "Besi berkarat bersifat reversible sedangkan es mencair irreversible.", correct: false },
-                        { text: "Es mencair tidak menghasilkan zat baru, sedangkan besi berkarat menghasilkan zat jenis baru yang sifatnya berbeda dari besi asal.", correct: true },
-                        { text: "Kedua peristiwa merupakan perubahan kimia karena sama-sama menyerap zat di udara.", correct: false },
-                        { text: "Karat besi diubah kembali menjadi besi murni dengan cara dipanaskan biasa.", correct: false }
+                        { text: "Besi berkarat bersifat reversible (dapat kembali seperti semula), sedangkan es mencair bersifat irreversible.", correct: false },
+                        { text: "Es mencair tidak menghasilkan zat baru, sedangkan besi berkarat menghasilkan jenis zat baru.", correct: true },
+                        { text: "Kedua peristiwa tersebut merupakan contoh dari perubahan kimia karena mengubah bentuk wujud benda.", correct: false },
+                        { text: "Karat besi dapat diubah kembali menjadi besi murni hanya dengan mencucinya menggunakan air biasa.", correct: false }
                     ]
                 },
                 {
                     id: "3.5",
-                    asset: null, // Tanpa Gambar
-                    question: "Pencampuran es batu, cincau, santan, dan air aren cair pada Es Daluman apakah tergolong perubahan kimia?",
+                    asset: null, // Tidak ada gambar khusus
+                    caption: null,
+                    question: "Siti membuat segelas Es Daluman khas Bali. Ia mencampurkan cincau hijau, santan, dan air gula aren cair ke dalam es batu, lalu diaduk rata. Apakah pencampuran bahan-bahan makanan tersebut dapat digolongkan sebagai perubahan kimia? Berikan alasan ilmiahnya untuk tingkat siswa SMP!",
                     options: [
-                        { text: "Ya, karena warna berubah menjadi kehijauan kecokelatan.", correct: false },
-                        { text: "Ya, karena rasa manis gula aren mendominasi minuman.", correct: false },
-                        { text: "Tidak, karena pencampuran tersebut tidak menghasilkan zat jenis baru; masing-masing bahan masih mempertahankan sifat aslinya dan hanya tercampur secara fisik.", correct: true },
-                        { text: "Tidak, karena bahan langsung menguap ke udara saat diaduk rata.", correct: false }
+                        { text: "Ya, karena wujud santan dan gula tercampur merata menjadi satu kesatuan warna yang baru.", correct: false },
+                        { text: "Ya, karena rasa dari air kelapa dan gula aren tercampur rata menjadi berasa sangat manis.", correct: false },
+                        { text: "Tidak, pencampuran tidak menghasilkan zat baru; masing-masing bahan mempertahankan sifatnya.", correct: true },
+                        { text: "Tidak, karena semua bahan makanan tersebut langsung menguap menjadi gas saat diaduk.", correct: false }
                     ]
                 }
             ],
@@ -238,17 +251,16 @@
                 {
                     id: "e3.1",
                     num: 1,
-                    question: "Analisislah mana di antara kedua peristiwa berikut: pembuatan garam Kusamba vs pembusukan sisa canang sari yang termasuk perubahan fisika dan kimia beserta alasannya!"
+                    asset: null,
+                    caption: null,
+                    question: "Di pesisir Kusamba, petani menjemur air laut di atas petak-petak tanah atau palungan batang kelapa hingga airnya habis dan menyisakan kristal garam putih. Di sisi lain, sisa-sisa sesajen (canang sari) yang dibiarkan di pekarangan rumah lama-kelamaan akan membusuk dan hancur menyatu dengan tanah. Berdasarkan konsep yang telah kamu pelajari, analisislah mana di antara kedua peristiwa tersebut (pembuatan garam vs pembusukan canang sari) yang termasuk perubahan fisika dan mana yang perubahan kimia, serta jelaskan alasannya!"
                 },
                 {
                     id: "e3.2",
                     num: 2,
-                    question: "Siti merebus telur hingga matang, lalu mencoba mendinginkannya di kulkas agar kembali menjadi cair seperti semula. Apakah usaha Siti berhasil? Evaluasi berdasarkan karakteristik perubahan zat!"
-                },
-                {
-                    id: "e3.3",
-                    num: 3,
-                    question: "Seorang tukang las menyambungkan pagar besi hingga memercikkan api terang dan sebagian besi meleleh menyatu. Ibu berkata ini murni perubahan fisika. Setujukah kamu? Berikan argumen ilmiahmu!"
+                    asset: null,
+                    caption: null,
+                    question: "Siti ingin membuktikan perbedaan sifat perubahan fisika dan kimia di dapur rumahnya melalui dua aktivitas berbeda:\nAktivitas Pertama: Ia mencampurkan satu sendok teh gula pasir ke dalam segelas air hangat hingga larut sempurna menjadi air gula, lalu mencoba memisahkan kembali gula tersebut dengan cara menguapkan airnya.\nAktivitas Kedua: Ia merebus sebutir telur mentah di dalam air mendidih hingga bagian putih dan kuning telurnya mengeras (matang), lalu mencoba mendinginkan telur rebus tersebut di dalam lemari es agar putih telurnya bisa kembali cair seperti semula.\nEvaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisahan/pengembalian wujud tersebut akan berhasil, ditinjau dari karakteristik perubahan fisika dan perubahan kimia!"
                 }
             ]
         },
@@ -261,52 +273,57 @@
             pg: [
                 {
                     id: "4.1",
-                    asset: "kuis4-timbang-bambu.svg",
-                    question: "Bambu suling m = 120 gram dan V = 150 cm3. Massa jenis air 1,0 g/cm3. Analisis massa jenis dan posisi bambu...",
+                    asset: "assets/images/kuis/kuis4-timbang-bambu.svg",
+                    caption: "Ilustrasi timbangan digital dan pengukuran volume bambu suling.",
+                    question: "Seorang perajin cilik di Bali menguji potongan kayu bambu suling yang digunakan untuk alat musik tradisional. Setelah ditimbang, bambu tersebut memiliki massa (m) = 120 gram dan volume (V) = 150 cm3. Jika massa jenis air bersih adalah 1,0 g/cm3, analisis nilai massa jenis bambu tersebut dan tentukan posisinya jika dimasukkan ke dalam air!",
                     options: [
-                        { text: "0,8 g/cm3, posisi benda tenggelam ke dasar wadah.", correct: false },
-                        { text: "0,8 g/cm3, posisi benda akan mengapung di atas permukaan air.", correct: true },
-                        { text: "1,25 g/cm3, posisi benda melayang tepat di tengah cairan.", correct: false },
-                        { text: "1,25 g/cm3, posisi benda tenggelam karena massanya besar.", correct: false }
+                        { text: "ρ = 0,8 g/cm3, posisi benda akan tenggelam di dalam air.", correct: false },
+                        { text: "ρ = 0,8 g/cm3, posisi benda akan mengapung di atas permukaan air.", correct: true },
+                        { text: "ρ = 1,25 g/cm3, posisi benda akan melayang di tengah air.", correct: false },
+                        { text: "ρ = 1,25 g/cm3, posisi benda akan tenggelam ke dasar wadah.", correct: false }
                     ]
                 },
                 {
                     id: "4.2",
-                    asset: "kuis4-bambu-koin.svg",
-                    question: "Mengapa bambu berukuran sama persis dengan koin logam bisa mengapung sementara logam tenggelam?",
+                    asset: "assets/images/kuis/kuis4-bambu-koin.svg",
+                    caption: "Perbandingan mikroskopis rongga udara pada struktur bambu dengan padatnya koin logam.",
+                    question: "Mengapa sepotong bambu yang berukuran sama persis dengan koin logam bisa mengapung, sementara koin logam tersebut langsung tenggelam ke dasar air? Evaluasi kejadian ini berdasarkan struktur kerapatan partikelnya (diketahui dinding sel bambu memiliki rongga berukuran sekitar 21 hingga 198 Nm, sedangkan koin logam tersusun dari atom-atom yang rapat tanpa rongga)!",
                     options: [
-                        { text: "Massa logam lebih ringan dari massa jenis air laut.", correct: false },
-                        { text: "Logam menyerap air lebih cepat daripada bambu yang berongga.", correct: false },
-                        { text: "Karena bambu memiliki struktur dengan banyak rongga udara yang membuat kerapatan totalnya lebih kecil dari air, sedangkan koin logam tersusun atas partikel padat rapat tanpa rongga.", correct: true },
-                        { text: "Gaya dorong ke atas koin logam lebih besar daripada bambu.", correct: false }
+                        { text: "Karena massa dari koin logam jauh lebih ringan daripada massa bambu ketika berada di dalam air.", correct: false },
+                        { text: "Karena koin logam menyerap air jauh lebih cepat daripada bambu yang bersifat kedap air.", correct: false },
+                        { text: "Bambu punya rongga udara yang membuat kerapatan totalnya kecil, sedangkan logam padat tanpa rongga.", correct: true },
+                        { text: "Karena koin logam memiliki gaya dorong ke atas yang jauh lebih besar daripada berat aslinya.", correct: false }
                     ]
                 },
                 {
                     id: "4.3",
-                    asset: "kuis4-telur-garam.svg",
-                    question: "Telur segar yang tenggelam di air tawar akan melayang di air garam pekat. Analisis yang terjadi...",
+                    asset: "assets/images/kuis/kuis4-telur-garam.svg",
+                    caption: "Uji kualitas kesegaran telur di dalam air tawar dan larutan air garam Kusamba.",
+                    question: "Petani garam di Kusamba sering menggunakan uji larutan garam untuk menentukan kualitas telur. Telur yang masih segar akan tenggelam di dalam air tawar, akan melayang jika dimasukkan ke air garam. Analisis apa yang terjadi pada sifat cairan tersebut...",
                     options: [
-                        { text: "Massa telur bertambah besar saat terkena air garam pekat.", correct: false },
-                        { text: "Penambahan zat terlarut (garam) meningkatkan nilai massa jenis air hingga menjadi sama persis dengan massa jenis telur (ρ benda = ρ cairan).", correct: true },
-                        { text: "Garam membuat volume telur menyusut sehingga massa jenisnya turun drastis.", correct: false },
-                        { text: "Air garam menarik udara masuk ke dalam cangkang telur.", correct: false }
+                        { text: "Massa total dari telur bertambah besar secara signifikan sehingga mendesak air ke bawah.", correct: false },
+                        { text: "Penambahan garam meningkatkan massa jenis air hingga sama persis dengan massa jenis telur.", correct: true },
+                        { text: "Kandungan garam membuat volume telur menyusut drastis sehingga menjadi sangat ringan.", correct: false },
+                        { text: "Air garam menarik udara yang ada di dalam telur hingga telur terdorong mengapung ke atas.", correct: false }
                     ]
                 },
                 {
                     id: "4.4",
-                    asset: "kuis4-lapisan-cairan.svg",
-                    question: "Tiga cairan: Minyak kelapa 0,8 g/cm3, Air murni 1,0 g/cm3, Larutan gula 1,3 g/cm3 dicampur tanpa melarut. Urutan lapisan dari atas ke bawah adalah...",
+                    asset: "assets/images/kuis/kuis4-lapisan-cairan.svg",
+                    caption: "Diagram susunan tiga lapisan cairan yang berbeda massa jenis di dalam sebuah gelas kimia.",
+                    question: "Siti mencampurkan tiga jenis cairan ke dalam satu gelas tinggi: Minyak kelapa (0,8 g/cm3), Air murni (1,0 g/cm3), dan Larutan gula pekat (1,3 g/cm3). Ketiga cairan tersebut tidak saling melarutkan. Urutan lapisan cairan dari posisi paling atas hingga ke paling bawah secara berurutan adalah...",
                     options: [
-                        { text: "Larutan gula - Air murni - Minyak kelapa", correct: false },
-                        { text: "Minyak kelapa - Air murni - Larutan gula", correct: true },
-                        { text: "Air murni - Minyak kelapa - Larutan gula", correct: false },
-                        { text: "Larutan gula - Minyak kelapa - Air murni", correct: false }
+                        { text: "Larutan gula — Air murni — Minyak kelapa", correct: false },
+                        { text: "Minyak kelapa — Air murni — Larutan gula", correct: true },
+                        { text: "Air murni — Minyak kelapa — Larutan gula", correct: false },
+                        { text: "Larutan gula — Minyak kelapa — Air murni", correct: false }
                     ]
                 },
                 {
                     id: "4.5",
-                    asset: "kuis4-batu-gelasukur.svg",
-                    question: "Batu dicelup ke gelas ukur. Permukaan air naik dari 50 mL menjadi 90 mL. Massa batu 100 gram. Massa jenis batu adalah...",
+                    asset: "assets/images/kuis/kuis4-batu-gelasukur.svg",
+                    caption: "Pengukuran volume benda tidak beraturan menggunakan metode gelas ukur.",
+                    question: "Komang ingin mencari massa jenis sebuah batu hias candi. Ia memasukkan batu tersebut ke dalam gelas ukur. Permukaan air awal berada di angka 50 mL, dan setelah batu dimasukkan sepenuhnya, permukaan air naik menjadi 90 mL. Jika timbangan menunjukkan massa batu tersebut adalah 100 gram, berapakah massa jenis batu tersebut?",
                     options: [
                         { text: "0,9 g/cm3", correct: false },
                         { text: "1,25 g/cm3", correct: false },
@@ -319,17 +336,16 @@
                 {
                     id: "e4.1",
                     num: 1,
-                    question: "Patung A (kayu) m = 140 gr, V = 200 cm3. Patung B (batu) m = 500 gr, V = 200 cm3. Jika dimasukkan ke air (1,0 g/cm3), hitunglah massa jenis keduanya dan prediksikan posisi akhirnya!"
+                    asset: null,
+                    caption: null,
+                    question: "Seorang perajin ukiran kayu di Bali membuat dua jenis patung hiasan dengan ukuran volume yang sama persis, yaitu 200 cm3. Patung A (terbuat dari kayu) memiliki massa 140 gram, sedangkan Patung B (terbuat dari batu padas padat) memiliki massa 500 gram. Jika kedua patung tersebut dimasukkan ke dalam kolam air besar (air= 1,0 g/cm3) hitunglah masing-masing massa jenis patung tersebut, lalu prediksikan dan jelaskan posisi akhir benda (mengapung, melayang, atau tenggelam)!"
                 },
                 {
                     id: "e4.2",
                     num: 2,
-                    question: "Mengapa kubus besi memiliki massa jenis yang berlipat-lipat kali lebih besar daripada kubus es batu murni meski ukuran volumenya sama persis? Jelaskan tinjauan jarak antarpartikel dan massanya!"
-                },
-                {
-                    id: "e4.3",
-                    num: 3,
-                    question: "Kade ingin merancang replika perahu agar melayang tepat di tengah kedalaman air (tidak tenggelam dan tidak muncul di permukaan). Saran strategi apa yang harus dilakukan terhadap bahan perahunya?"
+                    asset: null,
+                    caption: null,
+                    question: "Kadek ingin merancang replika perahu tradisional Bali dari gabus sterofoam dan kayu. Ia ingin perahunya dapat melayang tepat di tengah-tengah kedalaman air kolam (tidak tenggelam ke dasar dan tidak muncul terlalu tinggi di permukaan). Berdasarkan pemahamanmu tentang konsep massa jenis zat cair dan benda, saran strategi apa yang harus dilakukan Kadek terhadap rancangan bahan perahunya agar tujuan tersebut tercapai?"
                 }
             ]
         }
@@ -662,7 +678,7 @@
                         <div class="hub-welcome-banner">
                             <div class="hub-banner-text">
                                 <h3>Uji Pemahaman Sains Etnosains Bali!</h3>
-                                <p>Selesaikan 5 Pilihan Ganda & 3 Esai. Raih skor 100% untuk membuka Gelar & Materi selanjutnya.</p>
+                                <p>Selesaikan 5 Pilihan Ganda & 2 Esai. Raih skor 100% untuk membuka Gelar & Materi selanjutnya.</p>
                             </div>
                         </div>
 
@@ -700,7 +716,7 @@
                                                 ${lvl === 1 ? '🔍' : lvl === 2 ? '🔥' : lvl === 3 ? '🧪' : '🏆'}
                                             </div>
                                             <h3>${qData.title}</h3>
-                                            <p>5 Pilihan Ganda • 3 Soal Esai Ilmiah</p>
+                                            <p>5 Pilihan Ganda • 2 Soal Esai Ilmiah</p>
                                         </div>
                                         <div class="kuis-card-footer">
                                             <span class="kuis-tag-gelar">Gelar: ${qData.rankTitle}</span>
@@ -794,7 +810,7 @@
                         </div>
                         <div class="header-right">
                             <div class="lokaplay-progress-pill" id="kuis-answered-pill">
-                                Terjawab: 0 / 5 PG • 0 / 3 Esai
+                                Terjawab: 0 / 5 PG • 0 / ${qData.essay.length} Esai
                             </div>
                         </div>
                     </header>
@@ -805,7 +821,7 @@
                         <div class="kuis-inst-banner">
                             <span class="inst-icon">💡</span>
                             <div class="inst-text">
-                                <strong>Petunjuk:</strong> Jawab 5 soal Pilihan Ganda & 3 soal Esai di bawah ini dengan teliti untuk menguji pemahaman sainsmu.
+                                <strong>Petunjuk:</strong> Jawab 5 soal Pilihan Ganda & ${qData.essay.length} soal Esai di bawah ini dengan teliti untuk menguji pemahaman sainsmu.
                             </div>
                         </div>
 
@@ -823,10 +839,13 @@
                                     </div>
 
                                     ${q.asset ? `
-                                        <div class="qcard-asset-box">
-                                            <img src="assets/images/kuis/${q.asset}" 
-                                                 alt="Ilustrasi Soal ${qIndex + 1}"
-                                                 onerror="this.style.display='none'" />
+                                        <div class="qcard-asset-container">
+                                            <div class="qcard-asset-box">
+                                                <img src="${q.asset.startsWith('assets/') ? q.asset : 'assets/images/kuis/' + q.asset}" 
+                                                     alt="${q.caption || ('Ilustrasi Soal ' + (qIndex + 1))}"
+                                                     onerror="this.parentElement.parentElement.style.display='none'" />
+                                            </div>
+                                            ${q.caption ? `<p class="qcard-asset-caption">${q.caption}</p>` : ''}
                                         </div>
                                     ` : ''}
 
@@ -847,8 +866,8 @@
 
                         <!-- BAGIAN 2: SOAL ESAI -->
                         <div class="kuis-section-title" style="margin-top: 2rem;">
-                            <h3>Bagian II: Soal Esai Ilmiah (3 Soal)</h3>
-                            <span class="kuis-req-note">Murni Analisis Teks</span>
+                            <h3>Bagian II: Soal Esai Ilmiah (${qData.essay.length} Soal)</h3>
+                            <span class="kuis-req-note">Pengayaan & Analisis</span>
                         </div>
 
                         <div class="kuis-essay-list">
@@ -857,10 +876,20 @@
                                     <div class="ecard-header">
                                         <span class="ecard-num">Esai #${e.num}</span>
                                     </div>
+                                    ${e.asset ? `
+                                        <div class="qcard-asset-container" style="margin-bottom: 0.85rem;">
+                                            <div class="qcard-asset-box">
+                                                <img src="${e.asset.startsWith('assets/') ? e.asset : 'assets/images/kuis/' + e.asset}" 
+                                                     alt="${e.caption || ('Ilustrasi Esai #' + e.num)}"
+                                                     onerror="this.parentElement.parentElement.style.display='none'" />
+                                            </div>
+                                            ${e.caption ? `<p class="qcard-asset-caption">${e.caption}</p>` : ''}
+                                        </div>
+                                    ` : ''}
                                     <p class="ecard-text">${e.question}</p>
                                     <div class="ecard-input-wrapper">
                                         <textarea class="ecard-textarea" data-eid="${e.id}" 
-                                                  placeholder="Tuliskan argumen dan penjelasan ilmiahmu di sini..."></textarea>
+                                                  placeholder="Ketik jawaban atau analisismu di sini (wajib minimal 3 kata)..."></textarea>
                                     </div>
                                 </div>
                             `).join('')}
@@ -955,7 +984,7 @@
 
             const pill = document.getElementById('kuis-answered-pill');
             if (pill) {
-                pill.textContent = `Terjawab: ${answeredPGCount} / 5 PG • ${answeredEssayCount} / 3 Esai`;
+                pill.textContent = `Terjawab: ${answeredPGCount} / 5 PG • ${answeredEssayCount} / ${qData.essay.length} Esai`;
             }
         }
 
@@ -1179,6 +1208,14 @@
                             ${qData.essay.map((e, idx) => `
                                 <div class="print-essay-item">
                                     <p class="print-q-text"><strong>Soal ${e.num}:</strong> ${e.question}</p>
+                                    ${e.asset ? `
+                                        <div style="margin: 8px 0; text-align: center;">
+                                            <img src="${e.asset.startsWith('assets/') ? e.asset : 'assets/images/kuis/' + e.asset}" 
+                                                 alt="${e.caption || ('Ilustrasi Esai ' + e.num)}"
+                                                 style="max-width: 220px; max-height: 120px; object-fit: contain; border: 1px solid #cbd5e1; border-radius: 4px; display: inline-block;" />
+                                            ${e.caption ? `<p style="font-style: italic; font-size: 8.5pt; color: #475569; margin: 4px 0 0 0; text-align: center;">${e.caption}</p>` : ''}
+                                        </div>
+                                    ` : ''}
                                     <div class="print-ans-box">
                                         <strong>Jawaban:</strong><br/>
                                         ${essayAnswers[idx] ? essayAnswers[idx].replace(/\n/g, '<br/>') : '<em>(Belum dijawab)</em>'}
