@@ -3058,6 +3058,25 @@ button {
     font-weight: 600;
 }
 
+.ecard-numbered-list {
+    margin: 0.75rem 0;
+    padding-left: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    line-height: 1.6;
+}
+
+.ecard-numbered-list li {
+    font-weight: 500;
+    color: #1e293b;
+}
+
+.ecard-numbered-list li strong {
+    color: #0284c7;
+    font-weight: 700;
+}
+
 /* Multiple Choice Options */
 .qcard-options-list {
     display: flex;
@@ -3248,6 +3267,14 @@ button {
     background: #fee2e2;
     border: 1.5px solid #fca5a5;
     color: #b91c1c;
+}
+
+.km-essay-note {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #64748b;
+    margin: -0.35rem 0 0.15rem 0;
+    line-height: 1.45;
 }
 
 .km-desc {

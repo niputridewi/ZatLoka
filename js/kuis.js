@@ -55,7 +55,7 @@
                 {
                     id: "1.4",
                     asset: "assets/images/kuis/kuis1-diagram-wujud.svg",
-                    caption: "Diagram skematik susunan partikel pada ketiga wujud zat.",
+                    caption: "Ilustrasi skematik susunan partikel pada ketiga wujud zat.",
                     question: "Ketika cairan nira dipanaskan dalam proses pembuatan arak, cairan yang mulanya berada di dalam wadah perlahan-lahan berubah menjadi uap panas yang keluar melalui bambu pengantar. Bagaimana perubahan susunan dan energi kinetik partikel yang terjadi pada peristiwa tersebut?",
                     options: [
                         { text: "Jarak antarpartikel menjadi semakin rapat dan kecepatan gerak partikelnya mengalami penurunan drastis.", correct: false },
@@ -67,7 +67,7 @@
                 {
                     id: "1.5",
                     asset: "assets/images/kuis/kuis1-piston-gas.svg",
-                    caption: "Simulasi penekanan piston pada wadah tertutup yang berisi gas.",
+                    caption: "Ilustrasi perbandingan penekanan piston pada wadah tertutup yang berisi gas dan berisi air.",
                     question: "Mengapa volume gas dapat dimampatkan (ditekan) menjadi lebih kecil, sementara hal tersebut sangat sulit dilakukan pada zat dalam wujud cair?",
                     options: [
                         { text: "Karena gas memiliki ruang kosong (rongga antarpartikel) yang sangat luas dibandingkan zat cair yang rapat.", correct: true },
@@ -260,7 +260,12 @@
                     num: 2,
                     asset: null,
                     caption: null,
-                    question: "Siti ingin membuktikan perbedaan sifat perubahan fisika dan kimia di dapur rumahnya melalui dua aktivitas berbeda:\nAktivitas Pertama: Ia mencampurkan satu sendok teh gula pasir ke dalam segelas air hangat hingga larut sempurna menjadi air gula, lalu mencoba memisahkan kembali gula tersebut dengan cara menguapkan airnya.\nAktivitas Kedua: Ia merebus sebutir telur mentah di dalam air mendidih hingga bagian putih dan kuning telurnya mengeras (matang), lalu mencoba mendinginkan telur rebus tersebut di dalam lemari es agar putih telurnya bisa kembali cair seperti semula.\nEvaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisahan/pengembalian wujud tersebut akan berhasil, ditinjau dari karakteristik perubahan fisika dan perubahan kimia!"
+                    question: `Siti ingin membuktikan perbedaan sifat perubahan fisika dan kimia di dapur rumahnya melalui dua aktivitas berbeda:
+<ol class="ecard-numbered-list">
+    <li><strong>Aktivitas Pertama:</strong> Ia mencampurkan satu sendok teh gula pasir ke dalam segelas air hangat hingga larut sempurna menjadi air gula, lalu mencoba memisahkan kembali gula tersebut dengan cara menguapkan airnya.</li>
+    <li><strong>Aktivitas Kedua:</strong> Ia merebus sebutir telur mentah di dalam air mendidih hingga bagian putih dan kuning telurnya mengeras (matang), lalu mencoba mendinginkan telur rebus tersebut di dalam lemari es agar putih telurnya bisa kembali cair seperti semula.</li>
+</ol>
+Evaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisahan/pengembalian wujud tersebut akan berhasil, ditinjau dari karakteristik perubahan fisika dan perubahan kimia!`
                 }
             ]
         },
@@ -310,7 +315,7 @@
                 {
                     id: "4.4",
                     asset: "assets/images/kuis/kuis4-lapisan-cairan.svg",
-                    caption: "Diagram susunan tiga lapisan cairan yang berbeda massa jenis di dalam sebuah gelas kimia.",
+                    caption: "Ilustrasi susunan tiga lapisan cairan yang berbeda massa jenis di dalam sebuah gelas kimia.",
                     question: "Siti mencampurkan tiga jenis cairan ke dalam satu gelas tinggi: Minyak kelapa (0,8 g/cm3), Air murni (1,0 g/cm3), dan Larutan gula pekat (1,3 g/cm3). Ketiga cairan tersebut tidak saling melarutkan. Urutan lapisan cairan dari posisi paling atas hingga ke paling bawah secara berurutan adalah...",
                     options: [
                         { text: "Larutan gula — Air murni — Minyak kelapa", correct: false },
@@ -886,7 +891,7 @@
                                             ${e.caption ? `<p class="qcard-asset-caption">${e.caption}</p>` : ''}
                                         </div>
                                     ` : ''}
-                                    <p class="ecard-text">${e.question}</p>
+                                    <div class="ecard-text">${e.question}</div>
                                     <div class="ecard-input-wrapper">
                                         <textarea class="ecard-textarea" data-eid="${e.id}" 
                                                   placeholder="Ketik jawaban atau analisismu di sini (wajib minimal 3 kata)..."></textarea>
@@ -910,6 +915,7 @@
                             <div class="kuis-modal-icon" id="km-icon">🎉</div>
                             <h3 id="km-title">Hasil Evaluasi Kuis</h3>
                             <div class="km-score-badge" id="km-score-badge">Skor: 5 / 5</div>
+                            <p class="km-essay-note">Catatan: Soal esai berfungsi sebagai bentuk pengayaan.</p>
                             <p class="km-desc" id="km-desc">Keterangan hasil kuis</p>
                             <div class="km-actions" id="km-actions">
                                 <!-- Tombol aksi dinamis -->
@@ -1207,7 +1213,7 @@
                             <h4>Lembar Jawaban Esai Siswa:</h4>
                             ${qData.essay.map((e, idx) => `
                                 <div class="print-essay-item">
-                                    <p class="print-q-text"><strong>Soal ${e.num}:</strong> ${e.question}</p>
+                                    <div class="print-q-text"><strong>Soal ${e.num}:</strong> ${e.question}</div>
                                     ${e.asset ? `
                                         <div style="margin: 8px 0; text-align: center;">
                                             <img src="${e.asset.startsWith('assets/') ? e.asset : 'assets/images/kuis/' + e.asset}" 

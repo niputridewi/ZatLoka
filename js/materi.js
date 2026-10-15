@@ -41,12 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const slideMetadata = {
         1: { level: 'Level 1: Wujud Zat & Model Partikel', title: 'Rahasia Penyulingan Arak Bali' },
         2: { level: 'Level 1: Wujud Zat & Model Partikel', title: 'Menembus Partikel Rahasia' },
-        3: { level: 'Level 2: Perubahan Wujud & Titik Suhu', title: 'Rahasia Es Daluman Bali' },
-        4: { level: 'Level 2: Perubahan Wujud & Titik Suhu', title: 'Tradisi Penyulingan Arak (Menguap & Mengembun)' },
-        5: { level: 'Level 2: Perubahan Wujud & Titik Suhu', title: 'Pengharum Kamar (Menyublim)' },
-        6: { level: 'Level 2: Perubahan Wujud & Titik Suhu', title: 'Tradisi Garam Kusamba (Mengkristal)' },
-        7: { level: 'Level 2: Perubahan Wujud & Titik Suhu', title: 'Batas Suhu Perubahan Wujud' },
-        8: { level: 'Level 2: Perubahan Wujud & Titik Suhu', title: 'Ringkasan Perubahan Wujud Zat & Kalor' },
+        3: { level: 'Level 2: Perubahan Wujud Zat', title: 'Rahasia Es Daluman Bali' },
+        4: { level: 'Level 2: Perubahan Wujud Zat', title: 'Tradisi Penyulingan Arak (Menguap & Mengembun)' },
+        5: { level: 'Level 2: Perubahan Wujud Zat', title: 'Pengharum Kamar (Menyublim)' },
+        6: { level: 'Level 2: Perubahan Wujud Zat', title: 'Tradisi Garam Kusamba (Mengkristal)' },
+        7: { level: 'Level 2: Perubahan Wujud Zat', title: 'Batas Suhu Perubahan Wujud' },
+        8: { level: 'Level 2: Perubahan Wujud Zat', title: 'Ringkasan Perubahan Wujud Zat & Kalor' },
         9: { level: 'Level 3: Perubahan Fisika & Kimia', title: 'Pembakaran Dupa & Kartu Analisis' },
         10: { level: 'Level 4: Kerapatan & Massa Jenis', title: 'Rahasia Mengapung, Melayang, dan Tenggelam' },
         11: { level: 'Level 4: Kerapatan & Massa Jenis', title: 'Perhitungan Massa Jenis' }
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const levelNames = {
             1: "Wujud Zat & Model Partikel",
-            2: "Perubahan Wujud & Titik Suhu",
+            2: "Perubahan Wujud Zat",
             3: "Perubahan Fisika & Kimia",
             4: "Kerapatan & Massa Jenis"
         };
@@ -756,9 +756,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 tempTextDesc.innerHTML = `
                     <div style="display: flex; flex-direction: column; gap: 0.35rem;">
                         <h4 style="margin: 0; color: #0284c7; font-size: 0.95rem; font-weight: 700;">1. Titik Beku (Membeku: Zat Padat / Es)</h4>
-                        <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem;">
+                        <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.35rem;">
                             <li><strong>Pengertian:</strong> Suhu tertentu ketika suatu zat cair mulai membeku dan berubah wujud menjadi zat padat sepenuhnya.</li>
-                            <li><strong>Kondisi Suhu:</strong> Pelepasan energi panas (pendinginan) membuat partikel-partikel zat cair melambat, mendekat, dan terikat kaku membentuk struktur padat. Suhu zat akan tetap konstan selama proses pembekuan berlangsung hingga seluruh cairan berubah menjadi padat. (Contoh: Air murni beku di suhu 0°C. Di dalam freezer -20°C, air cair menjadi es batu yang padat).</li>
+                            <li><strong>Perubahan Wujud:</strong> Zat Cair &rarr; Zat Padat (Contoh: Air cair yang berubah menjadi es batu).</li>
+                            <li><strong>Kondisi Suhu:</strong> Ketika suatu zat mencapai titik bekunya, pelepasan energi panas (pendinginan) membuat partikel-partikel zat cair yang tadinya bergerak bebas mulai melambat, mendekat, dan terikat kaku membentuk struktur padat. Suhu zat akan tetap konstan selama proses pembekuan berlangsung hingga seluruh cairan berubah menjadi padat.</li>
+                            <li><strong>Contoh dalam Kehidupan:</strong> Air murni memiliki titik beku standar pada suhu 0 derajat Celcius di tekanan normal. Pendinginan air di bawah titik beku (hingga suhu -20 derajat Celcius di dalam lemari pendingin/freezer) mengubah air cair menjadi es batu yang padat dan keras.</li>
                         </ul>
                     </div>
                 `;
@@ -778,10 +780,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 tempTextDesc.innerHTML = `
                     <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-                        <h4 style="margin: 0; color: #0284c7; font-size: 0.95rem; font-weight: 700;">2. Titik Leleh</h4>
-                        <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem;">
+                        <h4 style="margin: 0; color: #0284c7; font-size: 0.95rem; font-weight: 700;">2. Titik Leleh (Mencair: Zat Padat ke Zat Cair)</h4>
+                        <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.35rem;">
                             <li><strong>Pengertian:</strong> Suhu tertentu ketika suatu zat padat mulai mencair dan berubah wujud menjadi zat cair sepenuhnya.</li>
-                            <li><strong>Kondisi Suhu:</strong> Penambahan kalor (panas) membuat partikel zat padat yang tadinya bergetar rapat mulai longgar, merenggang, dan mencair. Suhu zat konstan selama proses pelelehan. (Contoh: Es murni meleleh pada suhu 0°C. Logam emas memiliki titik leleh tinggi 1.064°C sehingga harus dipanaskan dengan api khusus oleh perajin perhiasan Bali).</li>
+                            <li><strong>Perubahan Wujud:</strong> Zat Padat &rarr; Zat Cair (Contoh: Es batu yang berubah menjadi air cair).</li>
+                            <li><strong>Kondisi Suhu:</strong> Ketika suatu zat mencapai titik lelehnya, penambahan kalor (panas) membuat partikel-partikel zat padat yang tadinya bergetar rapat mulai longgar, merenggang, dan mencair. Suhu zat akan tetap konstan selama proses pelelehan berlangsung hingga seluruh zat padat berubah menjadi cair.</li>
+                            <li><strong>Contoh dalam Kehidupan:</strong> Es murni memiliki titik leleh pada suhu 0 derajat Celcius. Logam emas memiliki titik leleh yang sangat tinggi (1.064 derajat Celcius) sehingga harus dipanaskan dengan api khusus oleh perajin perhiasan di Bali untuk bisa dicetak.</li>
                         </ul>
                     </div>
                 `;
@@ -794,10 +798,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 tempTextDesc.innerHTML = `
                     <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-                        <h4 style="margin: 0; color: #dc2626; font-size: 0.95rem; font-weight: 700;">3. Titik Didih</h4>
-                        <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem;">
+                        <h4 style="margin: 0; color: #dc2626; font-size: 0.95rem; font-weight: 700;">3. Titik Didih (Menguap: Zat Cair ke Gas)</h4>
+                        <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.35rem;">
                             <li><strong>Pengertian:</strong> Suhu tertentu ketika suatu zat cair mulai mendidih dan berubah wujud menjadi gas (uap) secara serentak di seluruh bagian zat cair.</li>
-                            <li><strong>Kondisi Suhu:</strong> Terjadi pada suhu tetap di mana tekanan uap jenuh cairan sama dengan tekanan udara luar. Saat tercapai, suhu cairan tidak akan naik lagi melebihi titik didihnya sebelum seluruh cairan habis menguap. (Contoh: Air murni mendidih di suhu 100°C. Pada penyulingan arak Bali, uap alkohol dan air dipisahkan berdasarkan perbedaan titik didihnya).</li>
+                            <li><strong>Perubahan Wujud:</strong> Zat Cair &rarr; Gas / Uap (Contoh: Air mendidih di dalam panci yang mengeluarkan uap).</li>
+                            <li><strong>Kondisi Suhu:</strong> Berbeda dengan penguapan biasa (yang bisa terjadi di permukaan pada suhu berapa pun), titik didih terjadi pada suhu tetap di mana tekanan uap jenuh cairan sama dengan tekanan udara luar. Saat tercapai, suhu cairan tidak akan naik lagi melebihi titik didihnya sebelum seluruh cairan habis menguap.</li>
+                            <li><strong>Contoh dalam Kehidupan:</strong> Air murni memiliki titik didih standar pada suhu 100 derajat Celcius di tekanan normal. Pada proses penyulingan arak Bali (destilasi), uap alkohol dan air dipisahkan berdasarkan perbedaan titik didihnya masing-masing.</li>
                         </ul>
                     </div>
                 `;
