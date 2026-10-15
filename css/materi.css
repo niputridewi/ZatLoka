@@ -798,74 +798,341 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-/* 8. LEVEL 3.1 & 3.2: DUPA BURNING & ANALYSIS */
-.dupa-container {
+/* 8. LEVEL 3: FLASHCARDS PERUBAHAN FISIKA & KIMIA */
+.level3-flashcards-wrapper {
     flex: 1 1 0%;
     min-height: 0;
-    display: grid;
-    grid-template-columns: 1.10fr 1.3fr;
-    gap: 1.5rem;
+    width: 100%;
     height: 100%;
-}
-
-.dupa-left {
-    background: rgba(240, 244, 248, 0.9);
-    border-radius: 16px;
-    border: 1px solid rgba(15, 23, 42, 0.04);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.03);
-    padding: 0.75rem;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: stretch;
+    gap: clamp(1rem, 2.5vw, 2rem);
+    padding: 0.25rem 0.5rem 0.5rem;
+    box-sizing: border-box;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.flashcard-card {
+    flex: 1 1 0%;
     height: 100%;
     min-height: 0;
+    max-width: 460px;
+    perspective: 1200px;
+    cursor: pointer;
+    user-select: none;
     box-sizing: border-box;
+    transition: transform 0.25s ease;
 }
 
-.dupa-burner-wrapper {
+.flashcard-card:hover {
+    transform: translateY(-3px);
+}
+
+.flashcard-inner {
     position: relative;
-    height: 100% !important;
-    max-height: 100% !important;
-    aspect-ratio: 960 / 540;
-    margin: 0 auto;
-    display: block;
-    box-sizing: border-box;
-    flex: 1 1 0%;
-    min-height: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08), 0 2px 8px rgba(15, 23, 42, 0.04);
+    border-radius: 18px;
 }
 
-.dupa-base-img, .dupa-ash-img, .dupa-smoke-img {
+/* 3D Flip Trigger */
+.flashcard-card.is-flipped .flashcard-inner,
+.flashcard-card.flipped .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front,
+.flashcard-back {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 18px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Front Face */
+.flashcard-front {
+    z-index: 2;
+    transform: rotateY(0deg);
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(0.75rem, 2vh, 1.25rem);
+    overflow: hidden;
+}
+
+.fisika-card .flashcard-front {
+    background: linear-gradient(150deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 2px solid #bae6fd;
+}
+
+.kimia-card .flashcard-front {
+    background: linear-gradient(150deg, #fef2f2 0%, #fee2e2 100%);
+    border: 2px solid #fecaca;
+}
+
+/* Badges */
+.flashcard-badge {
+    align-self: flex-start;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 0.2rem 0.75rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.flashcard-badge.fisika {
+    background: #0284c7;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25);
+}
+
+.flashcard-badge.kimia {
+    background: #dc2626;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25);
+}
+
+/* Image Containers */
+.flashcard-img-container {
+    position: relative;
+    flex: 1 1 0%;
+    min-height: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0.35rem 0;
+}
+
+.flashcard-img {
+    max-width: 82%;
+    max-height: 82%;
+    width: auto;
+    height: auto;
     object-fit: contain;
-    transition: opacity 0.5s ease;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.12));
+    transition: transform 0.3s ease;
 }
 
-.dupa-ash-img {
-    opacity: 0;
-    z-index: 10;
+.flashcard-card:hover .flashcard-img {
+    transform: scale(1.04);
 }
 
-.dupa-smoke-img {
-    opacity: 0;
-    top: -20px;
-    height: 120%;
-    pointer-events: none;
-    z-index: 15;
+/* Kimia Composite Overlay Image */
+.kimia-composite {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
-.dupa-smoke-img.smoking {
-    animation: riseSmoke 2s infinite linear;
+.kimia-composite .composite-base {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 82%;
+    max-height: 82%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.12));
+    z-index: 1;
+    transition: transform 0.3s ease;
 }
 
-@keyframes riseSmoke {
-    0% { opacity: 0; transform: translate(-50%, 0) scale(0.95); }
-    50% { opacity: 0.6; transform: translate(-47%, -8px) scale(1.03); }
-    100% { opacity: 0; transform: translate(-52%, -18px) scale(1.08); }
+.kimia-composite .composite-top {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 82%;
+    max-height: 82%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(220, 38, 38, 0.25));
+    z-index: 2;
+    animation: gentleSmoke 2.5s infinite ease-in-out;
+}
+
+@keyframes gentleSmoke {
+    0%, 100% { opacity: 0.85; transform: translate(-50%, -50%) scale(0.98); }
+    50% { opacity: 1; transform: translate(-50%, -53%) scale(1.03); }
+}
+
+.flashcard-card:hover .kimia-composite .composite-base {
+    transform: translate(-50%, -50%) scale(1.04);
+}
+
+/* Front Titles */
+.flashcard-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.05rem, 2.4vh, 1.3rem);
+    font-weight: 800;
+    margin: 0.15rem 0 0.35rem;
+    text-align: center;
+}
+
+.flashcard-title.fisika { color: #0369a1; }
+.flashcard-title.kimia { color: #991b1b; }
+
+/* Tap Hint */
+.flashcard-tap-hint {
+    font-size: clamp(0.72rem, 1.8vh, 0.8rem);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    animation: pulseHint 2s infinite ease-in-out;
+}
+
+.fisika-card .flashcard-tap-hint {
+    color: #0284c7;
+    border: 1px solid #bae6fd;
+}
+
+.kimia-card .flashcard-tap-hint {
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+@keyframes pulseHint {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+/* Back Face */
+.flashcard-back {
+    transform: rotateY(180deg);
+    padding: clamp(0.75rem, 2vh, 1.25rem);
+    text-align: left;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.fisika-card .flashcard-back {
+    border: 2px solid #bae6fd;
+}
+
+.kimia-card .flashcard-back {
+    border: 2px solid #fecaca;
+}
+
+.flashcard-back-header {
+    flex: 0 0 auto;
+    margin-bottom: 0.4rem;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 0.35rem;
+}
+
+.flashcard-back-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1rem, 2.3vh, 1.2rem);
+    font-weight: 800;
+    margin: 0.25rem 0 0.1rem;
+}
+
+.fisika-card .flashcard-back-title { color: #0284c7; }
+.kimia-card .flashcard-back-title { color: #dc2626; }
+
+.flashcard-back-subtitle {
+    font-size: clamp(0.75rem, 1.8vh, 0.85rem);
+    font-weight: 700;
+    color: #475569;
+    margin: 0;
+}
+
+/* Scroll Body on Back Face (Required: overflow-y: auto) */
+.flashcard-scroll-body {
+    flex: 1 1 0%;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.flashcard-intro-text {
+    font-size: clamp(0.7rem, 1.8vh, 0.78rem);
+    line-height: 1.5;
+    color: #334155;
+    margin: 0;
+    background: #f8fafc;
+    padding: 0.5rem 0.65rem;
+    border-radius: 8px;
+    border-left: 3px solid;
+}
+
+.fisika-card .flashcard-intro-text {
+    border-left-color: #0284c7;
+    background: #f0f9ff;
+}
+
+.kimia-card .flashcard-intro-text {
+    border-left-color: #dc2626;
+    background: #fef2f2;
+}
+
+.flashcard-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.section-title {
+    font-size: clamp(0.74rem, 1.8vh, 0.82rem);
+    font-weight: 700;
+    margin: 0;
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.fisika-card .section-title { color: #0284c7; }
+.kimia-card .section-title { color: #dc2626; }
+
+.section-list {
+    margin: 0;
+    padding-left: 1.15rem;
+    font-size: clamp(0.68rem, 1.7vh, 0.76rem);
+    line-height: 1.45;
+    color: #475569;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.flashcard-back-footer {
+    flex: 0 0 auto;
+    margin-top: 0.4rem;
+    padding-top: 0.35rem;
+    border-top: 1px dashed #e2e8f0;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #64748b;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
 }
 
 .materi-action-btn {

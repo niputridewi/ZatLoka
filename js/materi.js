@@ -44,10 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
         3: { level: 'Level 2: Perubahan Wujud Zat', title: 'Rahasia Es Daluman Bali' },
         4: { level: 'Level 2: Perubahan Wujud Zat', title: 'Tradisi Penyulingan Arak (Menguap & Mengembun)' },
         5: { level: 'Level 2: Perubahan Wujud Zat', title: 'Pengharum Kamar (Menyublim)' },
-        6: { level: 'Level 2: Perubahan Wujud Zat', title: 'Tradisi Garam Kusamba (Mengkristal)' },
+        6: { level: 'Level 2: Perubahan Wujud Zat', title: 'Tradisi Garam Kusamba (Pembentukan Kristal)' },
         7: { level: 'Level 2: Perubahan Wujud Zat', title: 'Batas Suhu Perubahan Wujud' },
         8: { level: 'Level 2: Perubahan Wujud Zat', title: 'Ringkasan Perubahan Wujud Zat & Kalor' },
-        9: { level: 'Level 3: Perubahan Fisika & Kimia', title: 'Pembakaran Dupa & Kartu Analisis' },
+        9: { level: 'Level 3: Perubahan Fisika & Kimia', title: 'Perubahan Fisika & Kimia' },
         10: { level: 'Level 4: Kerapatan & Massa Jenis', title: 'Rahasia Mengapung, Melayang, dan Tenggelam' },
         11: { level: 'Level 4: Kerapatan & Massa Jenis', title: 'Perhitungan Massa Jenis' }
     };
@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (currentSlide === 8) {
             showMascotBubble("Perhatikan bagan perubahan wujud zat dan arah perpindahan kalornya!");
         } else if (currentSlide === 9) {
-            showMascotBubble("Dupa ini harum sekali, ayo selidiki perubahannya!");
+            showMascotBubble("Ketuk masing-masing kartu untuk membalik dan mempelajari Perubahan Fisika & Kimia!");
         } else if (currentSlide === 10) {
             showMascotBubble("Wah, kolam air! Mari uji kerapatan benda-benda ini!");
         }
@@ -605,45 +605,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 10.5 LEVEL 2.4: GARAM KUSAMBA (MENGKRISTAL)
+    // 10.5 LEVEL 2.4: GARAM KUSAMBA (PEMBENTUKAN KRISTAL)
     const saltSunSlider = document.getElementById('salt-sun-slider');
     const saltWaterImg = document.getElementById('salt-water-img');
     const saltCrystalsImg = document.getElementById('salt-crystals-img');
     const saltSteamImg = document.getElementById('salt-steam-img');
-    const saltTextDesc = document.getElementById('salt-text-desc');
+    const saltDynamicStatus = document.getElementById('salt-dynamic-status');
+    const saltValDisplay = document.getElementById('salt-val-display');
+
+    function updateSaltSliderUI(val) {
+        const opacityWater = (100 - val) / 100;
+        const opacityCrystals = val / 100;
+
+        if (saltWaterImg) saltWaterImg.style.opacity = opacityWater;
+        if (saltCrystalsImg) saltCrystalsImg.style.opacity = opacityCrystals;
+
+        // Evaporation steam opacity curve (reaches max at 50% and fades out by 100%)
+        if (val > 0 && val < 100) {
+            const steamOpacity = Math.sin((val / 100) * Math.PI) * 0.85;
+            if (saltSteamImg) saltSteamImg.style.opacity = steamOpacity;
+        } else {
+            if (saltSteamImg) saltSteamImg.style.opacity = 0;
+        }
+
+        if (saltValDisplay) saltValDisplay.textContent = val;
+
+        // Logika pengkondisian teks dinamis berdasarkan slider:
+        // a. Jika slider berada di angka 0% hingga 30%:
+        // b. Jika slider berada di angka 31% hingga 79%:
+        // c. Jika slider berada di angka 80% hingga 100%:
+        if (saltDynamicStatus) {
+            if (val <= 30) {
+                saltDynamicStatus.textContent = "Air laut masih mendominasi; panas matahari mulai memasok energi untuk memulai penguapan pelarut.";
+                saltDynamicStatus.style.background = "#f0f9ff";
+                saltDynamicStatus.style.borderLeftColor = "#0284c7";
+                saltDynamicStatus.style.color = "#0369a1";
+            } else if (val <= 79) {
+                saltDynamicStatus.textContent = "Panas matahari mempercepat penguapan air ke udara, partikel zat terlarut mulai saling mendekat.";
+                saltDynamicStatus.style.background = "#fffbeb";
+                saltDynamicStatus.style.borderLeftColor = "#f59e0b";
+                saltDynamicStatus.style.color = "#b45309";
+            } else {
+                saltDynamicStatus.textContent = "Air seluruhnya menguap, meninggalkan endapan kristal garam padat murni di wadah.";
+                saltDynamicStatus.style.background = "#f0fdf4";
+                saltDynamicStatus.style.borderLeftColor = "#16a34a";
+                saltDynamicStatus.style.color = "#15803d";
+            }
+        }
+
+        if (val === 100) {
+            showMascotBubble("Air laut menguap habis meninggalkan endapan kristal garam Kusamba!");
+        }
+    }
 
     if (saltSunSlider) {
         saltSunSlider.addEventListener('input', (e) => {
-            const val = parseInt(e.target.value);
-            const opacityWater = (100 - val) / 100;
-            const opacityCrystals = val / 100;
-
-            if (saltWaterImg) saltWaterImg.style.opacity = opacityWater;
-            if (saltCrystalsImg) saltCrystalsImg.style.opacity = opacityCrystals;
-
-            // Evaporation steam opacity curve (reaches max at 50% and fades out by 100%)
-            if (val > 0 && val < 100) {
-                const steamOpacity = Math.sin((val / 100) * Math.PI) * 0.85;
-                if (saltSteamImg) saltSteamImg.style.opacity = steamOpacity;
-            } else {
-                if (saltSteamImg) saltSteamImg.style.opacity = 0;
-            }
-
-            if (val === 100) {
-                saltTextDesc.innerHTML = `
-                    <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-                        <h4 style="margin: 0; color: #0284c7; font-size: 0.95rem; font-weight: 700;">2. Mengkristal (Gas → Padat)</h4>
-                        <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem;">
-                            <li><strong>Pengertian:</strong> Perubahan wujud zat dari gas langsung menjadi padat (kebalikan dari peristiwa menyublim).</li>
-                        </ul>
-                    </div>
-                `;
-                showMascotBubble("Air laut menguap habis meninggalkan endapan kristal garam Kusamba!");
-            } else if (val > 0) {
-                saltTextDesc.innerHTML = `Panas matahari meningkat sebesar <strong>${val}%</strong>. Air laut mulai menguap perlahan dan butiran garam mulai terbentuk...`;
-            } else {
-                saltTextDesc.innerHTML = 'Geser slider matahari ke kanan untuk menguapkan air laut dan membentuk endapan kristal garam tradisional.';
-            }
+            const val = parseInt(e.target.value, 10);
+            updateSaltSliderUI(val);
         });
     }
 
@@ -826,54 +844,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 12. LEVEL 3.1: DUPA BURNING & FLIP CARD
-    const dupaToggleBtn = document.getElementById('dupa-toggle-btn');
-    const dupaFresh = document.getElementById('dupa-fresh');
-    const dupaBurnt = document.getElementById('dupa-burnt');
-    const dupaSmoke = document.getElementById('dupa-smoke');
-    const dupaPlaceholder = document.getElementById('dupa-placeholder');
-    const dupaFlipContainer = document.getElementById('dupa-flip-container');
+    // 12. LEVEL 3: FLASHCARDS PERUBAHAN FISIKA & KIMIA
     const cardFisika = document.getElementById('card-fisika');
     const cardKimia = document.getElementById('card-kimia');
 
-    if (dupaToggleBtn) {
-        dupaToggleBtn.addEventListener('click', () => {
-            if (dupaGameCompleted) return;
-
-            // Trigger animations
-            if (dupaFresh) dupaFresh.style.opacity = '0';
-            if (dupaBurnt) dupaBurnt.style.opacity = '1';
-            if (dupaSmoke) {
-                dupaSmoke.style.opacity = '0.85';
-                dupaSmoke.classList.add('smoking');
-            }
-
-            // Button update
-            dupaToggleBtn.textContent = '🔥 Dupa Menyala';
-            dupaToggleBtn.style.background = '#64748b';
-
-            // Show Flip Card Container
-            if (dupaPlaceholder) dupaPlaceholder.style.display = 'none';
-            if (dupaFlipContainer) {
-                dupaFlipContainer.classList.remove('hidden');
-                dupaFlipContainer.style.display = 'flex';
-            }
-
-            dupaGameCompleted = true;
-            
-            setTimeout(() => {
-                showMascotBubble("Ketuk masing-masing kartu dupa untuk membalik dan melihat perbedaannya!");
-            }, 800);
-        });
-    }
-
     if (cardFisika) {
         cardFisika.addEventListener('click', () => {
+            cardFisika.classList.toggle('is-flipped');
             cardFisika.classList.toggle('flipped');
         });
     }
+
     if (cardKimia) {
         cardKimia.addEventListener('click', () => {
+            cardKimia.classList.toggle('is-flipped');
             cardKimia.classList.toggle('flipped');
         });
     }
@@ -1366,10 +1350,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof saltSunSlider !== 'undefined' && saltSunSlider) {
             saltSunSlider.value = 0;
         }
-        if (typeof saltWaterImg !== 'undefined' && saltWaterImg) saltWaterImg.style.opacity = '1';
-        if (typeof saltCrystalsImg !== 'undefined' && saltCrystalsImg) saltCrystalsImg.style.opacity = '0';
-        if (typeof saltSteamImg !== 'undefined' && saltSteamImg) saltSteamImg.style.opacity = '0';
-        if (typeof saltTextDesc !== 'undefined' && saltTextDesc) saltTextDesc.innerHTML = 'Geser slider matahari ke kanan untuk menguapkan air laut dan membentuk endapan kristal garam tradisional.';
+        if (typeof updateSaltSliderUI === 'function') {
+            updateSaltSliderUI(0);
+        } else {
+            if (typeof saltWaterImg !== 'undefined' && saltWaterImg) saltWaterImg.style.opacity = '1';
+            if (typeof saltCrystalsImg !== 'undefined' && saltCrystalsImg) saltCrystalsImg.style.opacity = '0';
+            if (typeof saltSteamImg !== 'undefined' && saltSteamImg) saltSteamImg.style.opacity = '0';
+        }
 
         // Reset Level 2.5
         if (typeof tempSlider !== 'undefined' && tempSlider) {
@@ -1377,22 +1364,14 @@ document.addEventListener('DOMContentLoaded', () => {
             tempSlider.dispatchEvent(new Event('input'));
         }
 
-        // Reset Level 3.1
+        // Reset Level 3
         dupaGameCompleted = false;
-        if (typeof dupaFresh !== 'undefined' && dupaFresh) dupaFresh.style.opacity = '1';
-        if (typeof dupaBurnt !== 'undefined' && dupaBurnt) dupaBurnt.style.opacity = '0';
-        if (typeof dupaSmoke !== 'undefined' && dupaSmoke) {
-            dupaSmoke.style.opacity = '0';
-            dupaSmoke.classList.remove('smoking');
+        if (typeof cardFisika !== 'undefined' && cardFisika) {
+            cardFisika.classList.remove('is-flipped', 'flipped');
         }
-        if (typeof dupaToggleBtn !== 'undefined' && dupaToggleBtn) {
-            dupaToggleBtn.textContent = '🔥 Nyalakan Dupa';
-            dupaToggleBtn.style.background = '';
+        if (typeof cardKimia !== 'undefined' && cardKimia) {
+            cardKimia.classList.remove('is-flipped', 'flipped');
         }
-        if (typeof dupaPlaceholder !== 'undefined' && dupaPlaceholder) dupaPlaceholder.style.display = 'flex';
-        if (typeof dupaFlipContainer !== 'undefined' && dupaFlipContainer) dupaFlipContainer.style.display = 'none';
-        if (typeof cardFisika !== 'undefined' && cardFisika) cardFisika.classList.remove('flipped');
-        if (typeof cardKimia !== 'undefined' && cardKimia) cardKimia.classList.remove('flipped');
 
         // Reset Level 4.1
         if (typeof setWaterType === 'function') {

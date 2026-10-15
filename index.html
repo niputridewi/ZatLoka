@@ -457,7 +457,7 @@ ruangan.</p>
                     </div>
                 </div>
 
-                <!-- SLIDE 6 (LEVEL 2.4: Tradisi Garam Kusamba (Mengkristal)) -->
+                <!-- SLIDE 6 (LEVEL 2.4: Tradisi Garam Kusamba (Pembentukan Kristal)) -->
                 <div class="materi-slide" data-slide="6">
                     <div class="slide-instruction">
                         <span class="instruction-icon">☀️</span>
@@ -476,11 +476,25 @@ ruangan.</p>
                         </div>
                         <div class="evap-control-box">
                             <div class="slider-wrapper" style="width: 100%;">
-                                <span class="slider-lbl" style="font-weight:700; color:#475569; font-size: 0.8rem;">☀️ Panas Matahari (0% - 100%)</span>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span class="slider-lbl" style="font-weight:700; color:#475569; font-size: 0.8rem;">☀️ Panas Matahari (<span id="salt-val-display">0</span>%)</span>
+                                </div>
                                 <input type="range" id="salt-sun-slider" class="materi-slider" min="0" max="100" value="0">
+                                <!-- Elemen teks dinamis berdasarkan slider (0% - 100%) -->
+                                <div id="salt-dynamic-status" class="salt-dynamic-status" style="font-size: clamp(0.7rem, 1.8vh, 0.76rem); line-height: 1.4; color: #0369a1; background: #f0f9ff; padding: 0.45rem 0.65rem; border-radius: 8px; border-left: 3px solid #0284c7; font-weight: 600; margin-top: 0.25rem;">
+                                    Air laut masih mendominasi; panas matahari mulai memasok energi untuk memulai penguapan pelarut.
+                                </div>
                             </div>
-                            <div class="evap-dynamic-info" id="salt-text-desc" style="flex-grow: 1; overflow-y: auto; font-size: clamp(0.7rem, 2vh, 0.8rem); line-height: 1.4; color: #475569; padding: 0.5rem; background: white; border-radius: 12px; border: 1px solid #e2e8f0; min-height: 0;">
-                                Geser slider matahari ke kanan untuk menguapkan air laut dan membentuk endapan kristal garam tradisional.
+                            <!-- Kotak keterangan penjelasan konsep statis -->
+                            <div class="evap-dynamic-info" id="salt-text-desc" style="flex-grow: 1; overflow-y: auto; font-size: clamp(0.68rem, 1.7vh, 0.76rem); line-height: 1.45; color: #334155; padding: 0.6rem 0.75rem; background: white; border-radius: 12px; border: 1px solid #e2e8f0; min-height: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+                                <div>
+                                    <h4 style="margin: 0 0 0.15rem 0; color: #0284c7; font-size: 0.8rem; font-weight: 700;">Pengertian & Konsep:</h4>
+                                    <p style="margin: 0; color: #475569;">Meskipun secara sains murni bukan perubahan wujud langsung dari gas ke padat (deposisi), proses penjemuran di ladang garam Kusamba memanfaatkan energi panas matahari untuk menguapkan pelarut (air laut) secara bertahap.</p>
+                                </div>
+                                <div>
+                                    <h4 style="margin: 0 0 0.15rem 0; color: #d97706; font-size: 0.8rem; font-weight: 700;">Mekanisme & Partikel:</h4>
+                                    <p style="margin: 0; color: #475569;">Ketika kandungan air habis menguap ke udara, partikel-partikel garam yang terlarut di dalamnya akan kehilangan ruang gerak, saling mendekat, merapat, dan mengendap membentuk endapan kristal padat.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -623,81 +637,108 @@ ruangan.</p>
                     </div>
                 </div>
 
-                <!-- SLIDE 9 (LEVEL 3.1: Pembakaran Dupa & Kartu Analisis) -->
+                <!-- SLIDE 9 (LEVEL 3: Perubahan Fisika & Kimia - Flashcards) -->
                 <div class="materi-slide" data-slide="9">
                     <div class="slide-instruction">
-                        <span class="instruction-icon">🕯️</span>
-                        <p>Tekan tombol untuk menyalakan dupa dan amati dua jenis perubahan yang terjadi!</p>
+                        <span class="instruction-icon">🃏</span>
+                        <p>Ketuk masing-masing kartu untuk membalik dan mempelajari konsep Perubahan Fisika &amp; Kimia!</p>
                     </div>
-                    <div class="dupa-container">
-                        <div class="dupa-left">
-                            <div class="dupa-burner-wrapper">
-                                <img src="assets/images/level3/wadah-pasepan.png" alt="Wadah Pasepan" id="dupa-fresh"
-                                    style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit: contain; z-index: 10; transition: opacity 0.5s ease;">
-                                <img src="assets/images/level3/dupa-abu.png" alt="Dupa Abu" id="dupa-burnt"
-                                    style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit: contain; z-index: 11; opacity: 0; transition: opacity 0.5s ease;">
-                                <img src="assets/images/level3/asap-aroma.png" alt="Asap Dupa" id="dupa-smoke"
-                                    style="position: absolute; top:0; left:0; width:100%; height:100%; object-fit: contain; z-index: 12; opacity: 0; transition: opacity 0.5s ease;">
-                            </div>
-                            <button class="materi-action-btn" id="dupa-toggle-btn" style="width: 80%; border-radius: 30px; font-weight: 700; padding: 0.5rem 1rem;">🔥 Nyalakan Dupa</button>
-                        </div>
-                        <div class="dupa-right" id="dupa-analysis-area">
-                            <div class="analysis-placeholder" id="dupa-placeholder">
-                                <span class="placeholder-lock">🔒</span>
-                                <p>Nyalakan dupa untuk memicu pengamatan dan analisis perubahan fisika & kimia.</p>
-                            </div>
-                            <div class="dupa-flip-wrapper hidden" id="dupa-flip-container" style="display: none;">
-                                <!-- Left Card: Fisika -->
-                                <div class="dupa-flip-card" id="card-fisika">
-                                    <div class="flip-card-inner">
-                                        <div class="flip-card-front" style="background:#e0f2fe; border:2px solid #bae6fd; color:#0369a1; text-align:left;">
-                                            <span class="badge-card fisika" style="align-self:flex-start;">Fisika</span>
-                                            <h4 style="margin-top:0.25rem;">Perubahan Fisika</h4>
-                                            <h5 style="color:#0284c7;">Penguapan Aroma Terapi Dupa</h5>
-                                            <p>Saat dupa menghangat, zat wewangian di dalam dupa berubah wujud dari cair menjadi gas aroma terapi yang menyebar ke udara tanpa menghasilkan zat baru.</p>
-                                            <span class="tap-hint" style="font-size:0.65rem; color:#0284c7; margin-top:auto; font-weight:bold; text-align:center; animation: pulseHint 1.5s infinite;">💡 Ketuk untuk membalik</span>
-                                        </div>
-                                        <div class="flip-card-back" style="background:#f0f9ff; border:2px solid #bae6fd; color:#0369a1; text-align:left;">
-                                            <h4 style="border-bottom:1px solid rgba(2,132,199,0.2); padding-bottom:0.15rem; font-size: 0.95rem;">Ciri-Ciri Utama:</h4>
-                                            <ol style="margin:0 0 0.5rem 0; padding-left:0.95rem; line-height:1.3; font-size: 0.75rem;">
+                    <div class="level3-flashcards-wrapper">
+                        <!-- Kartu Fisika (Kiri) -->
+                        <div class="flashcard-card fisika-card" id="card-fisika">
+                            <div class="flashcard-inner">
+                                <!-- Sisi Depan (Front Face) -->
+                                <div class="flashcard-front">
+                                    <div class="flashcard-badge fisika">Fisika</div>
+                                    <div class="flashcard-img-container">
+                                        <img src="assets/images/level2/es-daluman-padat.png" alt="Es Batu pada Es Daluman" class="flashcard-img">
+                                    </div>
+                                    <h3 class="flashcard-title fisika">Perubahan Fisika</h3>
+                                    <div class="flashcard-tap-hint">
+                                        <span class="tap-icon">🔄</span> Ketuk untuk membalik
+                                    </div>
+                                </div>
+                                <!-- Sisi Belakang (Back Face) -->
+                                <div class="flashcard-back">
+                                    <div class="flashcard-back-header">
+                                        <div class="flashcard-badge fisika">Fisika</div>
+                                        <h3 class="flashcard-back-title">Perubahan Fisika</h3>
+                                        <h4 class="flashcard-back-subtitle">Es Batu pada Es Daluman Mencair</h4>
+                                    </div>
+                                    <div class="flashcard-scroll-body">
+                                        <p class="flashcard-intro-text">
+                                            Saat Es Daluman didiamkan, es batu di dalamnya menyerap panas dan berubah wujud dari padat menjadi cair. Proses ini hanya mengubah wujud fisiknya saja menjadi air murni tanpa menghasilkan zat jenis baru.
+                                        </p>
+                                        <div class="flashcard-section">
+                                            <h5 class="section-title">Ciri-Ciri Utama:</h5>
+                                            <ol class="section-list">
                                                 <li>Tidak terbentuk zat jenis baru.</li>
                                                 <li>Sifat zat sebelum dan sesudah perubahan tetap sama.</li>
-                                                <li>Bersifat reversible (dapat kembali ke bentuk semula).</li>
+                                                <li>Bersifat <em>reversible</em> (dapat kembali ke bentuk semula).</li>
                                                 <li>Hanya melibatkan perubahan wujud atau bentuk fisik.</li>
                                             </ol>
-                                            <h4 style="border-bottom:1px solid rgba(2,132,199,0.2); padding-bottom:0.15rem; font-size: 0.95rem;">Contoh Etnosains Bali:</h4>
-                                            <ul style="margin:0; padding-left:0.95rem; line-height:1.3; font-size: 0.75rem;">
+                                        </div>
+                                        <div class="flashcard-section">
+                                            <h5 class="section-title">Contoh Etnosains Bali:</h5>
+                                            <ul class="section-list">
                                                 <li>Pembuatan kristal garam tradisional di Kusamba (Penguapan air laut).</li>
                                                 <li>Penyulingan uap menjadi tetesan Arak Bali (Mengembun).</li>
-                                                <li>Es batu yang mencair dalam minuman Es.</li>
+                                                <li>Es batu yang mencair dalam minuman Es Daluman.</li>
                                             </ul>
                                         </div>
                                     </div>
+                                    <div class="flashcard-back-footer">
+                                        <span class="tap-icon">🔄</span> Ketuk untuk membalik
+                                    </div>
                                 </div>
-                                <!-- Right Card: Kimia -->
-                                <div class="dupa-flip-card" id="card-kimia">
-                                    <div class="flip-card-inner">
-                                        <div class="flip-card-front" style="background:#fee2e2; border:2px solid #fecaca; color:#991b1b; text-align:left;">
-                                            <span class="badge-card kimia" style="align-self:flex-start;">Kimia</span>
-                                            <h4 style="margin-top:0.25rem;">Perubahan Kimia</h4>
-                                            <h5 style="color:#b91c1c;">Pembakaran Serbuk Kayu Dupa</h5>
-                                            <p>Api membakar serbuk kayu dupa hingga menghasilkan zat baru yang sifat kimianya berbeda total, berupa abu sisa pembakaran dan gas asap karbon hitam.</p>
-                                            <span class="tap-hint" style="font-size:0.65rem; color:#b91c1c; margin-top:auto; font-weight:bold; text-align:center; animation: pulseHint 1.5s infinite;">💡 Ketuk untuk membalik</span>
-                                        </div>
-                                        <div class="flip-card-back" style="background:#fef2f2; border:2px solid #fecaca; color:#991b1b; text-align:left;">
-                                            <h4 style="border-bottom:1px solid rgba(153,27,27,0.2); padding-bottom:0.15rem; font-size: 0.95rem;">Ciri-Ciri Utama:</h4>
-                                            <ol style="margin:0 0 0.5rem 0; padding-left:0.95rem; line-height:1.3; font-size: 0.75rem;">
-                                                <li>Terbentuk zat baru (irreversible / tidak dapat kembali ke semula).</li>
+                            </div>
+                        </div>
+
+                        <!-- Kartu Kimia (Kanan) -->
+                        <div class="flashcard-card kimia-card" id="card-kimia">
+                            <div class="flashcard-inner">
+                                <!-- Sisi Depan (Front Face) -->
+                                <div class="flashcard-front">
+                                    <div class="flashcard-badge kimia">Kimia</div>
+                                    <div class="flashcard-img-container kimia-composite">
+                                        <img src="assets/images/level3/dupa-abu.png" alt="Dupa Abu" class="composite-base">
+                                        <img src="assets/images/level3/asap-aroma.png" alt="Asap Aroma" class="composite-top">
+                                    </div>
+                                    <h3 class="flashcard-title kimia">Perubahan Kimia</h3>
+                                    <div class="flashcard-tap-hint">
+                                        <span class="tap-icon">🔄</span> Ketuk untuk membalik
+                                    </div>
+                                </div>
+                                <!-- Sisi Belakang (Back Face) -->
+                                <div class="flashcard-back">
+                                    <div class="flashcard-back-header">
+                                        <div class="flashcard-badge kimia">Kimia</div>
+                                        <h3 class="flashcard-back-title">Perubahan Kimia</h3>
+                                        <h4 class="flashcard-back-subtitle">Pembakaran Serbuk Kayu Dupa</h4>
+                                    </div>
+                                    <div class="flashcard-scroll-body">
+                                        <p class="flashcard-intro-text">
+                                            Api membakar serbuk kayu dupa hingga menghasilkan zat baru yang sifat kimianya berbeda total, berupa abu sisa pembakaran dan gas asap karbon hitam.
+                                        </p>
+                                        <div class="flashcard-section">
+                                            <h5 class="section-title">Ciri-Ciri Utama:</h5>
+                                            <ol class="section-list">
+                                                <li>Terbentuk zat baru (<em>irreversible</em> / tidak dapat kembali ke semula).</li>
                                                 <li>Sifat zat baru berbeda total dari zat asal.</li>
                                                 <li>Disertai tanda-tanda reaksi: perubahan warna, timbul gas, endapan, atau perubahan suhu/cahaya.</li>
                                             </ol>
-                                            <h4 style="border-bottom:1px solid rgba(153,27,27,0.2); padding-bottom:0.15rem; font-size: 0.95rem;">Contoh Etnosains Bali:</h4>
-                                            <ul style="margin:0; padding-left:0.95rem; line-height:1.3; font-size: 0.75rem;">
+                                        </div>
+                                        <div class="flashcard-section">
+                                            <h5 class="section-title">Contoh Etnosains Bali:</h5>
+                                            <ul class="section-list">
                                                 <li>Pembakaran dupa harum Bali (serbuk kayu menjadi abu dan asap karbon).</li>
                                                 <li>Fermentasi nira kelapa/ketan menjadi Arak Bali (Perubahan gula menjadi alkohol).</li>
                                                 <li>Pembusukan sisa janur/canang sari menjadi kompos.</li>
                                             </ul>
                                         </div>
+                                    </div>
+                                    <div class="flashcard-back-footer">
+                                        <span class="tap-icon">🔄</span> Ketuk untuk membalik
                                     </div>
                                 </div>
                             </div>
