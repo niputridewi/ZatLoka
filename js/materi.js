@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (currentSlide === 8) {
             showMascotBubble("Perhatikan bagan perubahan wujud zat dan arah perpindahan kalornya!");
         } else if (currentSlide === 9) {
-            showMascotBubble("Ketuk masing-masing kartu untuk membalik dan mempelajari Perubahan Fisika & Kimia!");
+            showMascotBubble("Klik tombol pada kartu untuk memicu perubahannya, lalu balik kartu untuk mempelajari konsepnya!");
         } else if (currentSlide === 10) {
             showMascotBubble("Wah, kolam air! Mari uji kerapatan benda-benda ini!");
         }
@@ -844,21 +844,135 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 12. LEVEL 3: FLASHCARDS PERUBAHAN FISIKA & KIMIA
+    // 12. LEVEL 3: FLASHCARDS PERUBAHAN FISIKA & KIMIA (INTERACTIVE TRIGGER & FLIP)
     const cardFisika = document.getElementById('card-fisika');
     const cardKimia = document.getElementById('card-kimia');
+    const btnInteractFisika = document.getElementById('btn-interact-fisika');
+    const btnInteractKimia = document.getElementById('btn-interact-kimia');
+    const imgFisikaPadat = document.getElementById('card-fisika-padat');
+    const imgFisikaCair = document.getElementById('card-fisika-cair');
+    const pillFisika = document.getElementById('pill-fisika');
+    const hintFisika = document.getElementById('hint-fisika');
+    const imgKimiaFresh = document.getElementById('card-kimia-fresh');
+    const imgKimiaBurnt = document.getElementById('card-kimia-burnt');
+    const imgKimiaSmoke = document.getElementById('card-kimia-smoke');
+    const pillKimia = document.getElementById('pill-kimia');
+    const hintKimia = document.getElementById('hint-kimia');
+
+    let fisikaTransformed = false;
+    let kimiaTransformed = false;
+
+    function setFisikaMeltedState(isMelted, showSpeech = true) {
+        fisikaTransformed = isMelted;
+        if (imgFisikaPadat) imgFisikaPadat.style.opacity = isMelted ? '0' : '1';
+        if (imgFisikaCair) imgFisikaCair.style.opacity = isMelted ? '1' : '0';
+
+        if (btnInteractFisika) {
+            btnInteractFisika.innerHTML = isMelted
+                ? '<span class="btn-icon">❄️</span> <span class="btn-text">Bekukan Kembali</span>'
+                : '<span class="btn-icon">🧊</span> <span class="btn-text">Cairkan Es Batu</span>';
+            btnInteractFisika.classList.toggle('active-state', isMelted);
+        }
+
+        if (pillFisika) {
+            pillFisika.textContent = isMelted ? '💧 Es Mencair (Cair)' : '🧊 Es Batu Beku (Padat)';
+            pillFisika.style.background = isMelted ? '#dbeafe' : '#e0f2fe';
+            pillFisika.style.color = isMelted ? '#1d4ed8' : '#0369a1';
+        }
+
+        if (hintFisika) {
+            hintFisika.innerHTML = isMelted
+                ? '<span class="tap-icon">🔄</span> <span class="hint-text">Ketuk kartu untuk membalik!</span>'
+                : '<span class="tap-icon">👇</span> <span class="hint-text">Klik tombol atau kartu untuk mencairkan es</span>';
+            hintFisika.classList.toggle('unlocked', isMelted);
+        }
+
+        if (isMelted && showSpeech) {
+            showMascotBubble("Es batu mencair saat menyerap panas! Wujudnya berubah menjadi cair tanpa zat baru. Sekarang ketuk kartu untuk membalik!");
+        }
+    }
+
+    function setKimiaBurntState(isBurnt, showSpeech = true) {
+        kimiaTransformed = isBurnt;
+        if (imgKimiaFresh) imgKimiaFresh.style.opacity = isBurnt ? '0' : '1';
+        if (imgKimiaBurnt) imgKimiaBurnt.style.opacity = isBurnt ? '1' : '0';
+        if (imgKimiaSmoke) {
+            imgKimiaSmoke.style.opacity = isBurnt ? '0.9' : '0';
+            if (isBurnt) {
+                imgKimiaSmoke.classList.add('smoking');
+            } else {
+                imgKimiaSmoke.classList.remove('smoking');
+            }
+        }
+
+        if (btnInteractKimia) {
+            btnInteractKimia.innerHTML = isBurnt
+                ? '<span class="btn-icon">🔄</span> <span class="btn-text">Padamkan Dupa</span>'
+                : '<span class="btn-icon">🔥</span> <span class="btn-text">Nyalakan Dupa</span>';
+            btnInteractKimia.classList.toggle('active-state', isBurnt);
+        }
+
+        if (pillKimia) {
+            pillKimia.textContent = isBurnt ? '🔥 Dupa Terbakar (Abu & Gas)' : '🕯️ Batang Dupa Utuh';
+            pillKimia.style.background = isBurnt ? '#fee2e2' : '#fef2f2';
+            pillKimia.style.color = isBurnt ? '#b91c1c' : '#991b1b';
+        }
+
+        if (hintKimia) {
+            hintKimia.innerHTML = isBurnt
+                ? '<span class="tap-icon">🔄</span> <span class="hint-text">Ketuk kartu untuk membalik!</span>'
+                : '<span class="tap-icon">👇</span> <span class="hint-text">Klik tombol atau kartu untuk menyalakan dupa</span>';
+            hintKimia.classList.toggle('unlocked', isBurnt);
+        }
+
+        if (isBurnt && showSpeech) {
+            showMascotBubble("Api membakar dupa menghasilkan zat baru berupa abu dan gas asap! Ketuk kartu untuk membalik dan pelajari cirinya!");
+        }
+    }
+
+    if (btnInteractFisika) {
+        btnInteractFisika.addEventListener('click', (e) => {
+            e.stopPropagation();
+            setFisikaMeltedState(!fisikaTransformed);
+        });
+    }
+
+    if (btnInteractKimia) {
+        btnInteractKimia.addEventListener('click', (e) => {
+            e.stopPropagation();
+            setKimiaBurntState(!kimiaTransformed);
+        });
+    }
 
     if (cardFisika) {
-        cardFisika.addEventListener('click', () => {
-            cardFisika.classList.toggle('is-flipped');
-            cardFisika.classList.toggle('flipped');
+        cardFisika.addEventListener('click', (e) => {
+            const isFlipped = cardFisika.classList.contains('is-flipped') || cardFisika.classList.contains('flipped');
+            if (isFlipped) {
+                cardFisika.classList.remove('is-flipped', 'flipped');
+                return;
+            }
+
+            if (!fisikaTransformed) {
+                setFisikaMeltedState(true);
+            } else {
+                cardFisika.classList.add('is-flipped', 'flipped');
+            }
         });
     }
 
     if (cardKimia) {
-        cardKimia.addEventListener('click', () => {
-            cardKimia.classList.toggle('is-flipped');
-            cardKimia.classList.toggle('flipped');
+        cardKimia.addEventListener('click', (e) => {
+            const isFlipped = cardKimia.classList.contains('is-flipped') || cardKimia.classList.contains('flipped');
+            if (isFlipped) {
+                cardKimia.classList.remove('is-flipped', 'flipped');
+                return;
+            }
+
+            if (!kimiaTransformed) {
+                setKimiaBurntState(true);
+            } else {
+                cardKimia.classList.add('is-flipped', 'flipped');
+            }
         });
     }
 
@@ -1371,6 +1485,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (typeof cardKimia !== 'undefined' && cardKimia) {
             cardKimia.classList.remove('is-flipped', 'flipped');
+        }
+        if (typeof setFisikaMeltedState === 'function') {
+            setFisikaMeltedState(false, false);
+        }
+        if (typeof setKimiaBurntState === 'function') {
+            setKimiaBurntState(false, false);
         }
 
         // Reset Level 4.1

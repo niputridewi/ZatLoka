@@ -640,8 +640,8 @@ ruangan.</p>
                 <!-- SLIDE 9 (LEVEL 3: Perubahan Fisika & Kimia - Flashcards) -->
                 <div class="materi-slide" data-slide="9">
                     <div class="slide-instruction">
-                        <span class="instruction-icon">🃏</span>
-                        <p>Ketuk masing-masing kartu untuk membalik dan mempelajari konsep Perubahan Fisika &amp; Kimia!</p>
+                        <span class="instruction-icon">🔬</span>
+                        <p>Klik tombol pada setiap kartu untuk memicu perubahannya, lalu balik kartu untuk mempelajari konsepnya!</p>
                     </div>
                     <div class="level3-flashcards-wrapper">
                         <!-- Kartu Fisika (Kiri) -->
@@ -649,19 +649,30 @@ ruangan.</p>
                             <div class="flashcard-inner">
                                 <!-- Sisi Depan (Front Face) -->
                                 <div class="flashcard-front">
-                                    <div class="flashcard-badge fisika">Fisika</div>
+                                    <div class="flashcard-front-top">
+                                        <div class="flashcard-badge fisika">Perubahan Fisika</div>
+                                        <div class="flashcard-state-pill fisika" id="pill-fisika">🧊 Es Batu Beku (Padat)</div>
+                                    </div>
                                     <div class="flashcard-img-container">
-                                        <img src="assets/images/level2/es-daluman-padat.png" alt="Es Batu pada Es Daluman" class="flashcard-img">
+                                        <!-- Es Padat (Base) -->
+                                        <img src="assets/images/level2/es-daluman-padat.png" alt="Es Daluman Padat" id="card-fisika-padat" class="composite-base">
+                                        <!-- Es Cair (Melted) -->
+                                        <img src="assets/images/level2/daluman-cair.png" alt="Es Daluman Cair" id="card-fisika-cair" class="composite-top" style="opacity: 0;">
+                                    </div>
+                                    <div class="flashcard-action-bar">
+                                        <button class="flashcard-interact-btn fisika" id="btn-interact-fisika" title="Klik untuk mencairkan es batu">
+                                            <span class="btn-icon">🧊</span> <span class="btn-text">Cairkan Es Batu</span>
+                                        </button>
                                     </div>
                                     <h3 class="flashcard-title fisika">Perubahan Fisika</h3>
-                                    <div class="flashcard-tap-hint">
-                                        <span class="tap-icon">🔄</span> Ketuk untuk membalik
+                                    <div class="flashcard-tap-hint" id="hint-fisika">
+                                        <span class="tap-icon">👇</span> <span class="hint-text">Klik tombol atau kartu untuk mencairkan es</span>
                                     </div>
                                 </div>
                                 <!-- Sisi Belakang (Back Face) -->
                                 <div class="flashcard-back">
                                     <div class="flashcard-back-header">
-                                        <div class="flashcard-badge fisika">Fisika</div>
+                                        <div class="flashcard-badge fisika">Perubahan Fisika</div>
                                         <h3 class="flashcard-back-title">Perubahan Fisika</h3>
                                         <h4 class="flashcard-back-subtitle">Es Batu pada Es Daluman Mencair</h4>
                                     </div>
@@ -699,20 +710,32 @@ ruangan.</p>
                             <div class="flashcard-inner">
                                 <!-- Sisi Depan (Front Face) -->
                                 <div class="flashcard-front">
-                                    <div class="flashcard-badge kimia">Kimia</div>
+                                    <div class="flashcard-front-top">
+                                        <div class="flashcard-badge kimia">Perubahan Kimia</div>
+                                        <div class="flashcard-state-pill kimia" id="pill-kimia">🕯️ Batang Dupa Utuh</div>
+                                    </div>
                                     <div class="flashcard-img-container kimia-composite">
-                                        <img src="assets/images/level3/dupa-abu.png" alt="Dupa Abu" class="composite-base">
-                                        <img src="assets/images/level3/asap-aroma.png" alt="Asap Aroma" class="composite-top">
+                                        <!-- Dupa Utuh / Fresh Base -->
+                                        <img src="assets/images/level3/wadah-pasepan.png" alt="Wadah Pasepan" id="card-kimia-fresh" class="composite-base">
+                                        <!-- Dupa Abu / Burnt -->
+                                        <img src="assets/images/level3/dupa-abu.png" alt="Dupa Abu" id="card-kimia-burnt" class="composite-top" style="opacity: 0;">
+                                        <!-- Asap Aroma -->
+                                        <img src="assets/images/level3/asap-aroma.png" alt="Asap Aroma" id="card-kimia-smoke" class="composite-smoke" style="opacity: 0;">
+                                    </div>
+                                    <div class="flashcard-action-bar">
+                                        <button class="flashcard-interact-btn kimia" id="btn-interact-kimia" title="Klik untuk menyalakan dupa">
+                                            <span class="btn-icon">🔥</span> <span class="btn-text">Nyalakan Dupa</span>
+                                        </button>
                                     </div>
                                     <h3 class="flashcard-title kimia">Perubahan Kimia</h3>
-                                    <div class="flashcard-tap-hint">
-                                        <span class="tap-icon">🔄</span> Ketuk untuk membalik
+                                    <div class="flashcard-tap-hint" id="hint-kimia">
+                                        <span class="tap-icon">👇</span> <span class="hint-text">Klik tombol atau kartu untuk menyalakan dupa</span>
                                     </div>
                                 </div>
                                 <!-- Sisi Belakang (Back Face) -->
                                 <div class="flashcard-back">
                                     <div class="flashcard-back-header">
-                                        <div class="flashcard-badge kimia">Kimia</div>
+                                        <div class="flashcard-badge kimia">Perubahan Kimia</div>
                                         <h3 class="flashcard-back-title">Perubahan Kimia</h3>
                                         <h4 class="flashcard-back-subtitle">Pembakaran Serbuk Kayu Dupa</h4>
                                     </div>
