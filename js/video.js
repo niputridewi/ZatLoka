@@ -30,7 +30,7 @@
                     src: "https://archive.org/download/ternyata-begini-proses-pembuatan-arak-bali-yang-tradisional/TERNYATA%20BEGINI%20PROSES%20PEMBUATAN%20ARAK%20BALI%20YANG%20TRADISIONAL.mp4",
                     code: "Video 1.2",
                     title: "Proses Pembuatan Arak Bali Tradisional",
-                    desc: "Observasi teknik destilasi (penyulingan) tradisional menggunakan bambu pendingin untuk mengubah uap menjadi zat cair."
+                    desc: "Observasi teknik destilasi (penyulingan) tradisional menggunakan bambu pendingin untuk mengubah uap menjadi zat dalam wujud cair."
                 },
                 {
                     id: "v1_3",

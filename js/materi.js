@@ -383,17 +383,17 @@ document.addEventListener('DOMContentLoaded', () => {
         bambu: {
             element: document.getElementById('hotspot-bambu'),
             title: 'Wujud Padat (Bambu Suling)',
-            text: 'Bambu penyulingan memiliki wujud <strong>PADAT</strong>. Zat padat memiliki bentuk dan volume yang selalu tetap, serta tidak berubah meskipun dipindahkan ke tempat yang berbeda.'
+            text: 'Bambu penyulingan memiliki wujud <strong>PADAT</strong>. Zat dalam wujud padat memiliki bentuk dan volume yang selalu tetap, serta tidak berubah meskipun dipindahkan ke tempat yang berbeda.'
         },
         tetesan: {
             element: document.getElementById('hotspot-tetesan'),
             title: 'Wujud Cair (Tetesan Arak)',
-            text: 'Tetesan arak memiliki wujud <strong>CAIR</strong>. Zat cair memiliki volume yang tetap, tetapi bentuknya selalu berubah mengikuti bentuk wadah penampungnya.'
+            text: 'Tetesan arak memiliki wujud <strong>CAIR</strong>. Zat dalam wujud cair memiliki volume yang tetap, tetapi bentuknya selalu berubah mengikuti bentuk wadah penampungnya.'
         },
         uap: {
             element: document.getElementById('hotspot-uap'),
             title: 'Wujud Gas (Uap Panas)',
-            text: 'Uap panas yang mengepul memiliki wujud <strong>GAS</strong>. Zat gas tidak memiliki bentuk dan volume yang tetap; bentuk dan volumenya selalu berubah memenuhi seluruh ruang yang ditempatinya.'
+            text: 'Uap panas yang mengepul memiliki wujud <strong>GAS</strong>. Zat dalam wujud gas tidak memiliki bentuk dan volume yang tetap; bentuk dan volumenya selalu berubah memenuhi seluruh ruang yang ditempatinya.'
         }
     };
 
@@ -523,7 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <h4 style="margin: 0 0 0.3rem 0; color: #991b1b; font-size: 0.82rem; font-weight: 700;">Konsep Sains Penting:</h4>
                             <ul style="margin: 0; padding-left: 1.2rem; font-size: clamp(0.7rem, 1.8vh, 0.8rem); color: #374151; line-height: 1.45; display: flex; flex-direction: column; gap: 0.25rem;">
                                 <li><strong>Menguap:</strong> Perubahan wujud zat dari cair menjadi uap (gas) yang terjadi di permukaan zat dalam wujud cair pada suhu tertentu dan dapat terjadi di bawah titik didih.</li>
-                                <li><strong>Mendidih:</strong> Perubahan wujud cair menjadi gas yang terjadi di seluruh bagian zat cair pada titik didihnya (ditandai dengan munculnya gelembung-gelembung air yang naik ke permukaan).</li>
+                                <li><strong>Mendidih:</strong> Perubahan wujud cair menjadi gas yang terjadi di seluruh bagian zat dalam wujud cair pada titik didihnya (ditandai dengan munculnya gelembung-gelembung air yang naik ke permukaan).</li>
                             </ul>
                         </div>
                     </div>
@@ -564,7 +564,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <ul style="margin: 0; padding-left: 1.2rem; font-size: clamp(0.7rem, 1.8vh, 0.8rem); color: #374151; line-height: 1.45; display: flex; flex-direction: column; gap: 0.25rem;">
                                 <li><strong>Mengembun:</strong> Perubahan wujud zat dari gas menjadi cair (kebalikan dari proses menguap).</li>
                                 <li><strong>Faktor Penyebab & Pengaruh Lingkungan:</strong> Terjadi karena adanya perbedaan suhu dengan lingkungan sekitar yang lebih dingin. Lingkungan luar menyerap panas dari uap, sehingga terjadi perpindahan kalor keluar sistem secara signifikan.</li>
-                                <li><strong>Mekanisme Partikel:</strong> Akibat pengaruh lingkungan yang mendinginkan sistem tersebut, partikel-partikel gas kehilangan energi kinetiknya, memperlambat gerakannya, lalu saling mendekat, merapat, dan berikatan kembali membentuk tetesan zat cair.</li>
+                                <li><strong>Mekanisme Partikel:</strong> Akibat pengaruh lingkungan yang mendinginkan sistem tersebut, partikel-partikel gas kehilangan energi kinetiknya, memperlambat gerakannya, lalu saling mendekat, merapat, dan berikatan kembali membentuk tetesan zat dalam wujud cair.</li>
                             </ul>
                         </div>
                     </div>
@@ -775,9 +775,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="display: flex; flex-direction: column; gap: 0.35rem;">
                         <h4 style="margin: 0; color: #0284c7; font-size: 0.95rem; font-weight: 700;">1. Titik Beku (Membeku: Zat Padat / Es)</h4>
                         <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.35rem;">
-                            <li><strong>Pengertian:</strong> Suhu tertentu ketika suatu zat cair mulai membeku dan berubah wujud menjadi zat padat sepenuhnya.</li>
-                            <li><strong>Perubahan Wujud:</strong> Zat Cair &rarr; Zat Padat (Contoh: Air cair yang berubah menjadi es batu).</li>
-                            <li><strong>Kondisi Suhu:</strong> Ketika suatu zat mencapai titik bekunya, pelepasan energi panas (pendinginan) membuat partikel-partikel zat cair yang tadinya bergerak bebas mulai melambat, mendekat, dan terikat kaku membentuk struktur padat. Suhu zat akan tetap konstan selama proses pembekuan berlangsung hingga seluruh cairan berubah menjadi padat.</li>
+                            <li><strong>Pengertian:</strong> Suhu tertentu ketika suatu zat dalam wujud cair mulai membeku dan berubah wujud menjadi zat dalam wujud padat sepenuhnya.</li>
+                            <li><strong>Perubahan Wujud:</strong> Zat dalam Wujud Cair &rarr; Zat dalam Wujud Padat (Contoh: Air cair yang berubah menjadi es batu).</li>
+                            <li><strong>Kondisi Suhu:</strong> Ketika suatu zat mencapai titik bekunya, pelepasan energi panas (pendinginan) membuat partikel-partikel zat dalam wujud cair yang tadinya bergerak bebas mulai melambat, mendekat, dan terikat kaku membentuk struktur padat. Suhu zat akan tetap konstan selama proses pembekuan berlangsung hingga seluruh cairan berubah menjadi padat.</li>
                             <li><strong>Contoh dalam Kehidupan:</strong> Air murni memiliki titik beku standar pada suhu 0 derajat Celcius di tekanan normal. Pendinginan air di bawah titik beku (hingga suhu -20 derajat Celcius di dalam lemari pendingin/freezer) mengubah air cair menjadi es batu yang padat dan keras.</li>
                         </ul>
                     </div>
@@ -800,9 +800,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="display: flex; flex-direction: column; gap: 0.35rem;">
                         <h4 style="margin: 0; color: #0284c7; font-size: 0.95rem; font-weight: 700;">2. Titik Leleh (Mencair: Zat Padat ke Zat Cair)</h4>
                         <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.35rem;">
-                            <li><strong>Pengertian:</strong> Suhu tertentu ketika suatu zat padat mulai mencair dan berubah wujud menjadi zat cair sepenuhnya.</li>
-                            <li><strong>Perubahan Wujud:</strong> Zat Padat &rarr; Zat Cair (Contoh: Es batu yang berubah menjadi air cair).</li>
-                            <li><strong>Kondisi Suhu:</strong> Ketika suatu zat mencapai titik lelehnya, penambahan kalor (panas) membuat partikel-partikel zat padat yang tadinya bergetar rapat mulai longgar, merenggang, dan mencair. Suhu zat akan tetap konstan selama proses pelelehan berlangsung hingga seluruh zat padat berubah menjadi cair.</li>
+                            <li><strong>Pengertian:</strong> Suhu tertentu ketika suatu zat dalam wujud padat mulai mencair dan berubah wujud menjadi zat dalam wujud cair sepenuhnya.</li>
+                            <li><strong>Perubahan Wujud:</strong> Zat dalam Wujud Padat &rarr; Zat dalam Wujud Cair (Contoh: Es batu yang berubah menjadi air cair).</li>
+                            <li><strong>Kondisi Suhu:</strong> Ketika suatu zat mencapai titik lelehnya, penambahan kalor (panas) membuat partikel-partikel zat dalam wujud padat yang tadinya bergetar rapat mulai longgar, merenggang, dan mencair. Suhu zat akan tetap konstan selama proses pelelehan berlangsung hingga seluruh zat dalam wujud padat berubah menjadi cair.</li>
                             <li><strong>Contoh dalam Kehidupan:</strong> Es murni memiliki titik leleh pada suhu 0 derajat Celcius. Logam emas memiliki titik leleh yang sangat tinggi (1.064 derajat Celcius) sehingga harus dipanaskan dengan api khusus oleh perajin perhiasan di Bali untuk bisa dicetak.</li>
                         </ul>
                     </div>
@@ -818,8 +818,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="display: flex; flex-direction: column; gap: 0.35rem;">
                         <h4 style="margin: 0; color: #dc2626; font-size: 0.95rem; font-weight: 700;">3. Titik Didih (Menguap: Zat Cair ke Gas)</h4>
                         <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.35rem;">
-                            <li><strong>Pengertian:</strong> Suhu tertentu ketika suatu zat cair mulai mendidih dan berubah wujud menjadi gas (uap) secara serentak di seluruh bagian zat cair.</li>
-                            <li><strong>Perubahan Wujud:</strong> Zat Cair &rarr; Gas / Uap (Contoh: Air mendidih di dalam panci yang mengeluarkan uap).</li>
+                            <li><strong>Pengertian:</strong> Suhu tertentu ketika suatu zat dalam wujud cair mulai mendidih dan berubah wujud menjadi gas (uap) secara serentak di seluruh bagian zat dalam wujud cair.</li>
+                            <li><strong>Perubahan Wujud:</strong> Zat dalam Wujud Cair &rarr; Gas / Uap (Contoh: Air mendidih di dalam panci yang mengeluarkan uap).</li>
                             <li><strong>Kondisi Suhu:</strong> Berbeda dengan penguapan biasa (yang bisa terjadi di permukaan pada suhu berapa pun), titik didih terjadi pada suhu tetap di mana tekanan uap jenuh cairan sama dengan tekanan udara luar. Saat tercapai, suhu cairan tidak akan naik lagi melebihi titik didihnya sebelum seluruh cairan habis menguap.</li>
                             <li><strong>Contoh dalam Kehidupan:</strong> Air murni memiliki titik didih standar pada suhu 100 derajat Celcius di tekanan normal. Pada proses penyulingan arak Bali (destilasi), uap alkohol dan air dipisahkan berdasarkan perbedaan titik didihnya masing-masing.</li>
                         </ul>
@@ -1416,7 +1416,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset Level 2.1
         if (typeof dalumanImgPadat !== 'undefined' && dalumanImgPadat) dalumanImgPadat.style.opacity = '1';
         if (typeof dalumanImgCair !== 'undefined' && dalumanImgCair) dalumanImgCair.style.opacity = '0';
-        if (typeof dalumanTextDesc !== 'undefined' && dalumanTextDesc) dalumanTextDesc.innerHTML = 'Es Daluman dalam kondisi beku (padat). Pilih aksi "Panaskan Es" untuk melihat proses pelelehan zat!';
+        if (typeof dalumanTextDesc !== 'undefined' && dalumanTextDesc) dalumanTextDesc.innerHTML = 'Es Daluman dalam kondisi beku (padat). Pilih aksi "Panaskan Es" untuk melihat proses pelelehan zat dalam wujud padat!';
 
         // Reset Level 2.2 (Split View Arak Bali)
         const arakDefaultEl = document.getElementById('arak-img-default');
@@ -1458,7 +1458,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sublimGas.style.opacity = '0';
             sublimGas.style.transform = 'translateY(0)';
         }
-        if (typeof sublimTextDesc !== 'undefined' && sublimTextDesc) sublimTextDesc.innerHTML = 'Tekan tombol "Panaskan Kapur Barus" untuk mengamati proses menyublim zat padat menjadi gas!';
+        if (typeof sublimTextDesc !== 'undefined' && sublimTextDesc) sublimTextDesc.innerHTML = 'Tekan tombol "Panaskan Kapur Barus" untuk mengamati proses menyublim zat dalam wujud padat menjadi gas!';
 
         // Reset Level 2.4
         if (typeof saltSunSlider !== 'undefined' && saltSunSlider) {

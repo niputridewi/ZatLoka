@@ -171,14 +171,14 @@
                     name: "Dupa Harum", 
                     img: "card-dupa.webp", 
                     target: "padat",
-                    explanation: "Tepat sekali! **Dupa Harum** adalah zat padat. Susunan partikel di dalamnya sangat rapat dan teratur, sehingga bentuk maupun volumenya tidak berubah. Dupa menjadi elemen esensial dalam tradisi dan keseharian masyarakat Bali."
+                    explanation: "Tepat sekali! **Dupa Harum** adalah zat dalam wujud padat. Susunan partikel di dalamnya sangat rapat dan teratur, sehingga bentuk maupun volumenya tidak berubah. Dupa menjadi elemen esensial dalam tradisi dan keseharian masyarakat Bali."
                 },
                 { 
                     id: "c2", 
                     name: "Kayu Cendana", 
                     img: "card-kayu.webp", 
                     target: "padat",
-                    explanation: "Benar! **Kayu Cendana** tergolong zat padat. Gaya tarik antarpartikel kayu sangat kuat sehingga teksturnya keras. Kayu ini sering dimanfaatkan masyarakat lokal karena menghasilkan aroma khas saat diproses menjadi dupa."
+                    explanation: "Benar! **Kayu Cendana** tergolong zat dalam wujud padat. Gaya tarik antarpartikel kayu sangat kuat sehingga teksturnya keras. Kayu ini sering dimanfaatkan masyarakat lokal karena menghasilkan aroma khas saat diproses menjadi dupa."
                 },
                 { 
                     id: "c3", 
@@ -192,7 +192,7 @@
                     name: "Arak Bali", 
                     img: "card-arak.webp", 
                     target: "cair",
-                    explanation: "Tepat! **Arak Bali** merupakan zat cair. Meskipun volumenya tetap, bentuk cairan arak ini sangat adaptif. Arak adalah produk kearifan lokal yang dihasilkan melalui teknik pemisahan campuran, yaitu penyulingan (destilasi)."
+                    explanation: "Tepat! **Arak Bali** merupakan zat dalam wujud cair. Meskipun volumenya tetap, bentuk cairan arak ini sangat adaptif. Arak adalah produk kearifan lokal yang dihasilkan melalui teknik pemisahan campuran, yaitu penyulingan (destilasi)."
                 },
                 { 
                     id: "c5", 
@@ -224,7 +224,7 @@
                     name: "Es Daluman Mencair", 
                     img: "card-es-daluman.webp", 
                     target: "memerlukan",
-                    explanation: "Benar sekali! Agar **Es Daluman Mencair**, es tersebut harus menyerap panas dari cairan manis di sekelilingnya. Penyerapan kalor ini membuat ikatan partikel es yang rapat menjadi merenggang menjadi zat cair."
+                    explanation: "Benar sekali! Agar **Es Daluman Mencair**, es tersebut harus menyerap panas dari cairan manis di sekelilingnya. Penyerapan kalor ini membuat ikatan partikel es yang rapat menjadi merenggang menjadi zat dalam wujud cair."
                 },
                 { 
                     id: "c8", 
@@ -334,7 +334,7 @@
         {
             id: 2,
             title: "Soal 2: Sifat Alir Minyak Atraktan",
-            text: "Minyak atraktan dupa berwujud cair dapat dituangkan ke berbagai botol karena partikelnya dapat saling {0}. Jarak antarpartikel zat cair lebih {1} dibandingkan zat padat...",
+            text: "Minyak atraktan dupa berwujud cair dapat dituangkan ke berbagai botol karena partikelnya dapat saling {0}. Jarak antarpartikel zat dalam wujud cair lebih {1} dibandingkan zat dalam wujud padat...",
             answers: ["Menggelincir", "Renggang"],
             bank: ["Menggelincir", "Renggang", "Rapat", "Kaku"]
         },
@@ -386,7 +386,7 @@
     const GAME3_DATA = [
         {
             id: 1,
-            question: "Saat proses pembuatan dupa harum Bali, adonan bahan dipadatkan menjadi bentuk batang dupa. Pernyataan yang benar mengenai sifat wujud zat padat pada batang dupa tersebut berdasarkan teori partikel adalah...",
+            question: "Saat proses pembuatan dupa harum Bali, adonan bahan dipadatkan menjadi bentuk batang dupa. Pernyataan yang benar mengenai sifat zat dalam wujud padat pada batang dupa tersebut berdasarkan teori partikel adalah...",
             options: [
                 "Bentuk berubah-ubah, volume tetap, dan jarak antarpartikel sangat berjauhan",
                 "Bentuk dan volume tetap, serta partikel-partikelnya terikat kuat dan beraturan",
@@ -394,11 +394,11 @@
                 "Bentuk tetap, volume berubah, dan partikelnya mudah berpindah tempat"
             ],
             correct: 1, // B
-            explanation: "Batang dupa merupakan zat padat. Zat padat memiliki bentuk dan volume yang tetap karena gaya tarik antarpartikelnya sangat kuat serta tersusun rapat dan teratur."
+            explanation: "Batang dupa merupakan zat dalam wujud padat. Zat dalam wujud padat memiliki bentuk dan volume yang tetap karena gaya tarik antarpartikelnya sangat kuat serta tersusun rapat dan teratur."
         },
         {
             id: 2,
-            question: "Ketika minyak atraktan dupa (zat cair) dituangkan ke dalam wadah yang berbeda, bentuknya mengikuti wadah namun volumenya tetap. Hal ini terjadi karena partikel zat cair...",
+            question: "Ketika minyak atraktan dupa (zat dalam wujud cair) dituangkan ke dalam wadah yang berbeda, bentuknya mengikuti wadah namun volumenya tetap. Hal ini terjadi karena partikel zat dalam wujud cair...",
             options: [
                 "Memiliki gaya tarik sangat kuat sehingga tidak bisa bergerak sama sekali",
                 "Terikat sangat lemah dan bebas meninggalkan kelompoknya",
@@ -406,7 +406,7 @@
                 "Tidak memiliki massa dan tidak menempati ruang"
             ],
             correct: 2, // C
-            explanation: "Pada zat cair, jarak antarpartikel sedikit lebih renggang dibanding zat padat dan gaya tariknya agak lemah, memungkinkan partikel untuk saling berpindah/menggelincir tetapi tidak lepas sepenuhnya."
+            explanation: "Pada zat dalam wujud cair, jarak antarpartikel sedikit lebih renggang dibanding zat dalam wujud padat dan gaya tariknya agak lemah, memungkinkan partikel untuk saling berpindah/menggelincir tetapi tidak lepas sepenuhnya."
         },
         {
             id: 3,
@@ -427,7 +427,7 @@
                 "Energi kinetik partikel berkurang sehingga partikel bergerak lebih lambat",
                 "Partikel air bertambah banyak dan ukurannya membesar",
                 "Partikel menyerap energi panas sehingga gerakan partikel semakin cepat dan ikatan merenggang",
-                "Partikel zat padat berubah menjadi partikel udara"
+                "Partikel zat dalam wujud padat berubah menjadi partikel udara"
             ],
             correct: 2, // C
             explanation: "Saat meleleh/mencair, zat menyerap panas. Panas ini meningkatkan energi kinetik partikel sehingga pergerakannya lebih cepat dan mampu mengatasi gaya tarik antarpartikel yang tadinya kaku."
@@ -442,7 +442,7 @@
                 "Menyerap air laut hingga habis"
             ],
             correct: 1, // B
-            explanation: "Semakin besar massa jenis suatu zat cair, makin besar pula gaya apung (gaya ke atas) yang dihasilkannya, sehingga benda lebih mudah terapung di air laut pekat daripada air tawar."
+            explanation: "Semakin besar massa jenis suatu zat dalam wujud cair, makin besar pula gaya apung (gaya ke atas) yang dihasilkannya, sehingga benda lebih mudah terapung di air laut pekat daripada air tawar."
         },
         {
             id: 6,
@@ -556,7 +556,7 @@
                 col: 14,
                 length: 4,
                 clue: "Wujud zat minyak atraktan dupa yang bentuknya mengikuti wadah",
-                insight: "Tepat! Pada zat cair, gaya tarik antarpartikelnya agak lemah. Partikelnya bisa saling menggelincir, itu sebabnya minyak wangi bisa dituang dan berubah bentuk."
+                insight: "Tepat! Pada zat dalam wujud cair, gaya tarik antarpartikelnya agak lemah. Partikelnya bisa saling menggelincir, itu sebabnya minyak wangi bisa dituang dan berubah bentuk."
             },
             {
                 id: "D3",
@@ -601,7 +601,7 @@
                 row: 14,
                 col: 6,
                 dir: "H",
-                insight: "Batang dupa merupakan contoh wujud zat padat dalam kearifan lokal Bali yang memiliki bentuk dan volume tetap."
+                insight: "Batang dupa merupakan contoh zat dalam wujud padat dalam kearifan lokal Bali yang memiliki bentuk dan volume tetap."
             },
             {
                 id: "w2",
@@ -609,7 +609,7 @@
                 row: 5,
                 col: 4,
                 dir: "H",
-                insight: "Pada zat padat, partikel penyusunnya tersusun sangat rapat, teratur, dan terikat kuat."
+                insight: "Pada zat dalam wujud padat, partikel penyusunnya tersusun sangat rapat, teratur, dan terikat kuat."
             },
             {
                 id: "w3",
@@ -658,7 +658,7 @@
                 "Bentuk dan volumeku selalu tetap meskipun aku dipindahkan ke berbagai tempat.",
                 "Partikel-partikel penyusunku tersusun sangat rapat, teratur, dan terikat gaya tarik yang sangat kuat."
             ],
-            feedback: "Hebat! Dupa Harum adalah contoh zat padat dengan susunan partikel sangat rapat dan terikat kuat."
+            feedback: "Hebat! Dupa Harum adalah contoh zat dalam wujud padat dengan susunan partikel sangat rapat dan terikat kuat."
         },
         {
             level: 2,
@@ -710,9 +710,9 @@
         {
             id: 2,
             topic: "Minyak Atraktan",
-            statement: "Minyak atraktan dupa dapat dituangkan ke berbagai wadah karena partikel zat cair masih memiliki gaya tarik cukup kuat, tetapi partikelnya dapat saling menggelincir.",
+            statement: "Minyak atraktan dupa dapat dituangkan ke berbagai wadah karena partikel zat dalam wujud cair masih memiliki gaya tarik cukup kuat, tetapi partikelnya dapat saling menggelincir.",
             answer: true, // BENAR
-            feedback: "Tepat sekali! Partikel zat cair dapat saling menggelincir sehingga bentuknya menyesuaikan wadah."
+            feedback: "Tepat sekali! Partikel zat dalam wujud cair dapat saling menggelincir sehingga bentuknya menyesuaikan wadah."
         },
         {
             id: 3,
@@ -794,9 +794,9 @@
         {
             id: 14,
             topic: "Santan Kelapa Daluman",
-            statement: "Campuran santan kelapa pada Es Daluman merupakan zat cair yang memiliki volume tetap, namun bentuknya selalu berubah mengikuti bentuk wadah penyajiannya.",
+            statement: "Campuran santan kelapa pada Es Daluman merupakan zat dalam wujud cair yang memiliki volume tetap, namun bentuknya selalu berubah mengikuti bentuk wadah penyajiannya.",
             answer: true, // BENAR
-            feedback: "Benar! Zat cair memiliki volume yang tetap karena partikelnya masih terikat cukup rapat, tetapi bentuknya fleksibel mengikuti wadah."
+            feedback: "Benar! Zat dalam wujud cair memiliki volume yang tetap karena partikelnya masih terikat cukup rapat, tetapi bentuknya fleksibel mengikuti wadah."
         },
         {
             id: 15,
@@ -903,7 +903,7 @@
             questions: [
                 {
                     id: 1,
-                    question: "Saat proses pembuatan dupa harum Bali, adonan bahan dipadatkan menjadi bentuk batang dupa. Pernyataan yang benar mengenai sifat wujud zat padat pada batang dupa tersebut berdasarkan teori partikel adalah...",
+                    question: "Saat proses pembuatan dupa harum Bali, adonan bahan dipadatkan menjadi bentuk batang dupa. Pernyataan yang benar mengenai sifat zat dalam wujud padat pada batang dupa tersebut berdasarkan teori partikel adalah...",
                     options: [
                         "Bentuk berubah-ubah, volume tetap, serta jarak antarpartikel zat sangat berjauhan.",
                         "Bentuk dan volume tetap, serta partikel-partikel zat terikat kuat dan beraturan.",
@@ -911,11 +911,11 @@
                         "Bentuk tetap, volume berubah, serta partikel zat sangat mudah berpindah tempat."
                     ],
                     correct: 1, // B
-                    explanation: "Batang dupa merupakan zat padat. Zat padat memiliki bentuk dan volume yang tetap karena gaya tarik antarpartikelnya sangat kuat serta tersusun rapat dan teratur."
+                    explanation: "Batang dupa merupakan zat dalam wujud padat. Zat dalam wujud padat memiliki bentuk dan volume yang tetap karena gaya tarik antarpartikelnya sangat kuat serta tersusun rapat dan teratur."
                 },
                 {
                     id: 2,
-                    question: "Ketika minyak atraktan dupa (zat cair) dituangkan ke dalam wadah yang berbeda, bentuknya mengikuti wadah namun volumenya tetap. Hal ini terjadi karena partikel zat cair...",
+                    question: "Ketika minyak atraktan dupa (zat dalam wujud cair) dituangkan ke dalam wadah yang berbeda, bentuknya mengikuti wadah namun volumenya tetap. Hal ini terjadi karena partikel zat dalam wujud cair...",
                     options: [
                         "Memiliki gaya tarik sangat kuat sehingga tidak bisa bergerak sama sekali.",
                         "Terikat sangat lemah dan bebas meninggalkan kelompoknya ke udara.",
@@ -923,7 +923,7 @@
                         "Tidak memiliki massa serta tidak mampu menempati ruang wadah."
                     ],
                     correct: 2, // C
-                    explanation: "Pada zat cair, jarak antarpartikel sedikit lebih renggang dibanding zat padat dan gaya tariknya agak lemah, memungkinkan partikel untuk saling berpindah/menggelincir tetapi tidak lepas sepenuhnya."
+                    explanation: "Pada zat dalam wujud cair, jarak antarpartikel sedikit lebih renggang dibanding zat dalam wujud padat dan gaya tariknya agak lemah, memungkinkan partikel untuk saling berpindah/menggelincir tetapi tidak lepas sepenuhnya."
                 }
             ]
         },
@@ -950,7 +950,7 @@
                         "Energi kinetik partikel berkurang sehingga partikel bergerak lebih lambat.",
                         "Partikel air bertambah banyak jumlahnya dan ukurannya membesar.",
                         "Partikel menyerap energi kalor sehingga gerakannya cepat dan ikatan merenggang.",
-                        "Partikel zat padat berubah wujud langsung menjadi partikel udara bebas."
+                        "Partikel zat dalam wujud padat berubah wujud langsung menjadi partikel udara bebas."
                     ],
                     correct: 2, // C
                     explanation: "Saat meleleh/mencair, zat menyerap kalor. Kalor ini meningkatkan energi kinetik partikel sehingga pergerakannya lebih cepat dan mampu mengatasi gaya tarik antarpartikel yang tadinya kaku."
@@ -971,7 +971,7 @@
                         "Menyerap air laut hingga jenuh dan habis seluruhnya."
                     ],
                     correct: 1, // B
-                    explanation: "Semakin besar massa jenis suatu zat cair, makin besar pula gaya apung (gaya ke atas) yang dihasilkannya, sehingga benda lebih mudah terapung di air laut pekat daripada air tawar."
+                    explanation: "Semakin besar massa jenis suatu zat dalam wujud cair, makin besar pula gaya apung (gaya ke atas) yang dihasilkannya, sehingga benda lebih mudah terapung di air laut pekat daripada air tawar."
                 },
                 {
                     id: 6,

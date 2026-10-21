@@ -25,13 +25,13 @@
                         { text: "Ukuran fisik partikel gas mengecil secara drastis untuk menyesuaikan diri dengan volume tabung yang sempit.", correct: false },
                         { text: "Jarak antarpartikel gas sangat berjauhan serta gaya tariknya sangat lemah sehingga bebas bergerak mengisi seluruh ruang.", correct: true },
                         { text: "Seluruh partikel gas berhenti bergerak secara total dan menempel erat pada permukaan dinding bagian dalam tabung.", correct: false },
-                        { text: "Tekanan udara luar menekan partikel gas secara terus-menerus hingga berubah wujud menjadi bentuk zat cair.", correct: false }
+                        { text: "Tekanan udara luar menekan partikel gas secara terus-menerus hingga berubah wujud menjadi bentuk zat dalam wujud cair.", correct: false }
                     ]
                 },
                 {
                     id: "1.2",
                     asset: "assets/images/kuis/kuis1-grafik-jarak.svg",
-                    caption: "Grafik perbandingan jarak antarpartikel zat padat, cair, dan gas.",
+                    caption: "Grafik perbandingan jarak antarpartikel zat dalam wujud padat, cair, dan gas.",
                     question: "Besi memiliki partikel yang tersusun teratur, berjarak sangat rapat, namun partikelnya tetap menunjukkan aktivitas getaran kecil di posisinya (tidak diam mutlak). Jika besi tersebut dimasukkan ke dalam wadah yang berbeda bentuk, kesimpulan logis apakah yang akan terjadi pada besi?",
                     options: [
                         { text: "Bentuk besi akan berubah menyerupai wadah baru, tetapi ukuran volume totalnya akan tetap konstan.", correct: false },
@@ -46,10 +46,10 @@
                     caption: "Ilustrasi mikroskopis rongga antarpartikel pada bambu dibandingkan dengan logam padat.",
                     question: "Meskipun bambu suling pada alat penyulingan arak dikategorikan sebagai zat dalam wujud padat yang memiliki ikatan antarpartikel sangat kuat, mengapa bambu masih memungkinkan untuk menyerap sejumlah kecil uap air atau mengalami sedikit pemuaian saat dipanaskan?",
                     options: [
-                        { text: "Karena partikel zat padat pada bambu dapat memutuskan ikatan kimianya dan berubah menjadi gas secara instan.", correct: false },
-                        { text: "Karena partikel zat padat selalu bergetar dan memiliki rongga antarpartikel yang memungkinkan ruang gerak termal.", correct: true },
-                        { text: "Karena struktur zat padat sebenarnya tidak memiliki massa jenis dan sangat mudah larut di dalam air panas.", correct: false },
-                        { text: "Karena ikatan antarmolekul pada zat padat bersifat cair fleksibel sehingga dapat mengalir bebas ke luar.", correct: false }
+                        { text: "Karena partikel zat dalam wujud padat pada bambu dapat memutuskan ikatan kimianya dan berubah menjadi gas secara instan.", correct: false },
+                        { text: "Karena partikel zat dalam wujud padat selalu bergetar dan memiliki rongga antarpartikel yang memungkinkan ruang gerak termal.", correct: true },
+                        { text: "Karena struktur zat dalam wujud padat sebenarnya tidak memiliki massa jenis dan sangat mudah larut di dalam air panas.", correct: false },
+                        { text: "Karena ikatan antarmolekul pada zat dalam wujud padat bersifat cair fleksibel sehingga dapat mengalir bebas ke luar.", correct: false }
                     ]
                 },
                 {
@@ -70,10 +70,10 @@
                     caption: "Ilustrasi perbandingan penekanan piston pada wadah tertutup yang berisi gas dan berisi air.",
                     question: "Mengapa volume gas dapat dimampatkan (ditekan) menjadi lebih kecil, sementara hal tersebut sangat sulit dilakukan pada zat dalam wujud cair?",
                     options: [
-                        { text: "Karena gas memiliki ruang kosong (rongga antarpartikel) yang sangat luas dibandingkan zat cair yang rapat.", correct: true },
+                        { text: "Karena gas memiliki ruang kosong (rongga antarpartikel) yang sangat luas dibandingkan zat dalam wujud cair yang rapat.", correct: true },
                         { text: "Karena massa dari partikel gas akan hilang sebagian secara otomatis saat ditekan kuat dari luar.", correct: false },
-                        { text: "Karena partikel zat cair tidak memiliki gaya tarik menarik sama sekali di antara molekul penyusunnya.", correct: false },
-                        { text: "Karena molekul gas dapat melebur menjadi bentuk wujud zat padat seketika saat diberi tekanan luar.", correct: false }
+                        { text: "Karena partikel zat dalam wujud cair tidak memiliki gaya tarik menarik sama sekali di antara molekul penyusunnya.", correct: false },
+                        { text: "Karena molekul gas dapat melebur menjadi bentuk zat dalam wujud padat seketika saat diberi tekanan luar.", correct: false }
                     ]
                 }
             ],
@@ -204,7 +204,7 @@
                     caption: "Proses fermentasi nira menjadi tuak/tape khas Bali oleh mikroorganisme.",
                     question: "Dalam tradisi pembuatan tuak atau tape di Bali, masyarakat menggunakan ragi untuk mengubah rasa manis ketan atau nira menjadi beralkohol dan berasa asam setelah didiamkan beberapa hari. Berdasarkan karakteristik perubahannya, termasuk jenis perubahan apakah proses fermentasi tersebut dan apa alasannya?",
                     options: [
-                        { text: "Perubahan fisika, karena wujud fisik dari ketan ataupun nira tetap berupa bentuk zat cair dan padat.", correct: false },
+                        { text: "Perubahan fisika, karena wujud fisik dari ketan ataupun nira tetap berupa zat dalam wujud cair dan padat.", correct: false },
                         { text: "Perubahan fisika, karena proses reaksi fermentasinya dapat dibalik dengan cara mendinginkannya.", correct: false },
                         { text: "Perubahan kimia, terbentuk zat baru disertai perubahan rasa dan sifat akibat kerja mikroorganisme.", correct: true },
                         { text: "Perubahan kimia, karena wujud zat berubah langsung dari bentuk gas menjadi padat secara instan.", correct: false }
@@ -350,7 +350,7 @@ Evaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisa
                     num: 2,
                     asset: null,
                     caption: null,
-                    question: "Kadek ingin merancang replika perahu tradisional Bali dari gabus sterofoam dan kayu. Ia ingin perahunya dapat melayang tepat di tengah-tengah kedalaman air kolam (tidak tenggelam ke dasar dan tidak muncul terlalu tinggi di permukaan). Berdasarkan pemahamanmu tentang konsep massa jenis zat cair dan benda, saran strategi apa yang harus dilakukan Kadek terhadap rancangan bahan perahunya agar tujuan tersebut tercapai?"
+                    question: "Kadek ingin merancang replika perahu tradisional Bali dari gabus sterofoam dan kayu. Ia ingin perahunya dapat melayang tepat di tengah-tengah kedalaman air kolam (tidak tenggelam ke dasar dan tidak muncul terlalu tinggi di permukaan). Berdasarkan pemahamanmu tentang konsep massa jenis zat dalam wujud cair dan benda, saran strategi apa yang harus dilakukan Kadek terhadap rancangan bahan perahunya agar tujuan tersebut tercapai?"
                 }
             ]
         }
@@ -500,7 +500,7 @@ Evaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisa
                 passedKuis: [1, 2, 3, 4],
                 scores: { "1": 5, "2": 5, "3": 5, "4": 5 },
                 essays: {
-                    "1": ["Uap panas mengalami kondensasi karena penurunan suhu dingin pada pipa bambu.", "Partikel zat padat bergetar di tempatnya dan tidak diam total secara mikroskopis.", "Udara memuai saat panas karena energi kinetik dan jarak partikel gas bertambah."],
+                    "1": ["Uap panas mengalami kondensasi karena penurunan suhu dingin pada pipa bambu.", "Partikel zat dalam wujud padat bergetar di tempatnya dan tidak diam total secara mikroskopis.", "Udara memuai saat panas karena energi kinetik dan jarak partikel gas bertambah."],
                     "2": ["Air laut sulit menguap tanpa adanya transfer energi panas dari sinar matahari.", "Tekanan udara di gunung lebih rendah sehingga partikel lebih mudah lepas menjadi uap.", "Uap air menyimpan energi panas laten penguapan yang dilepas seketika saat menyentuh kulit."],
                     "3": ["Garam adalah perubahan fisika sedangkan pembusukan canang sari menghasilkan zat baru (kimia).", "Tidak berhasil karena putih dan kuning telur mengalami denaturasi protein kimiawi permanen.", "Pengelasan melibatkan pelelehan besi (fisika) dan pembakaran oksidasi percikan api (kimia)."],
                     "4": ["Patung kayu mengapung (rho < 1 g/cm3), patung batu tenggelam (rho > 1 g/cm3).", "Partikel besi tersusun sangat padat dengan massa atom yang jauh lebih besar daripada es.", "Menyesuaikan rongga dan beban agar massa jenis total sama dengan massa jenis air."]
