@@ -252,9 +252,9 @@ class ComponentManager {
 
         // Print Report button in Profile modal
         if (this.buttons.profilePrintBtn) {
-            this.buttons.profilePrintBtn.addEventListener('click', () => {
+            this.buttons.profilePrintBtn.addEventListener('click', (e) => {
                 if (window.ZatlokaKuis) {
-                    window.ZatlokaKuis.printReport();
+                    window.ZatlokaKuis.printReport(null, e.currentTarget);
                 }
             });
         }

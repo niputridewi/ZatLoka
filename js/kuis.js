@@ -751,9 +751,9 @@ Evaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisa
 
             const printSummaryBtn = document.getElementById('btn-print-summary');
             if (printSummaryBtn) {
-                printSummaryBtn.addEventListener('click', () => {
+                printSummaryBtn.addEventListener('click', (e) => {
                     KuisSound.play('click');
-                    this.openPrintDialog();
+                    this.openPrintDialog(e.currentTarget);
                 });
             }
 
@@ -1090,8 +1090,8 @@ Evaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisa
 
                 modal.classList.remove('hidden');
 
-                document.getElementById('btn-modal-print').onclick = () => {
-                    this.printReport(this.currentLevel);
+                document.getElementById('btn-modal-print').onclick = (e) => {
+                    this.printReport(this.currentLevel, e.currentTarget);
                 };
 
                 document.getElementById('btn-modal-map').onclick = () => {
@@ -1160,9 +1160,9 @@ Evaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisa
         }
 
         // ==========================================
-        // 4. EKSPOR LAPORAN CETAK / PDF (window.print)
+        // 4. EKSPOR LAPORAN PDF (html2canvas & jsPDF)
         // ==========================================
-        printReport(specificLevel = null) {
+        async printReport(specificLevel = null, triggerBtn = null) {
             const prog = ProgressionManager.get();
             const studentName = localStorage.getItem('studentName') || localStorage.getItem('zatloka_profile_name') || 'Siswa ZatLoka';
             const studentRank = localStorage.getItem('zatloka_profile_rank') || 'Calon Ilmuwan';
@@ -1176,222 +1176,235 @@ Evaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisa
                 return;
             }
 
-            // Buat iframe tersembunyi khusus cetak agar tidak merusak tampilan SPA
-            let printFrame = document.getElementById('zatloka-print-frame');
-            if (printFrame) printFrame.remove();
+            // Dapatkan tombol pemicu untuk efek visual loading (disabled & text)
+            let activeBtn = triggerBtn;
+            if (!activeBtn) {
+                const modalFeedback = document.getElementById('kuis-modal-feedback');
+                const profileModal = document.getElementById('profile-modal');
+                if (modalFeedback && !modalFeedback.classList.contains('hidden')) {
+                    activeBtn = document.getElementById('btn-modal-print');
+                } else if (profileModal && profileModal.classList.contains('active')) {
+                    activeBtn = document.getElementById('profile-print-btn');
+                } else {
+                    activeBtn = document.getElementById('btn-print-summary');
+                }
+            }
 
-            printFrame = document.createElement('iframe');
-            printFrame.id = 'zatloka-print-frame';
-            printFrame.style.position = 'fixed';
-            printFrame.style.top = '-9999px';
-            printFrame.style.left = '-9999px';
-            printFrame.style.width = '1000px';
-            printFrame.style.height = '1000px';
-            document.body.appendChild(printFrame);
+            const originalBtnText = activeBtn ? activeBtn.innerHTML : null;
+            if (activeBtn) {
+                activeBtn.disabled = true;
+                activeBtn.innerHTML = '⏳ Menyusun PDF...';
+            }
 
-            let reportsHtml = levelsToPrint.map(lvl => {
-                const qData = KUIS_DATA[lvl];
-                const score = prog.scores[lvl] || 0;
-                const isPassed = prog.passedKuis.includes(lvl);
-                const essayAnswers = prog.essays[lvl] || [];
-                const dateStr = prog.essayDates[lvl] || '-';
+            // Siapkan elemen container rendering #report-container
+            let reportContainer = document.getElementById('report-container');
+            if (!reportContainer) {
+                reportContainer = document.createElement('div');
+                reportContainer.id = 'report-container';
+                reportContainer.style.position = 'fixed';
+                reportContainer.style.left = '0';
+                reportContainer.style.top = '0';
+                reportContainer.style.width = '794px';
+                reportContainer.style.background = '#ffffff';
+                reportContainer.style.zIndex = '-9999';
+                reportContainer.style.pointerEvents = 'none';
+                document.body.appendChild(reportContainer);
+            }
 
-                return `
-                    <div class="print-level-block">
-                        <div class="print-level-header">
-                            <h3>${qData.badge}: ${qData.title}</h3>
-                            <span class="print-status-tag ${isPassed ? 'tag-lulus' : 'tag-belum'}">
-                                ${isPassed ? '✓ LULUS (100%)' : 'BELUM LULUS'}
-                            </span>
-                        </div>
-                        <div class="print-meta-grid">
-                            <div><strong>Skor Pilihan Ganda:</strong> ${score} / 5 (${score * 20}%)</div>
-                            <div><strong>Waktu Pengerjaan:</strong> ${dateStr}</div>
-                        </div>
+            try {
+                // Periksa kesiapan library PDF
+                const html2canvasLib = window.html2canvas;
+                const jspdfModule = window.jspdf || window;
+                const jsPDFClass = jspdfModule ? (jspdfModule.jsPDF || jspdfModule) : null;
 
-                        <div class="print-essay-section">
-                            <h4>Lembar Jawaban Esai Siswa:</h4>
-                            ${qData.essay.map((e, idx) => `
-                                <div class="print-essay-item">
-                                    <div class="print-q-text"><strong>Soal ${e.num}:</strong> ${e.question}</div>
-                                    ${e.asset ? `
-                                        <div style="margin: 8px 0; text-align: center;">
-                                            <img src="${e.asset.startsWith('assets/') ? e.asset : 'assets/images/kuis/' + e.asset}" 
-                                                 alt="${e.caption || ('Ilustrasi Esai ' + e.num)}"
-                                                 style="max-width: 220px; max-height: 120px; object-fit: contain; border: 1px solid #cbd5e1; border-radius: 4px; display: inline-block;" />
-                                            ${e.caption ? `<p style="font-style: italic; font-size: 8.5pt; color: #475569; margin: 4px 0 0 0; text-align: center;">${e.caption}</p>` : ''}
+                if (!html2canvasLib || !jsPDFClass) {
+                    throw new Error("Library pembuat PDF (html2canvas / jsPDF) belum siap dimuat.");
+                }
+
+                // Bangun blok hasil per level
+                const reportsHtml = levelsToPrint.map(lvl => {
+                    const qData = KUIS_DATA[lvl];
+                    const score = prog.scores[lvl] || 0;
+                    const isPassed = prog.passedKuis.includes(lvl);
+                    const essayAnswers = prog.essays[lvl] || [];
+                    const dateStr = prog.essayDates[lvl] || '-';
+
+                    return `
+                        <div class="print-level-block" style="margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1.5px dashed #cbd5e1;">
+                            <div class="print-level-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #bae6fd; padding-bottom: 8px; margin-bottom: 12px;">
+                                <h3 style="margin: 0; font-size: 16px; color: #0369a1; font-weight: 700;">${qData.badge}: ${qData.title}</h3>
+                                <span class="print-status-tag" style="font-weight: 700; font-size: 11px; padding: 4px 10px; border-radius: 6px; ${isPassed ? 'background: #dcfce7; color: #166534; border: 1px solid #86efac;' : 'background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5;'}">
+                                    ${isPassed ? '✓ LULUS (100%)' : 'BELUM LULUS'}
+                                </span>
+                            </div>
+                            <div class="print-meta-grid" style="display: flex; gap: 24px; font-size: 12px; margin-bottom: 14px; color: #334155; background: #f8fafc; padding: 8px 14px; border-radius: 6px; border: 1px solid #e2e8f0;">
+                                <div><strong>Skor Pilihan Ganda:</strong> ${score} / 5 (${score * 20}%)</div>
+                                <div><strong>Waktu Pengerjaan:</strong> ${dateStr}</div>
+                            </div>
+
+                            <div class="print-essay-section">
+                                <h4 style="margin: 10px 0 8px 0; font-size: 13.5px; color: #0f172a; font-weight: 700;">Lembar Jawaban Esai Siswa:</h4>
+                                ${qData.essay.map((e, idx) => `
+                                    <div class="print-essay-item" style="margin-bottom: 12px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 14px;">
+                                        <div class="print-q-text" style="margin: 0 0 8px 0; font-size: 12px; color: #1e293b; line-height: 1.5;"><strong>Soal ${e.num}:</strong> ${e.question}</div>
+                                        ${e.asset ? `
+                                            <div style="margin: 8px 0; text-align: center;">
+                                                <img src="${e.asset.startsWith('assets/') ? e.asset : 'assets/images/kuis/' + e.asset}" 
+                                                     alt="${e.caption || ('Ilustrasi Esai ' + e.num)}"
+                                                     crossorigin="anonymous"
+                                                     style="max-width: 220px; max-height: 120px; object-fit: contain; border: 1px solid #cbd5e1; border-radius: 4px; display: inline-block;" />
+                                                ${e.caption ? `<p style="font-style: italic; font-size: 10px; color: #475569; margin: 4px 0 0 0; text-align: center;">${e.caption}</p>` : ''}
+                                            </div>
+                                        ` : ''}
+                                        <div class="print-ans-box" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px 12px; font-size: 12px; color: #0f172a; line-height: 1.5;">
+                                            <strong style="color: #0369a1;">Jawaban Siswa:</strong><br/>
+                                            ${essayAnswers[idx] ? essayAnswers[idx].replace(/\n/g, '<br/>') : '<em>(Belum dijawab)</em>'}
                                         </div>
-                                    ` : ''}
-                                    <div class="print-ans-box">
-                                        <strong>Jawaban:</strong><br/>
-                                        ${essayAnswers[idx] ? essayAnswers[idx].replace(/\n/g, '<br/>') : '<em>(Belum dijawab)</em>'}
                                     </div>
-                                </div>
-                            `).join('')}
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Render tampilan bersih berformat A4 pada container
+                reportContainer.innerHTML = `
+                    <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0f172a; background: #ffffff; padding: 32px 36px; box-sizing: border-box; width: 794px; min-height: 1120px; line-height: 1.5;">
+                        <div style="border-bottom: 2.5px solid #0284c7; padding-bottom: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <h1 style="font-size: 22px; color: #0284c7; margin: 0 0 4px 0; font-weight: 800; letter-spacing: -0.5px;">ZATLOKA • Laporan Hasil Kuis IPA</h1>
+                                <p style="margin: 0; color: #64748b; font-size: 12px; font-weight: 500;">Media Pembelajaran Etnosains Bali SMP Kelas VII (Kurikulum Merdeka)</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <span style="font-size: 11px; color: #0369a1; background: #e0f2fe; padding: 4px 8px; border-radius: 4px; font-weight: 700; border: 1px solid #bae6fd;">E-PORTFOLIO SAINS</span>
+                            </div>
+                        </div>
+
+                        <div style="background: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display: grid; grid-template-columns: repeat(3, auto); gap: 24px; font-size: 12.5px;">
+                                <div><span style="color: #64748b;">Nama Siswa:</span><br/><strong style="color: #0c4a6e; font-size: 14px;">${studentName}</strong></div>
+                                <div><span style="color: #64748b;">Gelar Profil:</span><br/><strong style="color: #0369a1;">${studentRank}</strong></div>
+                                <div><span style="color: #64748b;">Total EXP:</span><br/><strong style="color: #d97706;">${studentExp} EXP</strong></div>
+                            </div>
+                            ${studentPhoto ? `<img src="${studentPhoto}" crossorigin="anonymous" alt="Foto Siswa" style="width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 2.5px solid #0284c7; margin-left: 16px;">` : ''}
+                        </div>
+
+                        ${reportsHtml}
+
+                        <div style="margin-top: 28px; text-align: right; font-size: 11px; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 10px;">
+                            Dokumen digital resmi dari Aplikasi Media Pembelajaran ZatLoka • Dicetak pada ${new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
                         </div>
                     </div>
                 `;
-            }).join('<hr class="print-divider"/>');
 
-            const printDocumentContent = `
-                <!DOCTYPE html>
-                <html lang="id">
-                <head>
-                    <meta charset="UTF-8">
-                    <title>Laporan Hasil Kuis Sains - ${studentName}</title>
-                    <style>
-                        @page { size: A4; margin: 15mm; }
-                        body {
-                            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                            color: #0f172a;
-                            background: #ffffff;
-                            margin: 0;
-                            padding: 10px;
-                            font-size: 11pt;
-                            line-height: 1.5;
-                        }
-                        .print-header {
-                            border-bottom: 2px solid #0284c7;
-                            padding-bottom: 12px;
-                            margin-bottom: 20px;
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                        }
-                        .print-header h1 {
-                            font-size: 18pt;
-                            color: #0284c7;
-                            margin: 0 0 4px 0;
-                        }
-                        .print-header p {
-                            margin: 0;
-                            color: #64748b;
-                            font-size: 9pt;
-                        }
-                        .print-student-info {
-                            background: #f0f9ff;
-                            border: 1px solid #bae6fd;
-                            border-radius: 8px;
-                            padding: 12px 16px;
-                            margin-bottom: 20px;
-                            display: grid;
-                            grid-template-columns: 1fr 1fr 1fr;
-                            gap: 10px;
-                        }
-                        .print-student-info div {
-                            font-size: 10pt;
-                        }
-                        .print-level-block {
-                            margin-bottom: 20px;
-                            page-break-inside: avoid;
-                        }
-                        .print-level-header {
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                            border-bottom: 1px solid #cbd5e1;
-                            padding-bottom: 6px;
-                            margin-bottom: 10px;
-                        }
-                        .print-level-header h3 {
-                            margin: 0;
-                            font-size: 13pt;
-                            color: #0369a1;
-                        }
-                        .print-status-tag {
-                            font-weight: bold;
-                            font-size: 9pt;
-                            padding: 3px 8px;
-                            border-radius: 4px;
-                        }
-                        .tag-lulus { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
-                        .tag-belum { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
-                        .print-meta-grid {
-                            display: flex;
-                            gap: 24px;
-                            font-size: 10pt;
-                            margin-bottom: 12px;
-                            color: #334155;
-                        }
-                        .print-essay-section h4 {
-                            margin: 10px 0 6px 0;
-                            font-size: 11pt;
-                            color: #0f172a;
-                        }
-                        .print-essay-item {
-                            margin-bottom: 12px;
-                            background: #f8fafc;
-                            border: 1px solid #e2e8f0;
-                            border-radius: 6px;
-                            padding: 8px 12px;
-                        }
-                        .print-q-text {
-                            margin: 0 0 6px 0;
-                            font-size: 9.5pt;
-                            color: #1e293b;
-                        }
-                        .print-ans-box {
-                            background: #ffffff;
-                            border: 1px solid #cbd5e1;
-                            border-radius: 4px;
-                            padding: 6px 10px;
-                            font-size: 9.5pt;
-                            color: #0f172a;
-                        }
-                        .print-divider {
-                            border: none;
-                            border-top: 1.5px dashed #cbd5e1;
-                            margin: 24px 0;
-                        }
-                        .print-footer {
-                            margin-top: 30px;
-                            text-align: right;
-                            font-size: 9pt;
-                            color: #64748b;
-                            border-top: 1px solid #e2e8f0;
-                            padding-top: 8px;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <div class="print-header">
-                        <div>
-                            <h1>ZATLOKA • Laporan Hasil Kuis IPA</h1>
-                            <p>Media Pembelajaran Etnosains Bali SMP Kelas VII (Kurikulum Merdeka)</p>
-                        </div>
-                    </div>
+                // Tunggu proses pemuatan seluruh gambar dalam container
+                const images = Array.from(reportContainer.querySelectorAll('img'));
+                await Promise.all(images.map(img => {
+                    if (img.complete) return Promise.resolve();
+                    return new Promise(resolve => {
+                        img.onload = resolve;
+                        img.onerror = resolve;
+                    });
+                }));
 
-                    <div class="print-student-info" style="display:flex; align-items:center; justify-content:space-between;">
-                        <div>
-                            <div><strong>Nama Siswa:</strong> ${studentName}</div>
-                            <div><strong>Gelar Saat Ini:</strong> ${studentRank}</div>
-                            <div><strong>Total EXP:</strong> ${studentExp} EXP</div>
-                        </div>
-                        ${studentPhoto ? `<img src="${studentPhoto}" alt="Foto Siswa" style="width:60px; height:60px; border-radius:50%; object-fit:cover; border:2px solid #0284c7;">` : ''}
-                    </div>
+                // Waktu jeda reflow mikro
+                await new Promise(resolve => setTimeout(resolve, 150));
 
-                    ${reportsHtml}
+                // Konversi container laporan ke Canvas
+                const canvas = await html2canvasLib(reportContainer, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    scrollY: 0,
+                    scrollX: 0,
+                    windowWidth: 794
+                });
 
-                    <div class="print-footer">
-                        Dicetak secara otomatis dari Aplikasi Media Pembelajaran ZatLoka pada ${new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}
-                    </div>
-                </body>
-                </html>
-            `;
+                // Generate PDF (A4 Portrait)
+                const pdf = new jsPDFClass({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4'
+                });
 
-            const doc = printFrame.contentWindow.document;
-            doc.open();
-            doc.write(printDocumentContent);
-            doc.close();
+                const pdfWidth = 210;
+                const pageHeight = 297;
+                const imgHeight = (canvas.height * pdfWidth) / canvas.width;
+                const imgData = canvas.toDataURL('image/jpeg', 0.95);
 
-            setTimeout(() => {
-                printFrame.contentWindow.focus();
-                printFrame.contentWindow.print();
-            }, 400);
+                let heightLeft = imgHeight;
+                let position = 0;
+
+                pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, imgHeight);
+                heightLeft -= pageHeight;
+
+                while (heightLeft > 0) {
+                    position -= pageHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+
+                // Nama file spesifik sesuai level
+                const fileName = specificLevel 
+                    ? `Laporan_ZatLoka_Level_${specificLevel}.pdf` 
+                    : `Laporan_ZatLoka_Semua_Level.pdf`;
+
+                const pdfBlob = pdf.output('blob');
+                let isShared = false;
+
+                // TUGAS 3a: Penanganan Mobile/APK via Web Share API
+                if (navigator.share && navigator.canShare) {
+                    try {
+                        const pdfFile = new File([pdfBlob], fileName, { type: 'application/pdf' });
+                        if (navigator.canShare({ files: [pdfFile] })) {
+                            await navigator.share({
+                                title: 'Laporan Hasil Kuis ZatLoka',
+                                text: `Laporan hasil belajar IPA siswa ${studentName} pada aplikasi ZatLoka (${fileName}).`,
+                                files: [pdfFile]
+                            });
+                            isShared = true;
+                        }
+                    } catch (shareErr) {
+                        console.warn('Web Share API error atau dibatalkan:', shareErr);
+                        if (shareErr.name === 'AbortError') {
+                            isShared = true; // Siswa membatalkan sheet share
+                        }
+                    }
+                }
+
+                // TUGAS 3b: Fallback unduh langsung di Browser Web Desktop
+                if (!isShared) {
+                    const blobUrl = URL.createObjectURL(pdfBlob);
+                    const link = document.createElement('a');
+                    link.href = blobUrl;
+                    link.download = fileName;
+                    document.body.appendChild(link);
+                    link.click();
+                    setTimeout(() => {
+                        document.body.removeChild(link);
+                        URL.revokeObjectURL(blobUrl);
+                    }, 2000);
+                }
+
+            } catch (err) {
+                console.error("Gagal mengekspor laporan PDF:", err);
+                alert("Terjadi kendala saat menyusun dokumen PDF: " + (err.message || err));
+            } finally {
+                // Bersihkan DOM dan kembalikan tombol ke kondisi semula
+                if (reportContainer) {
+                    reportContainer.innerHTML = '';
+                }
+                if (activeBtn && originalBtnText) {
+                    activeBtn.innerHTML = originalBtnText;
+                    activeBtn.disabled = false;
+                }
+            }
         }
 
-        openPrintDialog() {
-            this.printReport();
+        openPrintDialog(triggerBtn = null) {
+            this.printReport(null, triggerBtn);
         }
     }
 
