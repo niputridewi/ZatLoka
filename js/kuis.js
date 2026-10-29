@@ -751,9 +751,9 @@ Evaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisa
 
             const printSummaryBtn = document.getElementById('btn-print-summary');
             if (printSummaryBtn) {
-                printSummaryBtn.addEventListener('click', (e) => {
+                printSummaryBtn.addEventListener('click', async (e) => {
                     KuisSound.play('click');
-                    this.openPrintDialog(e.currentTarget);
+                    await this.openPrintDialog(e.currentTarget);
                 });
             }
 
@@ -1090,8 +1090,8 @@ Evaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisa
 
                 modal.classList.remove('hidden');
 
-                document.getElementById('btn-modal-print').onclick = (e) => {
-                    this.printReport(this.currentLevel, e.currentTarget);
+                document.getElementById('btn-modal-print').onclick = async (e) => {
+                    await this.printReport(this.currentLevel, e.currentTarget);
                 };
 
                 document.getElementById('btn-modal-map').onclick = () => {
@@ -1164,7 +1164,8 @@ Evaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisa
         // ==========================================
         async printReport(specificLevel = null, triggerBtn = null) {
             const prog = ProgressionManager.get();
-            const studentName = localStorage.getItem('studentName') || localStorage.getItem('zatloka_profile_name') || 'Siswa ZatLoka';
+            const studentName = localStorage.getItem('student_name') || localStorage.getItem('studentName') || localStorage.getItem('zatloka_profile_name') || 'Siswa ZatLoka';
+            const studentNis = localStorage.getItem('student_nis') || '-';
             const studentRank = localStorage.getItem('zatloka_profile_rank') || 'Calon Ilmuwan';
             const studentExp = localStorage.getItem('zatloka_profile_exp') || '0';
             const studentPhoto = localStorage.getItem('studentPhoto') || null;
@@ -1281,8 +1282,9 @@ Evaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisa
                         </div>
 
                         <div style="background: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;">
-                            <div style="display: grid; grid-template-columns: repeat(3, auto); gap: 24px; font-size: 12.5px;">
+                            <div style="display: grid; grid-template-columns: repeat(4, auto); gap: 20px; font-size: 12.5px;">
                                 <div><span style="color: #64748b;">Nama Siswa:</span><br/><strong style="color: #0c4a6e; font-size: 14px;">${studentName}</strong></div>
+                                <div><span style="color: #64748b;">NIS:</span><br/><strong style="color: #0c4a6e;">${studentNis}</strong></div>
                                 <div><span style="color: #64748b;">Gelar Profil:</span><br/><strong style="color: #0369a1;">${studentRank}</strong></div>
                                 <div><span style="color: #64748b;">Total EXP:</span><br/><strong style="color: #d97706;">${studentExp} EXP</strong></div>
                             </div>
@@ -1307,9 +1309,6 @@ Evaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisa
                     });
                 }));
 
-                // Waktu jeda reflow mikro
-                await new Promise(resolve => setTimeout(resolve, 150));
-
                 // Konversi container laporan ke Canvas
                 const canvas = await html2canvasLib(reportContainer, {
                     scale: 2,
@@ -1322,7 +1321,7 @@ Evaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisa
                 });
 
                 // Generate PDF (A4 Portrait)
-                const pdf = new jsPDFClass({
+                const doc = new jsPDFClass({
                     orientation: 'portrait',
                     unit: 'mm',
                     format: 'a4'
@@ -1336,56 +1335,38 @@ Evaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisa
                 let heightLeft = imgHeight;
                 let position = 0;
 
-                pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, imgHeight);
+                doc.addImage(imgData, 'JPEG', 0, position, pdfWidth, imgHeight);
                 heightLeft -= pageHeight;
 
                 while (heightLeft > 0) {
                     position -= pageHeight;
-                    pdf.addPage();
-                    pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, imgHeight);
+                    doc.addPage();
+                    doc.addImage(imgData, 'JPEG', 0, position, pdfWidth, imgHeight);
                     heightLeft -= pageHeight;
                 }
 
-                // Nama file spesifik sesuai level
-                const fileName = specificLevel 
-                    ? `Laporan_ZatLoka_Level_${specificLevel}.pdf` 
-                    : `Laporan_ZatLoka_Semua_Level.pdf`;
+                // 1. Konversi output jsPDF menjadi Blob, lalu bungkus menjadi objek File:
+                const pdfBlob = doc.output('blob');
+                const pdfFile = new File([pdfBlob], "Laporan_ZatLoka.pdf", { type: "application/pdf" });
 
-                const pdfBlob = pdf.output('blob');
-                let isShared = false;
-
-                // TUGAS 3a: Penanganan Mobile/APK via Web Share API
-                if (navigator.share && navigator.canShare) {
-                    try {
-                        const pdfFile = new File([pdfBlob], fileName, { type: 'application/pdf' });
-                        if (navigator.canShare({ files: [pdfFile] })) {
-                            await navigator.share({
-                                title: 'Laporan Hasil Kuis ZatLoka',
-                                text: `Laporan hasil belajar IPA siswa ${studentName} pada aplikasi ZatLoka (${fileName}).`,
-                                files: [pdfFile]
-                            });
-                            isShared = true;
-                        }
-                    } catch (shareErr) {
-                        console.warn('Web Share API error atau dibatalkan:', shareErr);
-                        if (shareErr.name === 'AbortError') {
-                            isShared = true; // Siswa membatalkan sheet share
-                        }
-                    }
-                }
-
-                // TUGAS 3b: Fallback unduh langsung di Browser Web Desktop
-                if (!isShared) {
+                // 2. Cek dukungan Web Share API untuk file:
+                if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
+                    // EKSEKUSI UNTUK APK / MOBILE
+                    await navigator.share({
+                        files: [pdfFile],
+                        title: 'Laporan ZatLoka',
+                        text: 'Berikut adalah laporan hasil kuis dan eksplorasi Detektif Zat.'
+                    }).catch(err => console.log('Share error:', err));
+                } else {
+                    // FALLBACK UNTUK WEB BROWSER DESKTOP
                     const blobUrl = URL.createObjectURL(pdfBlob);
-                    const link = document.createElement('a');
-                    link.href = blobUrl;
-                    link.download = fileName;
-                    document.body.appendChild(link);
-                    link.click();
-                    setTimeout(() => {
-                        document.body.removeChild(link);
-                        URL.revokeObjectURL(blobUrl);
-                    }, 2000);
+                    const a = document.createElement('a');
+                    a.href = blobUrl;
+                    a.download = "Laporan_ZatLoka.pdf";
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(blobUrl);
                 }
 
             } catch (err) {
@@ -1403,8 +1384,8 @@ Evaluasilah kedua aktivitas Siti tersebut dan jelaskan apakah kedua usaha pemisa
             }
         }
 
-        openPrintDialog(triggerBtn = null) {
-            this.printReport(null, triggerBtn);
+        async openPrintDialog(triggerBtn = null) {
+            await this.printReport(null, triggerBtn);
         }
     }
 

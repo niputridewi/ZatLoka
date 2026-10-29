@@ -108,6 +108,7 @@ class ComponentManager {
         this.isOnboarding = false;
         this.initDOM();
         this.bindEvents();
+        this.syncLockedInputsState();
     }
 
     initDOM() {
@@ -126,13 +127,18 @@ class ComponentManager {
             avatarUploadBox: document.getElementById('avatar-upload-box'),
             profilePrintBtn: document.getElementById('profile-print-btn'),
             modalCloseBtn: document.getElementById('profile-modal-close-btn'),
-            cancelBtn: document.getElementById('profile-cancel-btn')
+            cancelBtn: document.getElementById('profile-cancel-btn'),
+            backupDataBtn: document.getElementById('btn-backup-data'),
+            restoreDataBtn: document.getElementById('btn-restore-data'),
+            resetAccountBtn: document.getElementById('btn-reset-account')
         };
         
         // Input fields
         this.inputs = {
             studentName: document.getElementById('student-name-input'),
-            photoFile: document.getElementById('profile-photo-input')
+            studentNis: document.getElementById('student-nis-input'),
+            photoFile: document.getElementById('profile-photo-input'),
+            restoreFile: document.getElementById('restore-file-input')
         };
 
         // Profile UI Display Elements (modal & widget)
@@ -147,8 +153,53 @@ class ComponentManager {
             avatarLarge: document.getElementById('profile-avatar-large'),
             avatarHint: document.getElementById('avatar-photo-hint'),
             onboardingBanner: document.getElementById('onboarding-welcome-banner'),
-            statsDisplay: document.getElementById('profile-stats-display')
+            statsDisplay: document.getElementById('profile-stats-display'),
+            lockBadge: document.getElementById('profile-lock-badge'),
+            dataManagement: document.getElementById('profile-data-management'),
+            backupStatus: document.getElementById('backup-process-status'),
+            backupStatusIcon: document.getElementById('backup-status-icon'),
+            backupStatusText: document.getElementById('backup-status-text')
         };
+    }
+
+    // Cek apakah profil (Nama & NIS) sudah tersimpan dan terkunci permanen
+    isProfileLocked() {
+        const savedName = (localStorage.getItem('student_name') || localStorage.getItem('studentName') || '').trim();
+        const savedNis = (localStorage.getItem('student_nis') || '').trim();
+        return savedName !== '' && savedName !== 'Siswa Baru' && savedNis !== '';
+    }
+
+    // Sinkronisasi status readonly/disabled pada input Nama dan NIS
+    syncLockedInputsState() {
+        const locked = this.isProfileLocked();
+        const savedName = localStorage.getItem('student_name') || localStorage.getItem('studentName') || '';
+        const savedNis = localStorage.getItem('student_nis') || '';
+
+        if (this.inputs.studentName) {
+            if (locked) {
+                this.inputs.studentName.value = savedName;
+                this.inputs.studentName.disabled = true;
+                this.inputs.studentName.readOnly = true;
+            } else {
+                this.inputs.studentName.disabled = false;
+                this.inputs.studentName.readOnly = false;
+            }
+        }
+
+        if (this.inputs.studentNis) {
+            if (locked) {
+                this.inputs.studentNis.value = savedNis;
+                this.inputs.studentNis.disabled = true;
+                this.inputs.studentNis.readOnly = true;
+            } else {
+                this.inputs.studentNis.disabled = false;
+                this.inputs.studentNis.readOnly = false;
+            }
+        }
+
+        if (this.display.lockBadge) {
+            this.display.lockBadge.style.display = locked ? 'inline-block' : 'none';
+        }
     }
 
     bindEvents() {
@@ -252,16 +303,52 @@ class ComponentManager {
 
         // Print Report button in Profile modal
         if (this.buttons.profilePrintBtn) {
-            this.buttons.profilePrintBtn.addEventListener('click', (e) => {
+            this.buttons.profilePrintBtn.addEventListener('click', async (e) => {
                 if (window.ZatlokaKuis) {
-                    window.ZatlokaKuis.printReport(null, e.currentTarget);
+                    await window.ZatlokaKuis.printReport(null, e.currentTarget);
                 }
+            });
+        }
+
+        // Backup Data button
+        if (this.buttons.backupDataBtn) {
+            this.buttons.backupDataBtn.addEventListener('click', async () => {
+                await this.handleBackupData();
+            });
+        }
+
+        // Restore Data button (pemicu input file JSON tersembunyi)
+        if (this.buttons.restoreDataBtn && this.inputs.restoreFile) {
+            this.buttons.restoreDataBtn.addEventListener('click', () => {
+                this.inputs.restoreFile.value = '';
+                this.inputs.restoreFile.click();
+            });
+        }
+
+        // Event listener saat file JSON dipilih untuk Pulihkan Data
+        if (this.inputs.restoreFile) {
+            this.inputs.restoreFile.addEventListener('change', (e) => {
+                this.handleRestoreFileSelect(e);
+            });
+        }
+
+        // Reset Account button
+        if (this.buttons.resetAccountBtn) {
+            this.buttons.resetAccountBtn.addEventListener('click', () => {
+                this.handleResetAccount();
             });
         }
         
         // Form submit on enter
         if (this.inputs.studentName) {
             this.inputs.studentName.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    this.handleSaveProfile();
+                }
+            });
+        }
+        if (this.inputs.studentNis) {
+            this.inputs.studentNis.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
                     this.handleSaveProfile();
                 }
@@ -278,8 +365,10 @@ class ComponentManager {
             this.isOnboarding = !!options.isOnboarding;
             this.tempCompressedPhoto = null; // Reset foto sementara
 
-            const currentName = localStorage.getItem('studentName') || localStorage.getItem('zatloka_profile_name') || '';
+            const currentName = localStorage.getItem('student_name') || localStorage.getItem('studentName') || localStorage.getItem('zatloka_profile_name') || '';
+            const currentNis = localStorage.getItem('student_nis') || '';
             const currentPhoto = localStorage.getItem('studentPhoto') || getDefaultAvatarBase64();
+            const locked = this.isProfileLocked();
 
             // Set foto preview
             if (this.display.avatarLarge) {
@@ -292,7 +381,12 @@ class ComponentManager {
                 this.display.avatarHint.style.color = '#64748b';
             }
 
-            if (this.isOnboarding) {
+            // Sembunyikan status proses backup saat modal baru dibuka
+            if (this.display.backupStatus) {
+                this.display.backupStatus.style.display = 'none';
+            }
+
+            if (this.isOnboarding && !locked) {
                 // Tampilan khusus First-Time Onboarding
                 if (this.display.onboardingBanner) this.display.onboardingBanner.style.display = 'flex';
                 if (this.buttons.modalCloseBtn) this.buttons.modalCloseBtn.style.display = 'none';
@@ -303,23 +397,32 @@ class ComponentManager {
                 if (this.buttons.saveProfile) this.buttons.saveProfile.textContent = 'Mulai Petualangan 🚀';
 
                 if (this.inputs.studentName) {
-                    this.inputs.studentName.value = '';
+                    this.inputs.studentName.value = currentName && currentName !== 'Siswa Baru' ? currentName : '';
                     setTimeout(() => this.inputs.studentName.focus(), 300);
                 }
+                if (this.inputs.studentNis) {
+                    this.inputs.studentNis.value = currentNis;
+                }
             } else {
-                // Tampilan Edit Profil Normal
+                // Tampilan Profil & Pengaturan Normal
                 if (this.display.onboardingBanner) this.display.onboardingBanner.style.display = 'none';
                 if (this.buttons.modalCloseBtn) this.buttons.modalCloseBtn.style.display = 'block';
                 if (this.buttons.cancelBtn) this.buttons.cancelBtn.style.display = 'inline-block';
                 if (this.buttons.profilePrintBtn) this.buttons.profilePrintBtn.style.display = 'inline-block';
                 if (this.display.statsDisplay) this.display.statsDisplay.style.display = 'flex';
-                if (this.display.modalTitle) this.display.modalTitle.textContent = 'Profil Detektif Zat';
+                if (this.display.modalTitle) this.display.modalTitle.textContent = 'Profil & Pengaturan Detektif Zat';
                 if (this.buttons.saveProfile) this.buttons.saveProfile.textContent = 'Simpan';
 
                 if (this.inputs.studentName) {
                     this.inputs.studentName.value = currentName && currentName !== 'Siswa Baru' ? currentName : '';
                 }
+                if (this.inputs.studentNis) {
+                    this.inputs.studentNis.value = currentNis;
+                }
             }
+
+            // Terapkan penguncian input jika Nama & NIS sudah tersimpan
+            this.syncLockedInputsState();
         }
 
         modal.style.display = 'flex';
@@ -344,9 +447,23 @@ class ComponentManager {
         this.closeModal(modal);
     }
 
-    // Save profile logic with Developer Cheat Codes & Base64 Compression Support
+    // TUGAS 1: Save profile logic dengan Konfirmasi Awal & Penguncian Permanen
     handleSaveProfile() {
+        const locked = this.isProfileLocked();
+
+        // Jika profil sudah terkunci permanen, hanya izinkan pembaruan foto profil
+        if (locked) {
+            if (this.tempCompressedPhoto) {
+                this.state.profile.photo = this.tempCompressedPhoto;
+                localStorage.setItem('studentPhoto', this.tempCompressedPhoto);
+                this.updateProfileUI();
+            }
+            this.closeModal(this.modals.profile);
+            return;
+        }
+
         const inputName = this.inputs.studentName ? this.inputs.studentName.value.trim() : '';
+        const inputNis = this.inputs.studentNis ? this.inputs.studentNis.value.trim() : '';
         
         if (!inputName) {
             alert('Nama lengkap wajib diisi untuk melanjutkan!');
@@ -359,10 +476,15 @@ class ComponentManager {
             if (window.ZatlokaProgression) {
                 window.ZatlokaProgression.devUnlockAll();
             }
+            const devNis = inputNis || 'DEV-001';
             this.state.profile.name = 'Developer Master';
+            this.state.profile.nis = devNis;
             this.state.profile.rank = 'Master Sains';
+            localStorage.setItem('student_name', 'Developer Master');
             localStorage.setItem('studentName', 'Developer Master');
             localStorage.setItem('zatloka_profile_name', 'Developer Master');
+            localStorage.setItem('student_nis', devNis);
+            this.syncLockedInputsState();
             this.updateProfileUI();
             this.isOnboarding = false;
             this.closeModal(this.modals.profile);
@@ -371,18 +493,22 @@ class ComponentManager {
         }
 
         if (inputName === 'DEV-RESET') {
-            if (window.ZatlokaProgression) {
-                window.ZatlokaProgression.devResetAll();
-            }
-            this.state.profile.name = 'Siswa Baru';
-            this.state.profile.rank = 'Calon Ilmuwan';
-            localStorage.removeItem('studentName');
-            localStorage.setItem('zatloka_profile_name', 'Siswa Baru');
-            localStorage.removeItem('studentPhoto');
-            this.updateProfileUI();
-            this.isOnboarding = false;
-            this.closeModal(this.modals.profile);
-            alert("🔄 Kode Cheat 'DEV-RESET' Berhasil!\n\nSeluruh progres telah direset ke status awal.");
+            localStorage.clear();
+            window.location.reload();
+            return;
+        }
+
+        if (!inputNis) {
+            alert('Nomor Induk Siswa (NIS) wajib diisi untuk melanjutkan!');
+            if (this.inputs.studentNis) this.inputs.studentNis.focus();
+            return;
+        }
+
+        // Popup Konfirmasi Penguncian Permanen Nama & NIS
+        const isConfirmed = window.confirm(
+            "Apakah Nama dan NIS Anda sudah benar? Data ini akan dikunci permanen dan tidak dapat diubah tanpa mengulang seluruh progres permainan dari awal."
+        );
+        if (!isConfirmed) {
             return;
         }
 
@@ -394,13 +520,19 @@ class ComponentManager {
 
         // Update state internal
         this.state.profile.name = inputName;
+        this.state.profile.nis = inputNis;
         this.state.profile.photo = finalPhoto;
         
-        // Simpan ke localStorage sesuai spesifikasi PRD
+        // Simpan ke localStorage (student_name, student_nis, serta key kompatibilitas)
+        localStorage.setItem('student_name', inputName);
         localStorage.setItem('studentName', inputName);
-        localStorage.setItem('zatloka_profile_name', inputName); // kompatibilitas modul kuis/laporan
+        localStorage.setItem('zatloka_profile_name', inputName);
+        localStorage.setItem('student_nis', inputNis);
         localStorage.setItem('studentPhoto', finalPhoto);
         
+        // Kunci input Nama & NIS menjadi disabled / readonly
+        this.syncLockedInputsState();
+
         // Update seluruh UI (Header, Kapsul Profil, dsb.)
         this.updateProfileUI();
         
@@ -427,6 +559,269 @@ class ComponentManager {
         }
     }
 
+    // TUGAS 2: Reset Akun dengan Hukuman Progres
+    handleResetAccount() {
+        const isConfirmed = window.confirm(
+            "PERINGATAN! Mereset akun akan menghapus SELURUH progres, EXP, dan riwayat Anda untuk kembali ke nol. Lanjutkan?"
+        );
+        if (isConfirmed) {
+            localStorage.clear();
+            window.location.reload();
+        }
+    }
+
+    // Helper menampilkan visual status pemrosesan Backup / Restore
+    showBackupStatus(type, message) {
+        if (!this.display.backupStatus) return;
+        this.display.backupStatus.style.display = 'flex';
+        this.display.backupStatus.className = 'backup-process-status';
+
+        if (type === 'loading') {
+            if (this.display.backupStatusIcon) this.display.backupStatusIcon.textContent = '⏳';
+        } else if (type === 'success') {
+            this.display.backupStatus.classList.add('status-success');
+            if (this.display.backupStatusIcon) this.display.backupStatusIcon.textContent = '✅';
+        } else if (type === 'error') {
+            this.display.backupStatus.classList.add('status-error');
+            if (this.display.backupStatusIcon) this.display.backupStatusIcon.textContent = '⚠️';
+        }
+
+        if (this.display.backupStatusText) {
+            this.display.backupStatusText.textContent = message;
+        }
+    }
+
+    // TUGAS 3A: Backup Data (Ekspor ke SaveData_ZatLoka_[NIS].json)
+    async handleBackupData() {
+        let studentName = (localStorage.getItem('student_name') || localStorage.getItem('studentName') || localStorage.getItem('zatloka_profile_name') || '').trim();
+        let studentNis = (localStorage.getItem('student_nis') || '').trim();
+
+        // Jika belum tersimpan di localStorage namun pengguna sudah mengetik di kolom input, simpan & kunci terlebih dahulu
+        if (!studentName || studentName === 'Siswa Baru' || !studentNis) {
+            const typedName = this.inputs.studentName ? this.inputs.studentName.value.trim() : '';
+            const typedNis = this.inputs.studentNis ? this.inputs.studentNis.value.trim() : '';
+
+            if (!typedName || typedName === 'Siswa Baru') {
+                alert('Mohon isi Nama Lengkap Siswa terlebih dahulu sebelum melakukan Backup Data.');
+                if (this.inputs.studentName) this.inputs.studentName.focus();
+                return;
+            }
+            if (!typedNis) {
+                alert('Mohon isi Nomor Induk Siswa (NIS) terlebih dahulu sebelum melakukan Backup Data.');
+                if (this.inputs.studentNis) this.inputs.studentNis.focus();
+                return;
+            }
+
+            const isConfirmed = window.confirm(
+                "Apakah Nama dan NIS Anda sudah benar? Data ini akan dikunci permanen dan tidak dapat diubah tanpa mengulang seluruh progres permainan dari awal."
+            );
+            if (!isConfirmed) {
+                return;
+            }
+
+            let finalPhoto = this.tempCompressedPhoto || localStorage.getItem('studentPhoto') || getDefaultAvatarBase64();
+            localStorage.setItem('student_name', typedName);
+            localStorage.setItem('studentName', typedName);
+            localStorage.setItem('zatloka_profile_name', typedName);
+            localStorage.setItem('student_nis', typedNis);
+            localStorage.setItem('studentPhoto', finalPhoto);
+            this.syncLockedInputsState();
+            this.updateProfileUI();
+
+            studentName = typedName;
+            studentNis = typedNis;
+        }
+
+        const btn = this.buttons.backupDataBtn;
+        const originalBtnHtml = btn ? btn.innerHTML : '💾 Backup Data';
+
+        try {
+            // Tampilkan visual pemrosesan sedang membuat backup
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '⏳ Memproses...';
+            }
+            this.showBackupStatus('loading', 'Sedang menyusun dan membuat file Backup Data...');
+
+            // Kumpulkan seluruh data relevan dari localStorage
+            const backupData = {
+                student_name: studentName,
+                student_nis: studentNis,
+                studentName: studentName,
+                zatloka_profile_name: studentName,
+                zatloka_profile_rank: localStorage.getItem('zatloka_profile_rank') || 'Calon Ilmuwan',
+                zatloka_profile_exp: localStorage.getItem('zatloka_profile_exp') || '0',
+                zatloka_exp: localStorage.getItem('zatloka_exp') || '0',
+                zatloka_linear_progress: localStorage.getItem('zatloka_linear_progress') || null,
+                studentPhoto: localStorage.getItem('studentPhoto') || null,
+                zatloka_audio_muted: localStorage.getItem('zatloka_audio_muted') || 'false'
+            };
+
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && !(key in backupData)) {
+                    backupData[key] = localStorage.getItem(key);
+                }
+            }
+
+            const jsonString = JSON.stringify(backupData, null, 2);
+            const fileName = `SaveData_ZatLoka_${studentNis}.json`;
+            const jsonBlob = new Blob([jsonString], { type: 'application/json' });
+            const jsonFile = new File([jsonBlob], fileName, { type: 'application/json' });
+
+            // Deteksi apakah berjalan di lingkungan Mobile / Android APK WebView
+            const isMobileOrAPK = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                                  window.location.protocol === 'file:';
+
+            if (isMobileOrAPK && navigator.canShare && navigator.canShare({ files: [jsonFile] })) {
+                // EKSEKUSI UNTUK APK / MOBILE VIA WEB SHARE API
+                await new Promise(resolve => setTimeout(resolve, 400));
+                await navigator.share({
+                    files: [jsonFile],
+                    title: 'Backup Data ZatLoka',
+                    text: `File cadangan (backup) progres Detektif Zat (${studentName} - NIS: ${studentNis}).`
+                });
+                this.showBackupStatus('success', `File backup "${fileName}" berhasil dibagikan/disimpan!`);
+            } else if (!isMobileOrAPK && typeof window.showSaveFilePicker === 'function') {
+                // EKSEKUSI WEBSITE DESKTOP: Panggil showSaveFilePicker langsung saat user gesture masih aktif
+                const fileHandle = await window.showSaveFilePicker({
+                    suggestedName: fileName,
+                    types: [{
+                        description: 'ZatLoka Backup File (.json)',
+                        accept: { 'application/json': ['.json'] }
+                    }]
+                });
+                this.showBackupStatus('loading', `Sedang menulis data ke "${fileName}"...`);
+                await new Promise(resolve => setTimeout(resolve, 500));
+                const writable = await fileHandle.createWritable();
+                await writable.write(jsonBlob);
+                await writable.close();
+                this.showBackupStatus('success', `Backup berhasil disimpan sebagai "${fileName}"!`);
+            } else {
+                // FALLBACK BROWSER DESKTOP STANDAR (a.download)
+                await new Promise(resolve => setTimeout(resolve, 500));
+                const blobUrl = URL.createObjectURL(jsonBlob);
+                const a = document.createElement('a');
+                a.href = blobUrl;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(() => {
+                    if (a.parentNode) document.body.removeChild(a);
+                    URL.revokeObjectURL(blobUrl);
+                }, 4000);
+                this.showBackupStatus('success', `Backup selesai! File "${fileName}" berhasil diunduh.`);
+            }
+        } catch (err) {
+            if (err && err.name === 'AbortError') {
+                this.showBackupStatus('error', 'Penyimpanan file backup dibatalkan oleh pengguna.');
+            } else {
+                console.warn('Fallback ke unduhan langsung karena:', err);
+                // Jika showSaveFilePicker atau share gagal karena alasan izin, jalankan fallback unduhan langsung
+                try {
+                    const fallbackNis = localStorage.getItem('student_nis') || 'Siswa';
+                    const fileName = `SaveData_ZatLoka_${fallbackNis}.json`;
+                    const backupObj = {};
+                    for (let i = 0; i < localStorage.length; i++) {
+                        const k = localStorage.key(i);
+                        if (k) backupObj[k] = localStorage.getItem(k);
+                    }
+                    const blob = new Blob([JSON.stringify(backupObj, null, 2)], { type: 'application/json' });
+                    const blobUrl = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = blobUrl;
+                    a.download = fileName;
+                    document.body.appendChild(a);
+                    a.click();
+                    setTimeout(() => {
+                        if (a.parentNode) document.body.removeChild(a);
+                        URL.revokeObjectURL(blobUrl);
+                    }, 4000);
+                    this.showBackupStatus('success', `Backup selesai! File "${fileName}" berhasil diunduh.`);
+                } catch (fallbackErr) {
+                    this.showBackupStatus('error', 'Gagal membuat file backup.');
+                }
+            }
+        } finally {
+            if (btn) {
+                btn.disabled = false;
+                btn.innerHTML = originalBtnHtml;
+            }
+        }
+    }
+
+    // TUGAS 3B: Pulihkan Data (Impor & Validasi Anti-Cheat berdasarkan NIS)
+    handleRestoreFileSelect(e) {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            try {
+                const parsedData = JSON.parse(event.target.result);
+                if (!parsedData || typeof parsedData !== 'object') {
+                    throw new Error('Isi file bukan objek JSON yang valid.');
+                }
+
+                // 1. Baca 'student_nis' dari dalam file JSON yang diunggah
+                const uploadedNis = parsedData.student_nis !== undefined && parsedData.student_nis !== null
+                    ? String(parsedData.student_nis).trim()
+                    : '';
+
+                if (!uploadedNis) {
+                    alert('File tidak valid: Data NIS (student_nis) tidak ditemukan di dalam file JSON.');
+                    e.target.value = '';
+                    return;
+                }
+
+                // 2. Bandingkan dengan 'student_nis' yang saat ini aktif di localStorage perangkat
+                const activeNis = (localStorage.getItem('student_nis') || '').trim();
+                const activeName = (localStorage.getItem('student_name') || localStorage.getItem('studentName') || '').trim();
+                const isAppEmpty = !activeNis && (!activeName || activeName === 'Siswa Baru');
+
+                // 3. Jika aplikasi masih kosong (belum ada profil) ATAU data NIS COCOK PERSIS
+                if (isAppEmpty || activeNis === uploadedNis) {
+                    const restoredName = (parsedData.student_name || parsedData.studentName || parsedData.zatloka_profile_name || 'Siswa ZatLoka').trim();
+
+                    // Timpa localStorage dengan data dari JSON
+                    Object.keys(parsedData).forEach(key => {
+                        const val = parsedData[key];
+                        if (val !== null && val !== undefined) {
+                            if (typeof val === 'object') {
+                                localStorage.setItem(key, JSON.stringify(val));
+                            } else {
+                                localStorage.setItem(key, String(val));
+                            }
+                        }
+                    });
+
+                    // Pastikan sinkronisasi identitas utama
+                    localStorage.setItem('student_name', restoredName);
+                    localStorage.setItem('studentName', restoredName);
+                    localStorage.setItem('zatloka_profile_name', restoredName);
+                    localStorage.setItem('student_nis', uploadedNis);
+
+                    window.location.reload();
+                } else {
+                    // 4. JIKA TIDAK COCOK, tolak pemulihan dan munculkan alert error
+                    alert("GAGAL! File data ini milik siswa lain (NIS tidak cocok). Anda tidak dapat memulihkan progres milik orang lain.");
+                    e.target.value = '';
+                }
+            } catch (err) {
+                console.error('Gagal memproses file pemulihan JSON:', err);
+                alert('Gagal memulihkan data: File yang dipilih bukan file JSON cadangan ZatLoka yang valid.');
+                e.target.value = '';
+            }
+        };
+
+        reader.onerror = () => {
+            alert('Gagal membaca file yang dipilih.');
+            e.target.value = '';
+        };
+
+        reader.readAsText(file);
+    }
+
     // Helper to calculate rank based on Passed Quizzes
     getRank(exp) {
         if (window.ZatlokaProgression) {
@@ -444,9 +839,11 @@ class ComponentManager {
     updateProfileUI() {
         const profile = this.state.profile;
         
-        // Ambil nama dari localStorage (studentName atau zatloka_profile_name)
-        const studentName = localStorage.getItem('studentName') || localStorage.getItem('zatloka_profile_name') || profile.name || 'Siswa Baru';
+        // Ambil nama & NIS dari localStorage
+        const studentName = localStorage.getItem('student_name') || localStorage.getItem('studentName') || localStorage.getItem('zatloka_profile_name') || profile.name || 'Siswa Baru';
+        const studentNis = localStorage.getItem('student_nis') || profile.nis || '';
         profile.name = studentName;
+        profile.nis = studentNis;
 
         // Ambil foto dari localStorage (studentPhoto atau fallback siluet)
         const studentPhoto = localStorage.getItem('studentPhoto') || profile.photo || getDefaultAvatarBase64();
@@ -478,6 +875,9 @@ class ComponentManager {
         // Render data di modal
         if (this.display.modalRank) this.display.modalRank.textContent = calculatedRank;
         if (this.display.modalExp) this.display.modalExp.textContent = `${currentExp} EXP`;
+
+        // Pastikan status readonly/disabled input Nama & NIS tersinkronisasi
+        this.syncLockedInputsState();
     }
 }
 

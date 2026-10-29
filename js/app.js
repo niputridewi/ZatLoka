@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. STATE MANAGEMENT DEFAULT
     const appState = {
         profile: {
-            name: localStorage.getItem('studentName') || localStorage.getItem('zatloka_profile_name') || 'Siswa Baru',
+            name: localStorage.getItem('student_name') || localStorage.getItem('studentName') || localStorage.getItem('zatloka_profile_name') || 'Siswa Baru',
+            nis: localStorage.getItem('student_nis') || '',
             rank: localStorage.getItem('zatloka_profile_rank') || 'Calon Ilmuwan',
             exp: parseInt(localStorage.getItem('zatloka_profile_exp')) || 0,
             photo: localStorage.getItem('studentPhoto') || null
@@ -181,12 +182,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             appState.currentScreen = 'home';
 
-            // 1. LOGIKA FIRST-TIME LAUNCH (Pengecekan Pengguna Baru)
-            const savedStudentName = localStorage.getItem('studentName');
-            const isFirstTime = !savedStudentName || savedStudentName.trim() === '';
+            // 1. LOGIKA FIRST-TIME LAUNCH (Pengecekan Pengguna Baru: Nama & NIS Wajib)
+            const savedStudentName = localStorage.getItem('student_name') || localStorage.getItem('studentName');
+            const savedStudentNis = localStorage.getItem('student_nis');
+            const isFirstTime = !savedStudentName || savedStudentName.trim() === '' || savedStudentName.trim() === 'Siswa Baru' || !savedStudentNis || savedStudentNis.trim() === '';
 
             if (isFirstTime) {
-                // JIKA KOSONG: Buka halaman Profil dalam mode Onboarding agar siswa wajib mengisi nama & foto
+                // JIKA KOSONG: Buka halaman Profil dalam mode Onboarding agar siswa wajib mengisi nama, NIS & foto
                 components.openModal('profile', { isOnboarding: true });
             } else {
                 // JIKA ADA: Lewati halaman profil dan langsung arahkan ke Menu Utama

@@ -1200,17 +1200,34 @@ button {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.55rem;
 }
 
 .input-group {
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0.25rem;
+}
+
+.input-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-lock-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #0369a1;
+    background: #e0f2fe;
+    border: 1px solid #bae6fd;
+    padding: 0.12rem 0.5rem;
+    border-radius: 10px;
 }
 
 .input-group label {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 700;
     color: #64748b;
     text-transform: uppercase;
@@ -1220,11 +1237,11 @@ button {
 .input-group input {
     background: #f8fafc;
     border: 1.5px solid #cbd5e1;
-    padding: 0.55rem 0.9rem;
+    padding: 0.48rem 0.85rem;
     border-radius: var(--border-radius-sm);
     color: #0f172a;
     font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     transition: var(--transition-smooth);
 }
 
@@ -1233,6 +1250,15 @@ button {
     border-color: #0284c7;
     background: #ffffff;
     box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.input-group input:disabled,
+.input-group input[readonly] {
+    background: #e2e8f0;
+    border-color: #cbd5e1;
+    color: #475569;
+    cursor: not-allowed;
+    font-weight: 600;
 }
 
 .stats-display {
@@ -1262,6 +1288,138 @@ button {
     font-size: 0.82rem;
     font-weight: 800;
     color: #0284c7;
+}
+
+/* Pengaturan & Manajemen Data (Backup, Restore & Reset Akun) */
+.profile-data-management {
+    margin-top: 0.9rem;
+    padding-top: 0.85rem;
+    border-top: 1px dashed #cbd5e1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.data-mgmt-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.data-mgmt-title {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.data-mgmt-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.btn-data-action {
+    padding: 0.48rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    white-space: nowrap;
+}
+
+.btn-backup {
+    background: #f0f9ff;
+    border: 1.5px solid #7dd3fc;
+    color: #0369a1;
+}
+
+.btn-backup:hover {
+    background: #0284c7;
+    border-color: #0284c7;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(2, 132, 199, 0.25);
+}
+
+.btn-restore {
+    background: #f0fdf4;
+    border: 1.5px solid #86efac;
+    color: #15803d;
+}
+
+.btn-restore:hover {
+    background: #16a34a;
+    border-color: #16a34a;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(22, 163, 74, 0.25);
+}
+
+.btn-reset-danger {
+    background: #fef2f2;
+    border: 1.5px solid #fca5a5;
+    color: #dc2626;
+}
+
+.btn-reset-danger:hover {
+    background: #dc2626;
+    border-color: #dc2626;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);
+}
+
+.btn-data-action:disabled {
+    opacity: 0.65;
+    cursor: wait;
+    transform: none !important;
+}
+
+.backup-process-status {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.5rem 0.85rem;
+    border-radius: 10px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    background: #e0f2fe;
+    border: 1.5px solid #7dd3fc;
+    color: #0369a1;
+    animation: fadeInSlideDown 0.25s ease-out;
+}
+
+.backup-process-status.status-success {
+    background: #dcfce7;
+    border-color: #86efac;
+    color: #15803d;
+}
+
+.backup-process-status.status-error {
+    background: #fee2e2;
+    border-color: #fca5a5;
+    color: #b91c1c;
+}
+
+.backup-spinner {
+    display: inline-block;
+    font-size: 0.95rem;
+    line-height: 1;
+    animation: pulseSpin 1.1s infinite ease-in-out;
+}
+
+.backup-process-status.status-success .backup-spinner,
+.backup-process-status.status-error .backup-spinner {
+    animation: none;
+}
+
+@keyframes pulseSpin {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.18) rotate(180deg); }
+    100% { transform: scale(1) rotate(360deg); }
 }
 
 
